@@ -26,7 +26,7 @@ static void	check_digits(size_t i, char *s, long long *res)
 	order = 1;
 	while (len > 0)
 	{
-		if (!(*res < *res + ((s[i + len - 1] - 48) * order)))
+		if (!(*res <= *res + ((s[i + len - 1] - 48) * order)))
 		{
 			max = -1;
 			*res = (long long)max;

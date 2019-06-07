@@ -6,7 +6,7 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 12:47:56 by uhand             #+#    #+#              #
-#    Updated: 2019/05/31 16:59:10 by uhand            ###   ########.fr        #
+#    Updated: 2019/06/07 15:24:19 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@ NAME = ../checker
 
 HEAD = checker.h
 SRC = checker.c service_fnctns.c ps_atoi.c exec_commands.c exec_commands_2.c \
-visualizer.c
+visualizer.c visualizer_2.c
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -fsanitize=address #-Wall -Wextra -Werror
 LIB = -L ../libft -lft
 LIBPATH = ../libft
 
@@ -30,7 +30,7 @@ all: $(NAME)
 $(NAME):  $(OBJPATH) $(OBJ)
 	@make -C $(LIBPATH)
 	@make -C $(MLIBXPATH)
-	gcc $(OBJ) -o $(NAME) $(LIB) $(MLIBX)
+	gcc $(FLAGS) $(OBJ) -o $(NAME) $(LIB) $(MLIBX)
 
 $(OBJPATH):
 	mkdir -p $(OBJPATH)

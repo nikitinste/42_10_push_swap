@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 15:55:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/04 16:57:16 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/06 18:43:37 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		check_flags(int argv, char **argc)
 {
 	if (argv < 2)
 		return (0);
-	if (!ft_strcmp(argc[1], "-v"))
+	if (!ft_strcmp(argc[1], "v"))
 		return (1);
 	return (0);
 }
