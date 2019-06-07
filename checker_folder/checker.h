@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/07 17:35:28 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/07 19:18:19 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct	s_vis_prms
 	int			max_val;
 	int			scale_index;
 	//int			delta;
+	t_list		*commands;
+	t_list		*crnt_cmd;
 }				t_vis_prms;
 
 /*
