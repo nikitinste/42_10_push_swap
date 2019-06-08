@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 17:01:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/07 19:00:26 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/08 17:29:26 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int			window_init(t_check_prms *p)
 	p->v->img_addr = mlx_get_data_addr(v->img_ptr, &v->bpp, &v->lsz, &v->ndn);
 	//v->bkg_addr = mlx_get_data_addr(v->bkg_ptr, &v->bpp, &v->lsz, &v->ndn);
 	p->v->commands = NULL;
+	p->v->run = 0;
 	return (1);
 }
 
