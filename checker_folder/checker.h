@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/08 19:29:46 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/11 19:55:02 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,44 @@
 # define A !ft_strcmp
 # define WIN_X 600
 # define WIN_Y 1395
+# define TOPLINE 26
 # define BKG_CLR 0xcce5ff
 # define POS_CLR 0x37b6af
 # define NEG_CLR 0xf15f75
+# define MLX p->v->mlx_ptr
+# define WIN p->v->win_ptr
 
 typedef struct s_check_prms t_check_prms;
 typedef	void				(*t_command)(t_check_prms *p);
+
+/*
+** Input grad params: clr
+*/
+
+/*typedef struct	s_grad_prms
+{
+	int				delta;
+	int				a;
+	int				b;
+}				t_grad_prms;*/
+
+/*
+** Operational grad params: grad
+*/
+
+/*typedef struct	s_grad
+{
+	unsigned char	*a;
+	unsigned char	*b;
+	unsigned char	*c;
+	int				d_alpha;
+	int				d1;
+	int				d2;
+	int				d3;
+	int				color;
+	int				start;
+	int				alpha;
+}				t_grad;*/
 
 /*
 **	visualizer params: v
@@ -46,11 +78,11 @@ typedef struct	s_vis_prms
 	int			el_width;
 	int			max_val;
 	int			scale_index;
-	//int			delta;
+	int			count;
 	t_list		*commands;
 	t_list		*crnt_cmd;
 	int			run;
-	//int			err_msg;
+	int			cmd_ret;
 }				t_vis_prms;
 
 /*
@@ -82,8 +114,9 @@ int			check_stacks(t_check_prms *p);
 void		visualize_command(t_check_prms *p);
 void		clear_image(t_check_prms *p);
 int			vis_waiting(t_check_prms *p);
-int			deal_key(int key, void *prm);
+//int			deal_key(int key, void *prm);
 int			close_checker(void *prm);
+char		*make_string(t_check_prms *p, int step);
 
 void		swap_a(t_check_prms *p);
 void		swap_b(t_check_prms *p);

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 13:50:16 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/08 17:55:56 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/11 19:27:05 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,25 @@ int			check_stacks(t_check_prms *p)
 	t_list	*ptr;
 
 	if (p->stack_b != NULL)
+	{
+		ft_printf("KO\n");
 		return (0);
+	}
 	ptr = p->stack_a;
 	ft_printf("---\n");
 	while (ptr->next != NULL)
 	{
 		if (*((int*)ptr->content) > *((int*)ptr->next->content))
+		{
+			ft_printf("KO\n");
 			return (0);
+		}
 		ft_printf("%d\n", *((int*)ptr->content));
 		ptr = ptr->next;
 	}
 	ft_printf("%d\n---\n", *((int*)ptr->content));
-
 	//free stacks
+	ft_printf("OK\n");
 	return (1);
 }
 
@@ -47,6 +53,7 @@ int			check_command(t_check_prms *p)
 			return (1);
 		}
 	}
+	visualize_command(p);
 	return (0);
 }
 
@@ -126,9 +133,6 @@ int			main(int argv, char **argc)
 	}
 	if (p.ret == -1)
 		return (error_msg(1, &p));
-	if ((p.result = check_stacks(&p)))
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
+	check_stacks(&p);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 15:55:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/08 18:30:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/10 13:45:10 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		error_msg(int prm, t_check_prms *p)
 
 	}
 	ft_putstr_fd("Error\n", 2);
-	exit (-1);
+	//exit (-1);
 	return (-1);
 }
 

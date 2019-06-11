@@ -6,7 +6,7 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 12:47:56 by uhand             #+#    #+#              #
-#    Updated: 2019/06/07 15:24:19 by uhand            ###   ########.fr        #
+#    Updated: 2019/06/11 17:19:47 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = ../checker
 
 HEAD = checker.h
 SRC = checker.c service_fnctns.c ps_atoi.c exec_commands.c exec_commands_2.c \
-visualizer.c visualizer_2.c
+visualizer.c visualizer_2.c visualizer_3.c
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
 FLAGS = -g -fsanitize=address #-Wall -Wextra -Werror

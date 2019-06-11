@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 17:01:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/08 17:29:26 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/11 16:32:59 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			window_init(t_check_prms *p)
 		return (1);
 	if (!(v = (t_vis_prms*)malloc(sizeof(t_vis_prms))))
 		return (0);
-	v->el_hight = WIN_Y / p->len;
+	v->el_hight = (WIN_Y - TOPLINE) / p->len;
 	v->el_width = WIN_X / 2;
 	p->v = v;
 	set_limits(p);
@@ -53,6 +53,8 @@ int			window_init(t_check_prms *p)
 	//v->bkg_addr = mlx_get_data_addr(v->bkg_ptr, &v->bpp, &v->lsz, &v->ndn);
 	p->v->commands = NULL;
 	p->v->run = 0;
+	p->v->cmd_ret = 1;
+	p->v->count = 0;
 	return (1);
 }
 
@@ -102,7 +104,7 @@ void		visualize_command(t_check_prms *p)
 	x = 0;
 	while (x < WIN_X)
 	{
-		y = 0;
+		y = TOPLINE + 1;
 		while (stack_ptr)
 		{
 			draw_rectangle(p, x, y, \
