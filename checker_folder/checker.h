@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/11 19:55:02 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/19 16:55:21 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define TOPLINE 26
 # define BKG_CLR 0xcce5ff
 # define POS_CLR 0x37b6af
+# define NUL_CLR 0xffffff
 # define NEG_CLR 0xf15f75
 # define MLX p->v->mlx_ptr
 # define WIN p->v->win_ptr
@@ -34,18 +35,18 @@ typedef	void				(*t_command)(t_check_prms *p);
 ** Input grad params: clr
 */
 
-/*typedef struct	s_grad_prms
+typedef struct	s_grad_prms
 {
 	int				delta;
 	int				a;
 	int				b;
-}				t_grad_prms;*/
+}				t_grad_prms;
 
 /*
 ** Operational grad params: grad
 */
 
-/*typedef struct	s_grad
+typedef struct	s_grad
 {
 	unsigned char	*a;
 	unsigned char	*b;
@@ -57,7 +58,19 @@ typedef	void				(*t_command)(t_check_prms *p);
 	int				color;
 	int				start;
 	int				alpha;
-}				t_grad;*/
+}				t_grad;
+
+/*
+**	visualizer params: v
+*/
+
+typedef struct	s_rectangle
+{
+	int			x_i;
+	int			y_i;
+	int			color;
+	t_grad_prms	grad;
+}				t_rectangle;
 
 /*
 **	visualizer params: v
@@ -77,6 +90,10 @@ typedef struct	s_vis_prms
 	int			el_hight;
 	int			el_width;
 	int			max_val;
+	int			min_val;
+	int			max_width;
+	int			pos_clr;
+	int			neg_clr;
 	int			scale_index;
 	int			count;
 	t_list		*commands;
@@ -114,6 +131,8 @@ int			check_stacks(t_check_prms *p);
 void		visualize_command(t_check_prms *p);
 void		clear_image(t_check_prms *p);
 int			vis_waiting(t_check_prms *p);
+void		set_colors_n_widh(t_check_prms *p);
+int			get_grad_color(t_check_prms *p, t_grad_prms *clr, int pos);
 //int			deal_key(int key, void *prm);
 int			close_checker(void *prm);
 char		*make_string(t_check_prms *p, int step);

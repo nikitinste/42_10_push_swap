@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 17:01:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/11 16:32:59 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/19 16:47:56 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@ static void	set_limits(t_check_prms *p)
 
 	ptr = p->stack_a;
 	p->v->max_val = 0;
-	//p->v->min_val = 0;
+	p->v->min_val = 0;
 	while (ptr != NULL)
 	{
-		if (ft_abs(*((int*)ptr->content)) > p->v->max_val)
-			p->v->max_val = ft_abs(*((int*)ptr->content));
-		/*if (ft_abs((int)ptr->content) < p->v->min_val)
-			p->v->min_val = ft_abs((int)ptr->content);*/
+		if (*((int*)ptr->content) > p->v->max_val)
+			p->v->max_val = *((int*)ptr->content);
+		if (*((int*)ptr->content) < p->v->min_val)
+			p->v->min_val = *((int*)ptr->content);
 		ptr = ptr->next;
 	}
+	set_colors_n_widh(p);
 	//p->v->delta = p->v->max_val - p->v->min_val;
-	p->v->scale_index = (((WIN_X / 2) - 2) * 100) / p->v->max_val;
+	p->v->scale_index = (((WIN_X / 2) - 2) * 100) / p->v->max_width;
 }
 
 int			window_init(t_check_prms *p)
@@ -70,24 +71,30 @@ static void	put_pix_to_img(void *img_addr, int x, int y, int color)
 
 static void	draw_rectangle(t_check_prms *p, int x, int y, int value)
 {
-	int		x_i;
-	int		y_i;
-	int		color;
+	t_rectangle	r;
 
-	y_i = 1;
+	r.y_i = 1;
+	r.grad.a = NUL_CLR;
 	if (value < 0)
 	{
 		value *= -1;
-		color = NEG_CLR;
+		r.grad.b = p->v->neg_clr;
+		r.grad.delta = (ft_abs(p->v->min_val) *p->v->scale_index) / 100;
 	}
 	else
-		color = POS_CLR;
-	while (++y_i < (p->v->el_hight - 1))
 	{
-		x_i = 1 + ((((p->v->max_val * p->v->scale_index) / 100) - value) / 2);
-		while (++x_i < (p->v->el_width - (1 + ((((p->v->max_val * \
+		r.grad.b = p->v->pos_clr;
+		r.grad.delta = (ft_abs(p->v->max_val) *p->v->scale_index) / 100;
+	}
+	r.color = get_grad_color(p, &r.grad, value);
+	ft_printf("clr: %x value: %d\n", r.color, value);
+	while (++r.y_i < (p->v->el_hight - 1))
+	{
+		r.x_i = 1 + ((((p->v->max_width * p->v->scale_index) / 100) - value) \
+			/ 2);
+		while (++r.x_i < (p->v->el_width - (1 + ((((p->v->max_width * \
 			p->v->scale_index) / 100) - value) / 2))))
-			put_pix_to_img(p->v->img_addr, (x +  x_i), (y + y_i), color);
+			put_pix_to_img(p->v->img_addr, (x + r.x_i), (y + r.y_i), r.color);
 	}
 }
 

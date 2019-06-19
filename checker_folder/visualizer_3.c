@@ -6,13 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:45:59 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/11 19:54:07 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/19 16:36:55 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		close_checker(void *prm)
+int			close_checker(void *prm)
 {
 	t_check_prms	*p;
 
@@ -24,7 +24,7 @@ int		close_checker(void *prm)
 	return (0);
 }
 
-/*void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
+static void	set_grad_color(t_grad *g, t_grad_prms *clr, int pos)
 {
 	g->a = (unsigned char*)&clr->a;
 	g->b = (unsigned char*)&clr->b;
@@ -40,13 +40,13 @@ int		close_checker(void *prm)
 	g->c[g->alpha] = ((g->d_alpha * pos) / clr->delta) + g->a[g->alpha];
 }
 
-int			get_grad_color(t_img_data *img, t_grad_prms *clr, int pos)
+int			get_grad_color(t_check_prms *p, t_grad_prms *clr, int pos)
 {
 	t_grad			grad;
 
 	if (clr->a == clr->b || pos == 0)
 		return (clr->a);
-	if (img->ndn == 0)
+	if (p->v->ndn == 0)
 	{
 		grad.start = 0;
 		grad.alpha = 3;
@@ -58,9 +58,36 @@ int			get_grad_color(t_img_data *img, t_grad_prms *clr, int pos)
 	}
 	set_grad_color(&grad, clr, pos);
 	return (grad.color);
-}*/
+}
 
-char	*make_string(t_check_prms *p, int step)
+void		set_colors_n_widh(t_check_prms *p)
+{
+	t_grad_prms	grad;
+
+	grad.a = NUL_CLR;
+	if (ft_abs(p->v->max_val) >= ft_abs(p->v->min_val))
+	{
+		p->v->max_width = ft_abs(p->v->max_val);
+		p->v->pos_clr = POS_CLR;
+		grad.delta = p->v->max_width;
+		grad.b = NEG_CLR;
+		p->v->neg_clr = get_grad_color(p, &grad, ft_abs(p->v->min_val));
+		ft_printf("neg_clr: %x\n", p->v->neg_clr);
+	}
+	else
+	{
+		p->v->max_width = ft_abs(p->v->min_val);
+		p->v->neg_clr = NEG_CLR;
+		grad.delta = p->v->max_width;
+		grad.b = POS_CLR;
+		p->v->pos_clr = get_grad_color(p, &grad, ft_abs(p->v->max_val));
+		ft_printf("pos_clr: %x\n", p->v->pos_clr);
+	}
+	if (p->v->max_width == 0)
+		p->v->max_width++;
+}
+
+char		*make_string(t_check_prms *p, int step)
 {
 	char	*str;
 	char	*str_1;
