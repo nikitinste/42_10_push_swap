@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:45:59 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/19 16:36:55 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/19 18:45:15 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void		set_colors_n_widh(t_check_prms *p)
 		grad.delta = p->v->max_width;
 		grad.b = NEG_CLR;
 		p->v->neg_clr = get_grad_color(p, &grad, ft_abs(p->v->min_val));
-		ft_printf("neg_clr: %x\n", p->v->neg_clr);
 	}
 	else
 	{
@@ -81,7 +80,6 @@ void		set_colors_n_widh(t_check_prms *p)
 		grad.delta = p->v->max_width;
 		grad.b = POS_CLR;
 		p->v->pos_clr = get_grad_color(p, &grad, ft_abs(p->v->max_val));
-		ft_printf("pos_clr: %x\n", p->v->pos_clr);
 	}
 	if (p->v->max_width == 0)
 		p->v->max_width++;

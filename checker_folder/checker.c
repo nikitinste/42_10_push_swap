@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 13:50:16 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/11 19:27:05 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/21 18:18:18 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,10 @@ static int	set_args(char ***args, t_check_prms *p)
 		content = (int)buf;
 		free(args[0][i]);
 		if (buf != (long long)content || \
-			ft_lstaddnext(&p->stack_a, (void*)&buf, 4) == -1)
+			ft_lstaddnext(&p->stack_a, (void*)&content, sizeof(int)) == -1)
 		{
 			ft_lstdel(&p->stack_a, &ft_lstfree);
+			i = -1;
 			while (++i < p->len)
 				free(args[0][i]);
 			return (0);
@@ -84,7 +85,7 @@ static int	set_args(char ***args, t_check_prms *p)
 	return (1);
 }
 
-static int	check_n_put_args(int argv, char **argc, char ***args, \
+static int	check_n_put_args(int argc, char **argv, char ***args, \
 	t_check_prms *p)
 {
 	int		i;
@@ -92,18 +93,18 @@ static int	check_n_put_args(int argv, char **argc, char ***args, \
 	char	*buf_str;
 
 	i = p->flag;
-	while (++i < argv)
+	while (++i < argc)
 	{
 		j = -1;
-		while (argc[i][++j] != '\0')
+		while (argv[i][++j] != '\0')
 		{
-			if (!(ft_isdigit((int)argc[i][j])) || ft_isspace((int)argc[i][j]))
-				if (!((argc[i][j] == '+' || argc[i][j] == '-') && \
-					ft_isdigit((int)argc[i][j + 1])))
+			if (!(ft_isdigit((int)argv[i][j])) || ft_isspace((int)argv[i][j]))
+				if (!((argv[i][j] == '+' || argv[i][j] == '-') && \
+					ft_isdigit((int)argv[i][j + 1])))
 					return (0);
 		}
 	}
-	if (!(buf_str = ft_arrjoin(&argc[1 + p->flag], argv - (1 + p->flag))))
+	if (!(buf_str = ft_arrjoin(&argv[1 + p->flag], argc - (1 + p->flag))))
 		return (0);
 	args[0] = ft_strsplitspaces(buf_str);
 	free(buf_str);
@@ -112,14 +113,14 @@ static int	check_n_put_args(int argv, char **argc, char ***args, \
 	return (set_args(args, p));
 }
 
-int			main(int argv, char **argc)
+int			main(int argc, char **argv)
 {
 	char			**args;
 	t_check_prms	p;
 
-	if (argv < 2 || (((p.flag = check_flags(argv, argc)) && argv < 3)))
+	if (argc < 2 || (((p.flag = check_flags(argc, argv)) && argc < 3)))
 		return (0);
-	if (!check_n_put_args(argv, argc, &args, &p) || !check_duplicates(&p))
+	if (!check_n_put_args(argc, argv, &args, &p) || !check_duplicates(&p))
 		return (error_msg(0, NULL));
 	if (!checker_init(&p))
 		return (error_msg(1, &p));

@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/21 15:59:47 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/21 16:00:02 by uhand            ###   ########.fr       */
+/*   Created: 2019/06/21 16:00:40 by uhand             #+#    #+#             */
+/*   Updated: 2019/06/21 16:00:52 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 static void	skip_starters(size_t *i, char *s, int *sign)
 {

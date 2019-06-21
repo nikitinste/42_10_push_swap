@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 15:55:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/10 13:45:10 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/21 17:42:33 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int		check_duplicates(t_check_prms *p)
 		ptr_2 = p->stack_a;
 		while (ptr_2 != NULL)
 		{
-			if ((int)ptr->content == (int)ptr_2->content && ptr != ptr_2)
+			if (*((int*)ptr->content) == *((int*)ptr_2->content) \
+				&& ptr != ptr_2)
 			{
 				ft_lstdel(&p->stack_a, &ft_lstfree);
 				return (0);

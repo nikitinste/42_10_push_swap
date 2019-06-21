@@ -6,17 +6,17 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 12:46:06 by uhand             #+#    #+#              #
-#    Updated: 2019/05/28 13:49:59 by uhand            ###   ########.fr        #
+#    Updated: 2019/06/21 17:28:18 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ../push_swap
 
 HEAD = push_swap.h
-SRC = push_swap.c
+SRC = push_swap.c ps_atoi.c
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 LIB = -L ../libft -lft
 LIBPATH = ../libft
 
