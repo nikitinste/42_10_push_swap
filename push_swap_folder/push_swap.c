@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/21 18:21:40 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/22 14:18:58 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ static int	set_args(char ***args, t_ps_prms *p)
 	p->len = 0;
 	while (args[0][p->len] != NULL)
 		p->len++;
-	c.shift = 0;
+	c.sort_pos = 0;
 	c.pos = -1;
+	c.prev = NULL;
 	while (++c.pos < p->len)
 	{
 		buf = ps_atoi(args[0][c.pos]);
@@ -83,6 +84,7 @@ static int	check_n_put_args(int argc, char **argv, char ***args, \
 	char	*buf_str;
 
 	i = 0;
+	p->stack_a = NULL;
 	while (++i < argc)
 	{
 		j = -1;
@@ -114,6 +116,8 @@ int		main(int argc, char **argv)
 		return (error_msg(0, NULL));
 	if (argc < 3)
 		return (0);
-	sorting(&p);
+	if(!sorting(&p))
+		return (error_msg(1, &p));
+	//
 	return (0);
 }
