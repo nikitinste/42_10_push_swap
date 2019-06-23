@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 13:50:48 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/22 13:49:25 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/23 16:23:38 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,6 @@ int				ft_isspace(int c);
 char			*ft_arrjoin(char **arr, int len);
 char			**ft_strsplitspaces(char const *s);
 t_list			*ft_lstcpy(t_list *src, t_list *dst);
+void			ft_lstswap(t_list *prev_a, t_list *a, t_list *prev_b, \
+	t_list *b);
 #endif

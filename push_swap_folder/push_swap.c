@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/22 14:18:58 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/23 18:48:32 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	check_n_put_args(int argc, char **argv, char ***args, \
 		j = -1;
 		while (argv[i][++j] != '\0')
 		{
-			if (!(ft_isdigit((int)argv[i][j])) || ft_isspace((int)argv[i][j]))
+			if (!ft_isdigit((int)argv[i][j]) && !ft_isspace((int)argv[i][j]))
 				if (!((argv[i][j] == '+' || argv[i][j] == '-') && \
 					ft_isdigit((int)argv[i][j + 1])))
 					return (0);

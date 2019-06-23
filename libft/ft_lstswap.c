@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_lstswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/28 17:27:07 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/23 18:10:10 by uhand            ###   ########.fr       */
+/*   Created: 2019/06/23 15:30:54 by uhand             #+#    #+#             */
+/*   Updated: 2019/06/23 16:40:11 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "libft.h"
 
-int		ft_isspace(int c)
+void	ft_lstswap(t_list *prev_a, t_list *a, t_list *prev_b, t_list *b)
 {
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r' \
-		|| c == 32)
-	{
-		return (1);
-	}
-	else
-		return (0);
-	return (0);
+	t_list	*tmp;
+
+	if (prev_a)
+		prev_a->next = b;
+	if (prev_b)
+		prev_b->next = a;
+	tmp = a->next;
+	a->next = b->next;
+	b->next = tmp;
 }

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 15:55:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/21 17:42:33 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/23 17:32:38 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int		error_msg(int prm, t_check_prms *p)
 	return (-1);
 }
 
-int		check_flags(int argv, char **argc)
+int		check_flags(int argc, char **argv)
 {
-	if (argv < 2)
+	if (argc < 2)
 		return (0);
-	if (!ft_strcmp(argc[1], "v"))
+	if (!ft_strcmp(argv[1], "v"))
 		return (1);
 	return (0);
 }
