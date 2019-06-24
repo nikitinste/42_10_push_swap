@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstswap.c                                       :+:      :+:    :+:   */
+/*   ft_dllswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 15:30:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 13:58:33 by uhand            ###   ########.fr       */
+/*   Created: 2019/06/24 13:47:06 by uhand             #+#    #+#             */
+/*   Updated: 2019/06/24 13:55:11 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "libft.h"
 
-void	ft_lstswap(t_list *prev_a, t_list *a, t_list *prev_b, t_list *b)
+void	ft_dllswap(t_dllist *a, t_dllist *b)
 {
-	t_list	*tmp;
+	void	*content;
+	size_t	size;
 
 	if (!a || !b)
 		return ;
-	if (prev_a)
-		prev_a->next = b;
-	if (prev_b)
-		prev_b->next = a;
-	tmp = a->next;
-	a->next = b->next;
-	b->next = tmp;
+	content = a->content;
+	a->content = b->content;
+	b->content = content;
+	if (a->content_size == b->content_size)
+		return ;
+	size = a->content_size;
+	a->content_size = b->content_size;
+	b->content_size = size;
 }

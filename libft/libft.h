@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 13:50:48 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/23 16:23:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/24 13:57:01 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ typedef struct	s_list
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct	s_dllist
+{
+	void			*content;
+	size_t			content_size;
+	struct s_dllist	*right;
+	struct s_dllist	*left;
+}				t_dllist;
 
 void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
@@ -99,4 +107,13 @@ char			**ft_strsplitspaces(char const *s);
 t_list			*ft_lstcpy(t_list *src, t_list *dst);
 void			ft_lstswap(t_list *prev_a, t_list *a, t_list *prev_b, \
 	t_list *b);
+t_dllist		*ft_dllnew(void const *content, size_t content_size);
+void			ft_dlldelone(t_dllist **alst, void (*del)(void*, size_t));
+void			ft_dlldeltoright(t_dllist **alst, void (*del)(void*, size_t));
+void			ft_lstaddtoleft(t_dllist **alst, t_dllist *new);
+void			ft_lstaddtoright(t_dllist **alst, t_dllist *new);
+int				ft_dllrcount(t_dllist *addr);
+int				ft_dlllcount(t_dllist *addr);
+int				ft_dllccount(t_dllist *addr);
+void			ft_dllswap(t_dllist *a, t_dllist *b);
 #endif

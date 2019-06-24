@@ -6,7 +6,7 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 18:04:25 by uhand             #+#    #+#              #
-#    Updated: 2019/06/23 17:25:48 by uhand            ###   ########.fr        #
+#    Updated: 2019/06/24 13:50:33 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ ft_memccpy.c ft_memmove.c ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c \
 ft_strlcat.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 ft_lstmap.c ft_lstfree.c ft_lstaddnext.c ft_lstdelfirst.c get_next_line.c \
 ft_lstcount.c ft_abs.c ft_isspace.c ft_arrjoin.c ft_strsplitspaces.c \
-ft_lstcpy.c ft_lstswap.c
+ft_lstcpy.c ft_lstswap.c ft_dllnew.c ft_dlldelone.c ft_dlldeltoright.c \
+ft_dlldeltoleft.c ft_dlladdtoleft.c ft_dlladdtoright.c ft_dllrcount.c \
+ft_dlllcount.c ft_dllccount.c ft_dllswap.c
 
 SRC_PF = ft_printf.c lib_printf.c add_fnctns.c set_format.c apply_flags.c \
 formats_c_s.c format_float.c formats_int.c pft_itoa.c pft_unsigned_itoa.c \

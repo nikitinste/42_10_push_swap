@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstswap.c                                       :+:      :+:    :+:   */
+/*   ft_dllrcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 15:30:54 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 13:58:33 by uhand            ###   ########.fr       */
+/*   Created: 2019/06/24 13:36:20 by uhand             #+#    #+#             */
+/*   Updated: 2019/06/24 13:37:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-void	ft_lstswap(t_list *prev_a, t_list *a, t_list *prev_b, t_list *b)
+int		ft_dllrcount(t_dllist *addr)
 {
-	t_list	*tmp;
+	int		count;
 
-	if (!a || !b)
-		return ;
-	if (prev_a)
-		prev_a->next = b;
-	if (prev_b)
-		prev_b->next = a;
-	tmp = a->next;
-	a->next = b->next;
-	b->next = tmp;
+	if (addr == NULL)
+		return (0);
+	count = 0;
+	while (addr != NULL)
+	{
+		count++;
+		addr = addr->right;
+	}
+	return (count);
 }
