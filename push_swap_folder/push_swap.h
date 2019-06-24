@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/23 19:47:33 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/24 18:10:47 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 typedef struct	s_ps_prms
 {
-	t_list		*stack_a;
-	t_list		*stack_b;
+	t_dllist	*stack_a;
+	t_dllist	*stack_b;
 	int			len;
 }				t_ps_prms;
 
@@ -37,7 +37,6 @@ typedef struct	s_content
 	int			val;
 	int			pos;
 	int			sort_pos;
-	t_list		*prev;
 }				t_content;
 
 /*
@@ -46,12 +45,10 @@ typedef struct	s_content
 
 typedef struct	s_shaker
 {
-	t_list		**stack;
-	t_list		*left;
-	t_list		*right;
-	t_list		*tmp;
-	t_content	*c_l;
-	t_content	*c_r;
+	t_dllist	*stack;
+	t_dllist	*left;
+	t_dllist	*right;
+	t_dllist	*tmp;
 	t_content	*a;
 	t_content	*b;
 }				t_shaker;

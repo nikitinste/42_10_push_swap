@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstcpy.c                                        :+:      :+:    :+:   */
+/*   ft_dllcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/22 13:17:19 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 17:16:15 by uhand            ###   ########.fr       */
+/*   Created: 2019/06/24 17:21:17 by uhand             #+#    #+#             */
+/*   Updated: 2019/06/24 17:29:08 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstcpy(t_list *src, t_list *dst)
+t_dllist	*ft_dllcpy(t_dllist *src, t_dllist *dst)
 {
-	t_list	*tmp;
-	t_list	*prev;
-
 	if (!src)
 		return (NULL);
-	if (!(dst = ft_lstnew(src->content, src->content_size)))
+	if (!(dst = ft_dllnew(src->content, src->content_size)))
 		return (NULL);
-	prev = dst;
-	src = src->next;
-	while (src)
+	if (src->right)
 	{
-		if (!(tmp = ft_lstnew(src->content, src->content_size)))
+		if (!(dst->right = ft_dllcpyr(src->right, dst->right)))
 		{
-			ft_lstdel(&dst, &ft_lstfree);
+			ft_dlldel(&dst, &ft_lstfree);
 			return (NULL);
 		}
-		prev->next = tmp;
-		tmp = tmp->next;
-		prev = prev->next;
-		src = src->next;
+		dst->right->left = dst;
+	}
+	if (src->left)
+	{
+		if (!(dst->left = ft_dllcpyr(src->left, dst->left)))
+		{
+			ft_dlldel(&dst, &ft_lstfree);
+			return (NULL);
+		}
+		dst->left->right = dst;
 	}
 	return (dst);
 }

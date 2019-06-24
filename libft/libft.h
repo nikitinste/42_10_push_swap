@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 13:50:48 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 13:57:01 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/24 17:33:57 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,19 @@ void			ft_lstswap(t_list *prev_a, t_list *a, t_list *prev_b, \
 t_dllist		*ft_dllnew(void const *content, size_t content_size);
 void			ft_dlldelone(t_dllist **alst, void (*del)(void*, size_t));
 void			ft_dlldeltoright(t_dllist **alst, void (*del)(void*, size_t));
+void			ft_dlldeltoleft(t_dllist **alst, void (*del)(void*, size_t));
+void			ft_dlldel(t_dllist **alst, void (*del)(void*, size_t));
 void			ft_lstaddtoleft(t_dllist **alst, t_dllist *new);
 void			ft_lstaddtoright(t_dllist **alst, t_dllist *new);
 int				ft_dllrcount(t_dllist *addr);
 int				ft_dlllcount(t_dllist *addr);
 int				ft_dllccount(t_dllist *addr);
 void			ft_dllswap(t_dllist *a, t_dllist *b);
+int				ft_dlladdnextr(t_dllist **alst, void const *content, \
+	size_t content_size);
+int				ft_dlladdnextl(t_dllist **alst, void const *content, \
+	size_t content_size);
+t_dllist	*ft_dllcpyr(t_dllist *src, t_dllist *dst);
+t_dllist	*ft_dllcpyl(t_dllist *src, t_dllist *dst);
+t_dllist	*ft_dllcpy(t_dllist *src, t_dllist *dst);
 #endif

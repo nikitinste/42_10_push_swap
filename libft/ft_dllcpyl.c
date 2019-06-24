@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstcpy.c                                        :+:      :+:    :+:   */
+/*   ft_dllcpyl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/22 13:17:19 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 17:16:15 by uhand            ###   ########.fr       */
+/*   Created: 2019/06/24 17:17:46 by uhand             #+#    #+#             */
+/*   Updated: 2019/06/24 17:20:21 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstcpy(t_list *src, t_list *dst)
+t_dllist	*ft_dllcpyl(t_dllist *src, t_dllist *dst)
 {
-	t_list	*tmp;
-	t_list	*prev;
+	t_dllist	*tmp;
+	t_dllist	*prev;
 
 	if (!src)
 		return (NULL);
-	if (!(dst = ft_lstnew(src->content, src->content_size)))
+	if (!(dst = ft_dllnew(src->content, src->content_size)))
 		return (NULL);
 	prev = dst;
-	src = src->next;
+	src = src->left;
 	while (src)
 	{
-		if (!(tmp = ft_lstnew(src->content, src->content_size)))
+		if (!(tmp = ft_dllnew(src->content, src->content_size)))
 		{
-			ft_lstdel(&dst, &ft_lstfree);
+			ft_dlldel(&dst, &ft_lstfree);
 			return (NULL);
 		}
-		prev->next = tmp;
-		tmp = tmp->next;
-		prev = prev->next;
-		src = src->next;
+		prev->left = tmp;
+		tmp->right = prev;
+		tmp = tmp->left;
+		prev = prev->left;
+		src = src->left;
 	}
 	return (dst);
 }

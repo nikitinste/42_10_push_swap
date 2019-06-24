@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_dlldel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/24 14:59:57 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 16:04:27 by uhand            ###   ########.fr       */
+/*   Created: 2019/06/24 14:57:34 by uhand             #+#    #+#             */
+/*   Updated: 2019/06/24 15:39:33 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void*, size_t))
+void	ft_dlldel(t_dllist **alst, void (*del)(void*, size_t))
 {
+	t_dllist	*left;
+	t_dllist	*right;
+
 	if (!alst || !*alst || !del)
 		return ;
-	ft_lstdel(&alst[0]->next, del);
-	ft_lstdelone(alst, del);
+	right = alst[0]->right;
+	left = alst[0]->left;
+	ft_dlldeltoright(&right, del);
+	ft_dlldeltoright(&right, del);
+	ft_dlldelone(alst, del);
 	alst = NULL;
 }
