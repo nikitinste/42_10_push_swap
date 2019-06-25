@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 18:10:47 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/25 20:02:55 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 
+typedef struct s_ps_prms	t_ps_prms;
+typedef	void				(*t_command)(t_ps_prms *p, char *command);
+
 /*
 **	push-swap params: p
 */
 
-typedef struct	s_ps_prms
+struct	s_ps_prms
 {
 	t_dllist	*stack_a;
 	t_dllist	*stack_b;
 	int			len;
-}				t_ps_prms;
+};
 
 /*
 **	stack content params: c
@@ -53,7 +56,31 @@ typedef struct	s_shaker
 	t_content	*b;
 }				t_shaker;
 
+/*
+**	command generator params: g
+*/
+
+typedef struct	s_cmd_gen
+{
+	t_command	command_arr[11];
+	char		*rule_list[11];
+}				t_cmd_gen;
+
 long long	ps_atoi(const char *str);
 int			sorting(t_ps_prms *p);
+t_dllist	*copy_linked_stack(t_dllist *src, t_dllist *dst);
+void		command_generator(t_ps_prms *p);
+void		commands_init(t_cmd_gen *g);
 
+void		rev_rot_ab(t_ps_prms *p, char *command);
+void		rotate_ab(t_ps_prms *p, char *command);
+void		rev_rot_a(t_ps_prms *p, char *command);
+void		rev_rot_b(t_ps_prms *p, char *command);
+void		rotate_a(t_ps_prms *p, char *command);
+void		rotate_b(t_ps_prms *p, char *command);
+void		swap_ab(t_ps_prms *p, char *command);
+void		swap_a(t_ps_prms *p, char *command);
+void		swap_b(t_ps_prms *p, char *command);
+void		push_b(t_ps_prms *p, char *command);
+void		push_a(t_ps_prms *p, char *command);
 #endif

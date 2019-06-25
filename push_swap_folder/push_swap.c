@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 19:25:11 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/25 17:00:37 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int		main(int argc, char **argv)
 {
 	char		**args;
 	t_ps_prms	p;
-	//t_content	*c;
+	t_content	*c;
 
 	if (argc < 2)
 		return (0);
@@ -118,5 +118,13 @@ int		main(int argc, char **argv)
 		return (0);
 	if(!sorting(&p))
 		return (error_msg(1, &p));
+	while (p.stack_a)
+	{
+		c = (t_content*)p.stack_a->content;
+		ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
+			c->pos - c->sort_pos);
+		p.stack_a = p.stack_a->right;
+	}
+	command_generator(&p);
 	return (0);
 }

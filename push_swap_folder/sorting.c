@@ -6,11 +6,26 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 18:19:18 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 19:25:18 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/25 16:54:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	set_sorted_position(t_dllist *stack)
+{
+	int			i;
+	t_content	*c;
+
+	i = 0;
+	while (stack)
+	{
+		c = (t_content*)stack->content;
+		c->sort_pos = i;
+		stack = stack->right;
+		i++;
+	}
+}
 
 static void	shake_to_right(t_shaker *s)
 {
@@ -53,18 +68,21 @@ int		sorting(t_ps_prms *p)
 {
 	t_shaker	s;
 
-	if (!(s.stack = ft_dllcpyr(p->stack_a, s.stack)))
+	if (!(s.stack = copy_linked_stack(p->stack_a, s.stack)))
 		return (0);
 	s.left = s.stack;
 	s.right = s.stack;
 	while (s.right->right)
 		s.right = s.right->right;
 	shaker(&s);
+	set_sorted_position(s.stack);
 	while (s.stack)
 	{
 		s.a = (t_content*)s.stack->content;
-		ft_printf("%d	#%d\n", s.a->val, s.a->pos);
+		ft_printf("%5d	#%d	##%d\n", s.a->val, s.a->pos, s.a->sort_pos);
 		s.stack = s.stack->right;
 	}
+	ft_printf("\n");
+	//free linked stack
 	return (1);
 }
