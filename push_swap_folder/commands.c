@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 17:03:46 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/25 20:05:55 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/26 18:06:33 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	commands_init(t_cmd_gen *g)
 {
 	g->command_arr[0] = &rev_rot_ab;
-	g->command_arr[1] = &rotate_ab;
-	g->command_arr[2] = &rev_rot_a;
-	g->command_arr[3] = &rev_rot_b;
+	g->command_arr[3] = &rotate_ab;
+	g->command_arr[1] = &rev_rot_a;
+	g->command_arr[2] = &rev_rot_b;
 	g->command_arr[4] = &rotate_a;
 	g->command_arr[5] = &rotate_b;
 	g->command_arr[6] = &swap_ab;
@@ -26,9 +26,9 @@ void	commands_init(t_cmd_gen *g)
 	g->command_arr[9] = &push_b;
 	g->command_arr[10] = &push_a;
 	g->rule_list[0] = "rrr";
-	g->rule_list[1] = "rr";
-	g->rule_list[2] = "rra";
-	g->rule_list[3] = "rrb";
+	g->rule_list[3] = "rr";
+	g->rule_list[1] = "rra";
+	g->rule_list[2] = "rrb";
 	g->rule_list[4] = "ra";
 	g->rule_list[5] = "rb";
 	g->rule_list[6] = "ss";
@@ -68,6 +68,7 @@ void	rev_rot_a(t_ps_prms *p, char *command)
 	last->right = p->stack_a;
 	p->stack_a->left = last;
 	p->stack_a = last;
+	reset_position_a(p);
 	if (command)
 		ft_printf("%s\n", command);
 }
@@ -86,6 +87,7 @@ void	rev_rot_b(t_ps_prms *p, char *command)
 	last->right = p->stack_b;
 	p->stack_b->left = last;
 	p->stack_b = last;
+	reset_position_b(p);
 	if (command)
 		ft_printf("%s\n", command);
 }

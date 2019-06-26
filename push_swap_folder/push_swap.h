@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/25 20:02:55 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/26 17:59:47 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ struct	s_ps_prms
 {
 	t_dllist	*stack_a;
 	t_dllist	*stack_b;
-	int			len;
+	int			len_a;
+	int			len_b;
+	int			push_direction;
 };
 
 /*
@@ -66,11 +68,29 @@ typedef struct	s_cmd_gen
 	char		*rule_list[11];
 }				t_cmd_gen;
 
+/*
+**	get command function params: m
+*/
+
+typedef struct	s_get_cmd
+{
+	int			cmd;
+	t_dllist	*last_a;
+	t_dllist	*last_b;
+	t_content	*c_a;
+	t_content	*c_b;
+	t_content	*c_ar;
+	t_content	*c_br;
+}				t_get_cmd;
+
+
 long long	ps_atoi(const char *str);
 int			sorting(t_ps_prms *p);
 t_dllist	*copy_linked_stack(t_dllist *src, t_dllist *dst);
 void		command_generator(t_ps_prms *p);
 void		commands_init(t_cmd_gen *g);
+void		reset_position_a(t_ps_prms *p);
+void		reset_position_b(t_ps_prms *p);
 
 void		rev_rot_ab(t_ps_prms *p, char *command);
 void		rotate_ab(t_ps_prms *p, char *command);
