@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 18:19:18 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/26 19:26:49 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/27 14:20:16 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,23 @@ int		sorting(t_ps_prms *p)
 {
 	t_shaker	s;
 
+	if (p->len_a < 2)
+		return (1);
 	if (!(s.stack = copy_linked_stack(p->stack_a, s.stack)))
 		return (0);
 	s.left = s.stack;
 	s.right = s.stack;
-	while (s.right->right)
+	while (s.right && s.right->right)
 		s.right = s.right->right;
 	shaker(&s);
 	set_sorted_position(s.stack);
-	while (s.stack)
+	/*while (s.stack)
 	{
 		s.a = (t_content*)s.stack->content;
 		ft_printf("%5d	#%d	##%d\n", s.a->val, s.a->pos, s.a->sort_pos);
 		s.stack = s.stack->right;
 	}
-	ft_printf("\n");
+	ft_printf("\n");*/
 	//free linked stack
 	return (1);
 }

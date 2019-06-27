@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/26 18:49:13 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/27 14:38:18 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static int	set_args(char ***args, t_ps_prms *p)
 			ft_dlladdnextr(&p->stack_a, (void*)&c, sizeof(t_content)) == -1)
 		{
 			ft_dlldel(&p->stack_a, &ft_lstfree);
-			c.pos = -1;
 			while (++c.pos < p->len_a)
 				free(args[0][c.pos]);
 			return (0);
@@ -109,25 +108,23 @@ int		main(int argc, char **argv)
 {
 	char		**args;
 	t_ps_prms	p;
-	t_content	*c;
+	//t_content	*c;
 	t_dllist	*ptr;
 
 	if (argc < 2)
 		return (0);
 	if (!check_n_put_args(argc, argv, &args, &p) || !check_duplicates(&p))
 		return (error_msg(0, NULL));
-	if (argc < 3)
-		return (0);
 	if(!sorting(&p))
 		return (error_msg(1, &p));
 	ptr = p.stack_a;
-	while (ptr)
+	/*while (ptr)
 	{
 		c = (t_content*)ptr->content;
 		ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
 			c->pos - c->sort_pos);
 		ptr = ptr->right;
-	}
+	}*/
 	command_generator(&p);
 	return (0);
 }

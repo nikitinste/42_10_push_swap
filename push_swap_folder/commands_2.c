@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:10:29 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/26 18:36:28 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/27 13:32:03 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	swap_b(t_ps_prms *p, char *command)
 		p->stack_b->content_size = p->stack_b->right->content_size;
 		p->stack_b->right->content_size = content_size;
 	}
-	content = p->stack_a->content;
+	content = p->stack_b->content;
 	content->pos++;
 	if (command)
 		ft_printf("%s\n", command);

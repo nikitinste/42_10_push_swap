@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:05:43 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/11 19:07:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/27 17:07:44 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	get_command(void *prm)
 			return (p->v->cmd_ret);
 		else if (!p->v->run || p->result != -1)
 			p->v->run = 0;
-		usleep(200000);
+		usleep(2000000 / p->len);
 	}
 	if (p->result == 1 && p->v->cmd_ret && p->result != 2)
 		mlx_string_put(MLX, WIN, 545, 4, 0x2c8a0c, "OK!)");

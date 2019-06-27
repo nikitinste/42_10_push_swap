@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 13:50:16 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/23 18:49:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/27 14:41:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static int	set_args(char ***args, t_check_prms *p)
 			ft_lstaddnext(&p->stack_a, (void*)&content, sizeof(int)) == -1)
 		{
 			ft_lstdel(&p->stack_a, &ft_lstfree);
-			i = -1;
 			while (++i < p->len)
 				free(args[0][i]);
 			return (0);
@@ -126,7 +125,7 @@ int			main(int argc, char **argv)
 		return (error_msg(1, &p));
 	if (p.flag)
 		return (vis_waiting(&p));
-	while ((p.ret = get_next_line(0, &p.command)))
+	while ((p.ret = get_next_line(0, &p.command)) > 0)
 	{
 		if (!check_command(&p))
 			return (error_msg(1, &p));

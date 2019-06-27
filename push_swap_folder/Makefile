@@ -6,7 +6,7 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 12:46:06 by uhand             #+#    #+#              #
-#    Updated: 2019/06/26 19:25:59 by uhand            ###   ########.fr        #
+#    Updated: 2019/06/27 14:39:05 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC = push_swap.c ps_atoi.c sorting.c copy_linked_stack.c command_generator.c \
 commands.c commands_2.c commands_3.c
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS = -g #-Wall -Wextra -Werror
+FLAGS = -g #-fsanitize=address -Wall -Wextra -Werror
 LIB = -L ../libft -lft
 LIBPATH = ../libft
 
@@ -27,7 +27,7 @@ all: $(NAME)
 
 $(NAME): $(OBJPATH) $(OBJ)
 	@make -C $(LIBPATH)
-	gcc $(OBJ) -o $(NAME) $(LIB) $(MLIBX)
+	gcc $(FLAGS) $(OBJ) -o $(NAME) $(LIB) $(MLIBX)
 
 $(OBJPATH):
 	mkdir -p $(OBJPATH)
