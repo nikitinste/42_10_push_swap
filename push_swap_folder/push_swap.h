@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/26 17:59:47 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/28 16:47:33 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ struct	s_ps_prms
 	t_dllist	*stack_b;
 	int			len_a;
 	int			len_b;
+	int			a;
+	int			b;
 	int			push_direction;
 };
 
@@ -91,6 +93,16 @@ void		command_generator(t_ps_prms *p);
 void		commands_init(t_cmd_gen *g);
 void		reset_position_a(t_ps_prms *p);
 void		reset_position_b(t_ps_prms *p);
+void		set_even_odd(t_ps_prms *p);
+int			check_condition(t_ps_prms *p, t_get_cmd *m);
+int			check_sort_state(t_ps_prms *p, int a, int b);
+
+int			rrr_condition(t_ps_prms *p, t_get_cmd *m);
+int			rra_condition(t_ps_prms *p, t_get_cmd *m);
+int			rrb_condition(t_ps_prms *p, t_get_cmd *m);
+int			rr_condition(t_ps_prms *p, t_get_cmd *m);
+int			ra_condition(t_ps_prms *p, t_get_cmd *m);
+int			rb_condition(t_ps_prms *p, t_get_cmd *m);
 
 void		rev_rot_ab(t_ps_prms *p, char *command);
 void		rotate_ab(t_ps_prms *p, char *command);

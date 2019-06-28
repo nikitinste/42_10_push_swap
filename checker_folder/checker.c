@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 13:50:16 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/27 14:41:20 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/28 18:15:46 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			check_stacks(t_check_prms *p)
 		return (0);
 	}
 	ptr = p->stack_a;
-	ft_printf("---\n");
+	/*ft_printf("---\n");*/
 	while (ptr->next != NULL)
 	{
 		if (*((int*)ptr->content) > *((int*)ptr->next->content))
@@ -30,10 +30,10 @@ int			check_stacks(t_check_prms *p)
 			ft_printf("KO\n");
 			return (0);
 		}
-		ft_printf("%d\n", *((int*)ptr->content));
+		/*ft_printf("%d\n", *((int*)ptr->content));*/
 		ptr = ptr->next;
 	}
-	ft_printf("%d\n---\n", *((int*)ptr->content));
+	/*ft_printf("%d\n---\n", *((int*)ptr->content));*/
 	//free stacks
 	ft_printf("OK\n");
 	return (1);

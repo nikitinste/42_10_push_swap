@@ -6,12 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 13:50:48 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/24 17:33:57 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/28 19:24:02 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
@@ -30,6 +31,17 @@ typedef struct	s_dllist
 	struct s_dllist	*right;
 	struct s_dllist	*left;
 }				t_dllist;
+
+typedef struct	s_njoin
+{
+		va_list	ap;
+		char	*str;
+		char	*buf_1;
+		char	*buf_2;
+		size_t	len;
+		int		i;
+
+}				t_njoin;
 
 void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
@@ -122,7 +134,8 @@ int				ft_dlladdnextr(t_dllist **alst, void const *content, \
 	size_t content_size);
 int				ft_dlladdnextl(t_dllist **alst, void const *content, \
 	size_t content_size);
-t_dllist	*ft_dllcpyr(t_dllist *src, t_dllist *dst);
-t_dllist	*ft_dllcpyl(t_dllist *src, t_dllist *dst);
-t_dllist	*ft_dllcpy(t_dllist *src, t_dllist *dst);
+t_dllist		*ft_dllcpyr(t_dllist *src, t_dllist *dst);
+t_dllist		*ft_dllcpyl(t_dllist *src, t_dllist *dst);
+t_dllist		*ft_dllcpy(t_dllist *src, t_dllist *dst);
+char			*ft_nstrjoin(int n, ...);
 #endif

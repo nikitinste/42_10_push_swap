@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:05:43 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/27 17:07:44 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/28 19:29:06 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void		clear_image(t_check_prms *p)
 
 int			vis_waiting(t_check_prms *p)
 {
+	char		*str;
+
 	if (!p->flag)
 		return (0);
 	visualize_command(p);
@@ -109,8 +111,13 @@ int			vis_waiting(t_check_prms *p)
 		free(p->command);
 	}
 	if (p->v->commands)
-		mlx_string_put(p->v->mlx_ptr, p->v->win_ptr, 5, 5, 0x0c608a, "Press \
-			\"Enter\" for run or \"Right\" for step.");
+	{
+		str = ft_strjoin("Press \"Enter\" for run or \"Right\" for step. \
+			Next step: ", p->command);
+		mlx_string_put(p->v->mlx_ptr, p->v->win_ptr, 5, 5, 0x0c608a, str);
+		free(str);
+
+	}
 	else
 		p->result = check_stacks(p);
 	p->v->crnt_cmd = p->v->commands;

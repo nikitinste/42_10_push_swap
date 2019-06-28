@@ -6,48 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/27 18:12:49 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/28 17:01:12 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*static int is_sorted(t_ps_prms *p, int stack)
-{
-	t_dllist	*ptr;
-	t_content	*first;
-	t_content	*second;
-
-	if (!stack)
-		ptr = p->stack_a;
-	else
-		ptr = p->stack_b;
-	if (!stack)
-	{
-		while (ptr && ptr->right)
-		{
-			first = (t_content*)ptr->content;
-			second = (t_content*)ptr->right->content;
-			if (first->val < second->val)
-				return (0);
-			ptr = ptr->right;
-		}
-	}
-	else
-	{
-		while (ptr && ptr->right)
-		{
-			first = (t_content*)ptr->content;
-			second = (t_content*)ptr->right->content;
-			if (first->val > second->val)
-				return (0);
-			ptr = ptr->right;
-		}
-	}
-	return (1);
-}*/
-
-static int	check_sort_state(t_ps_prms *p)
+int			check_sort_state(t_ps_prms *p, int a, int b)
 {
 	t_dllist	*ptr;
 	t_content	*content;
@@ -55,7 +20,7 @@ static int	check_sort_state(t_ps_prms *p)
 	ptr = p->stack_a;
 	if (!ptr)
 		return (0);
-	while (ptr)
+	while (ptr && a)
 	{
 		content = ptr->content;
 		if ((content->pos - content->sort_pos) != 0)
@@ -63,7 +28,7 @@ static int	check_sort_state(t_ps_prms *p)
 		ptr = ptr->right;
 	}
 	ptr = p->stack_b;
-	while (ptr)
+	while (ptr && b)
 	{
 		content = ptr->content;
 		if ((content->pos - content->sort_pos) != 0)
@@ -100,16 +65,13 @@ static int	get_command_2(t_ps_prms *p, t_get_cmd *m)
 		m->c_a = p->stack_a->content;
 	if (p->stack_b)
 		m->c_b = p->stack_b->content;
-	if (p->len_a >= 2 && p->len_b >= 2 && \
-		(m->c_a->pos - m->c_a->sort_pos) * -1 > (p->len_a / 2) && \
-			(m->c_b->pos - m->c_b->sort_pos) > (p->len_b / 2))
+	if (rr_condition(p, m))
 		return (m->cmd);// [3] - rr
 	m->cmd++;
-	if (p->len_a >= 2 && \
-		(m->c_a->pos - m->c_a->sort_pos) * -1 > (p->len_a / 2))
+	if (ra_condition(p, m))
 		return (m->cmd);// [4] - ra
 	m->cmd++;
-	if (p->len_b >= 2 && (m->c_b->pos - m->c_b->sort_pos) > (p->len_b / 2))
+	if (rb_condition(p, m))
 		return (m->cmd);// [5] - rb
 	m->cmd++;
 	if (p->stack_a && p->stack_a->right)
@@ -130,6 +92,9 @@ static int	get_command(t_ps_prms *p)
 	m.cmd = 0;
 	m.last_a = p->stack_a;
 	m.last_b = p->stack_b;
+	set_even_odd(p);
+	if (check_condition(p, &m))
+		return (m.cmd);// pa or pb
 	while (m.last_a && m.last_a->right)
 		m.last_a = m.last_a->right;
 	while (m.last_b && m.last_b->right)
@@ -138,14 +103,13 @@ static int	get_command(t_ps_prms *p)
 		m.c_a = m.last_a->content;
 	if (m.last_b)
 		m.c_b = m.last_b->content;
-	if (p->len_a >= 2 && p->len_b >= 2 && (m.c_a->pos - m.c_a->sort_pos) > \
-		(p->len_a / 2) && (m.c_b->pos - m.c_b->sort_pos) * -1 > (p->len_b / 2))
+	if (rrr_condition(p, &m))
 		return (m.cmd);// [0] - rrr
 	m.cmd++;
-	if (p->len_a >= 2 && (m.c_a->pos - m.c_a->sort_pos) > (p->len_a / 2))
+	if (rra_condition(p, &m))
 		return (m.cmd);// [1] - rra
 	m.cmd++;
-	if (p->len_b >= 2 && (m.c_b->pos - m.c_b->sort_pos) * -1 > (p->len_b / 2))
+	if (rrb_condition(p, &m))
 		return (m.cmd);// [2] - rrb
 	m.cmd++;
 	return (get_command_2(p, &m));
@@ -156,19 +120,27 @@ void		command_generator(t_ps_prms *p)
 	t_cmd_gen	g;
 	int			command;
 	//int			i;
-	t_dllist	*ptr;
+	//t_dllist	*ptr;
 	//t_content	*c;
 
 	commands_init(&g);
 	p->push_direction = 0;
 	//i = -1;
-	while (!check_sort_state(p))
+	while (!check_sort_state(p, 1, 1)/* && ++i < 100*/)
 	{
 		//ft_printf("%d: ", ++i);
 		command = get_command(p);
 		g.command_arr[command](p, g.rule_list[command]);
-		ptr = p->stack_a;
-		/*while (ptr)
+		if ((!p->push_direction && check_sort_state(p, 1, 0)) || \
+			(p->push_direction && check_sort_state(p, 0, 1)))
+		{
+			if (!p->push_direction)
+				p->push_direction = 1;
+			else
+				p->push_direction = 0;
+		}
+		/*ptr = p->stack_a;
+		while (ptr)
 		{
 			c = (t_content*)ptr->content;
 			ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
