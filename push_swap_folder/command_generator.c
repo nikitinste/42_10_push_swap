@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/29 00:29:49 by stepa            ###   ########.fr       */
+/*   Updated: 2019/06/29 18:59:07 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ void		command_generator(t_ps_prms *p)
 	while (!check_sort_state(p, 1, 1)/* && ++i < 100*/)
 	{
 		//ft_printf("%d: ", ++i);
+		if (!normalise(p))
+			exit(0);
 		command = get_command(p);
 		g.command_arr[command](p, g.rule_list[command]);
 		if ((!p->push_direction && check_sort_state(p, 1, 0)) || \
