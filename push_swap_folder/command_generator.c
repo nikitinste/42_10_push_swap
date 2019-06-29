@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/28 17:01:12 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/29 00:29:49 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ static int	get_command(t_ps_prms *p)
 	m.last_a = p->stack_a;
 	m.last_b = p->stack_b;
 	set_even_odd(p);
-	if (check_condition(p, &m))
-		return (m.cmd);// pa or pb
+	/*if (check_condition(p, &m))
+		return (m.cmd);*/// pa or pb
 	while (m.last_a && m.last_a->right)
 		m.last_a = m.last_a->right;
 	while (m.last_b && m.last_b->right)

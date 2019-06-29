@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/28 18:09:35 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/29 17:11:55 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../minilibx/mlx.h"
 # define A !ft_strcmp
 # define WIN_X 600
-# define WIN_Y 1395
+# define WIN_Y 1035//1395
 # define TOPLINE 26
 # define BKG_CLR 0xcce5ff
 # define POS_CLR 0x37b6af
@@ -30,6 +30,19 @@
 
 typedef struct s_check_prms t_check_prms;
 typedef	void				(*t_command)(t_check_prms *p);
+
+/*
+** Make string params: m
+*/
+
+typedef struct	s_make_str
+{
+	char		*str;
+	char		*steps;
+	char		*c_step;
+	char		*elems;
+	char		*next;
+}				t_make_str;
 
 /*
 ** Input grad params: clr
@@ -61,7 +74,7 @@ typedef struct	s_grad
 }				t_grad;
 
 /*
-**	visualizer params: v
+**	Rectangle params: r
 */
 
 typedef struct	s_rectangle

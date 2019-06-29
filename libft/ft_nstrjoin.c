@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 18:29:47 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/28 19:24:09 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/29 16:31:04 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	norma_free(t_njoin *j)
 {
-	if (j->i > 0)
+	if (j->i > 1)
 		free (j->buf_1);
 }
 
@@ -30,9 +30,9 @@ char	*ft_nstrjoin(int n, ...)
 		j.buf_1 = va_arg(j.ap, char*);
 		return (ft_strdup(j.buf_1));
 	}
-	j.i = -1;
+	j.i = 0;
 	j.str = va_arg(j.ap, char*);
-	while (++j.i < (n + 1))
+	while (++j.i < n)
 	{
 		j.buf_1 = j.str;
 		j.buf_2 = va_arg(j.ap, char*);

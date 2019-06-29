@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:05:43 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/28 19:29:06 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/29 16:52:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static int	step_command(t_check_prms *p)
 	{
 		p->command = (char*)p->v->crnt_cmd->content;
 		ret = check_command(p);
-		str = make_string(p, ++step);
+		if (!(str = make_string(p, ++step)))
+			return (0);
 		mlx_string_put(MLX, WIN, 4, 4, 0x0c5c8a, str);
 		free(str);
 		if (!ret)
@@ -95,10 +96,30 @@ void		clear_image(t_check_prms *p)
 		image[i] = BKG_CLR;
 }
 
-int			vis_waiting(t_check_prms *p)
+int			put_start_string(t_check_prms *p)
 {
 	char		*str;
+	char		*steps;
+	char		*elems;
 
+	if (!(steps = ft_itoa(p->v->count)) || !(elems = ft_itoa(p->len)))
+		return (0);
+	if(!(str = ft_nstrjoin(8, "Press \"Enter\" for run or \"Right\" for step", \
+		": ", (char*)p->v->commands->content, " 1/", steps, " (", elems, ")")))
+	{
+		free(steps);
+		free(elems);
+		return (0);
+	}
+	free(steps);
+	free(elems);
+	mlx_string_put(p->v->mlx_ptr, p->v->win_ptr, 5, 5, 0x0c608a, str);
+	free(str);
+	return (1);
+}
+
+int			vis_waiting(t_check_prms *p)
+{
 	if (!p->flag)
 		return (0);
 	visualize_command(p);
@@ -112,11 +133,8 @@ int			vis_waiting(t_check_prms *p)
 	}
 	if (p->v->commands)
 	{
-		str = ft_strjoin("Press \"Enter\" for run or \"Right\" for step. \
-			Next step: ", p->command);
-		mlx_string_put(p->v->mlx_ptr, p->v->win_ptr, 5, 5, 0x0c608a, str);
-		free(str);
-
+		if (!put_start_string(p))
+			return (0);
 	}
 	else
 		p->result = check_stacks(p);

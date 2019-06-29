@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:45:59 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/19 18:45:15 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/29 17:16:11 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,29 +87,23 @@ void		set_colors_n_widh(t_check_prms *p)
 
 char		*make_string(t_check_prms *p, int step)
 {
-	char	*str;
-	char	*str_1;
-	char	*buf;
+	t_make_str	m;
 
-	if (!(buf = ft_itoa(step)))
-		return (NULL);
-	if (!(str = ft_strjoin("Step ", buf)))
-		return (NULL);
-	free(buf);
-	if (!(str_1 = ft_strjoin(str, "/")))
-		return (NULL);
-	free(str);
-	if (!(buf = ft_itoa(p->v->count)))
-		return (NULL);
-	if (!(str = ft_strjoin(str_1, buf)))
-		return (NULL);
-	free(buf);
-	free(str_1);
-	if (!(str_1 = ft_strjoin(str, " ")))
-		return (NULL);
-	free(str);
-	if (!(str = ft_strjoin(str_1, p->command)))
-		return (NULL);
-	free(str_1);
-	return (str);
+	if (p->v->crnt_cmd->next)
+		m.next = (char*)p->v->crnt_cmd->next->content;
+	else
+		m.next = NULL;
+	if (!(m.steps = ft_itoa(p->v->count)) || !(m.c_step = ft_itoa(step)) || \
+		!(m.elems = ft_itoa(p->len)))
+		return (0);
+	if(!(m.str = ft_nstrjoin(11, "Step: ", p->command, " ", m.c_step, "/", \
+		m.steps, " -> ", m.next, " (", m.elems, ")")))
+	{
+		free(m.steps);
+		free(m.elems);
+		return (0);
+	}
+	free(m.steps);
+	free(m.elems);
+	return (m.str);
 }
