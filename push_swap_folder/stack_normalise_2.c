@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 15:01:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 18:28:09 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/30 21:00:23 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ void	way_shortening(t_normalise *n)
 		n->way_b = 0;
 }
 
+void 		linked_stack_free(void *content, size_t size)
+{
+	if (content && size)
+		return ;
+	return ;
+}
+
 static void	execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, int way)
 {
 	while (cmd->i)
@@ -80,4 +87,6 @@ void	run_commands(t_ps_prms *p, t_cmd_gen *g, t_normalise *n)
 	cmd.i = ft_abs(n->way_b);
 	cmd.command = 5;
 	execute_command(p, g, &cmd, n->way_b);
+	ft_dlldeltoright(&n->stack_a, &linked_stack_free);
+	ft_dlldeltoright(&n->stack_b, &linked_stack_free);
 }

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 20:05:11 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/30 20:59:57 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct	s_execute
 long long	ps_atoi(const char *str);
 int			stack_sorting(t_ps_prms *p);
 t_dllist	*copy_linked_stack(t_dllist *src, t_dllist *dst);
+void 		linked_stack_free(void *content, size_t size);
 void		command_generator(t_ps_prms *p);
 void		commands_init(t_cmd_gen *g);
 void		reset_position_a(t_ps_prms *p);
@@ -140,7 +141,7 @@ int			check_sort_state(t_ps_prms *p, int a, int b);
 int			normalise(t_ps_prms *p, t_cmd_gen *g);
 void		set_way_params(t_way *w, int *way, int len);
 void		way_shortening(t_normalise *n);
-void	run_commands(t_ps_prms *p, t_cmd_gen *g, t_normalise *n);
+void		run_commands(t_ps_prms *p, t_cmd_gen *g, t_normalise *n);
 
 int			rrr_condition(t_ps_prms *p, t_get_cmd *m);
 int			rra_condition(t_ps_prms *p, t_get_cmd *m);

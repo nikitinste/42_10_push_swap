@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 18:19:18 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 20:05:12 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/30 21:00:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int		stack_sorting(t_ps_prms *p)
 		s.stack = s.stack->right;
 	}
 	ft_printf("\n");*/
-	//free linked stack
+	ft_dlldeltoright(&s.stack, &linked_stack_free);
 	return (1);
 }

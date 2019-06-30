@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:22:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 18:50:31 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/30 21:05:13 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ static void	find_norm_way(int len, t_dllist *stack, int *way, int start)
 	w.min = -1;
 	while (w.i < len)
 	{
+		w.pos = 0;
+		w.neg = 0;
 		w.ptr = stack;
 		while (w.ptr)
 		{
-			w.pos = 0;
-			w.neg = 0;
 			w.c = w.ptr->content;
 			w.bias = (w.i + start) - w.c->sort_pos;
 			if (w.bias < 0)
