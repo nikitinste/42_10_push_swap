@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/29 19:50:28 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/30 20:05:11 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ typedef	void				(*t_command)(t_ps_prms *p, char *command);
 
 struct	s_ps_prms
 {
-	t_dllist	*stack_a;
-	t_dllist	*stack_b;
-	int			len_a;
-	int			len_b;
-	int			a;
-	int			b;
-	int			push_direction;
+	t_dllist		*stack_a;
+	t_dllist		*stack_b;
+	int				len_a;
+	int				len_b;
+	int				a;
+	int				b;
+	int				push_direction;
 };
 
 /*
@@ -41,9 +41,9 @@ struct	s_ps_prms
 
 typedef struct	s_content
 {
-	int			val;
-	int			pos;
-	int			sort_pos;
+	int				val;
+	int				pos;
+	int				sort_pos;
 }				t_content;
 
 /*
@@ -52,12 +52,12 @@ typedef struct	s_content
 
 typedef struct	s_shaker
 {
-	t_dllist	*stack;
-	t_dllist	*left;
-	t_dllist	*right;
-	t_dllist	*tmp;
-	t_content	*a;
-	t_content	*b;
+	t_dllist		*stack;
+	t_dllist		*left;
+	t_dllist		*right;
+	t_dllist		*tmp;
+	t_content		*a;
+	t_content		*b;
 }				t_shaker;
 
 /*
@@ -66,8 +66,8 @@ typedef struct	s_shaker
 
 typedef struct	s_cmd_gen
 {
-	t_command	command_arr[11];
-	char		*rule_list[11];
+	t_command		command_arr[11];
+	char			*rule_list[11];
 }				t_cmd_gen;
 
 /*
@@ -76,13 +76,13 @@ typedef struct	s_cmd_gen
 
 typedef struct	s_get_cmd
 {
-	int			cmd;
-	t_dllist	*last_a;
-	t_dllist	*last_b;
-	t_content	*c_a;
-	t_content	*c_b;
-	t_content	*c_ar;
-	t_content	*c_br;
+	int				cmd;
+	t_dllist		*last_a;
+	t_dllist		*last_b;
+	t_content		*c_a;
+	t_content		*c_b;
+	t_content		*c_ar;
+	t_content		*c_br;
 }				t_get_cmd;
 
 /*
@@ -91,11 +91,13 @@ typedef struct	s_get_cmd
 
 typedef struct	s_normalise
 {
-	t_dllist	*stack_a;
-	t_dllist	*stack_b;
-	int			way_a;
-	int			way_b;
-	int			way_ab;
+	t_dllist		*stack_a;
+	t_dllist		*stack_b;
+	int				way_a;
+	int				way_b;
+	int				rev_a;
+	int				rev_b;
+	int				way_ab;
 
 }				t_normalise;
 
@@ -105,16 +107,28 @@ typedef struct	s_normalise
 
 typedef struct	s_way
 {
-	t_dllist	*ptr;
-	int			pos;
-	int			neg;
-	int			i;
-	int			bias;
-	t_content	*c;
+	t_dllist		*ptr;
+	int				pos;
+	int				neg;
+	int				max;
+	unsigned int	min;
+	int				i;
+	int				bias;
+	t_content		*c;
 }				t_way;
 
+/*
+**	normalise command params: cmd
+*/
+
+typedef struct	s_execute
+{
+	int				i;
+	int				command;
+}				t_execute;
+
 long long	ps_atoi(const char *str);
-int			sorting(t_ps_prms *p);
+int			stack_sorting(t_ps_prms *p);
 t_dllist	*copy_linked_stack(t_dllist *src, t_dllist *dst);
 void		command_generator(t_ps_prms *p);
 void		commands_init(t_cmd_gen *g);
@@ -123,8 +137,10 @@ void		reset_position_b(t_ps_prms *p);
 void		set_even_odd(t_ps_prms *p);
 int			check_condition(t_ps_prms *p, t_get_cmd *m);
 int			check_sort_state(t_ps_prms *p, int a, int b);
-int			normalise(t_ps_prms *p);
-
+int			normalise(t_ps_prms *p, t_cmd_gen *g);
+void		set_way_params(t_way *w, int *way, int len);
+void		way_shortening(t_normalise *n);
+void	run_commands(t_ps_prms *p, t_cmd_gen *g, t_normalise *n);
 
 int			rrr_condition(t_ps_prms *p, t_get_cmd *m);
 int			rra_condition(t_ps_prms *p, t_get_cmd *m);

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/27 14:38:18 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/30 20:05:13 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int		main(int argc, char **argv)
 		return (0);
 	if (!check_n_put_args(argc, argv, &args, &p) || !check_duplicates(&p))
 		return (error_msg(0, NULL));
-	if(!sorting(&p))
+	if(!stack_sorting(&p))
 		return (error_msg(1, &p));
 	ptr = p.stack_a;
 	/*while (ptr)

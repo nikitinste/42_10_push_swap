@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/29 18:59:07 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/30 18:31:13 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	get_command_2(t_ps_prms *p, t_get_cmd *m)
 		m->c_a = p->stack_a->content;
 	if (p->stack_b)
 		m->c_b = p->stack_b->content;
-	if (rr_condition(p, m))
+	/*if (rr_condition(p, m))
 		return (m->cmd);// [3] - rr
 	m->cmd++;
 	if (ra_condition(p, m))
@@ -73,7 +73,7 @@ static int	get_command_2(t_ps_prms *p, t_get_cmd *m)
 	m->cmd++;
 	if (rb_condition(p, m))
 		return (m->cmd);// [5] - rb
-	m->cmd++;
+	m->cmd++;*/
 	if (p->stack_a && p->stack_a->right)
 		m->c_ar = p->stack_a->right->content;
 	if (p->stack_b && p->stack_b->right)
@@ -89,7 +89,7 @@ static int	get_command(t_ps_prms *p)
 {
 	t_get_cmd	m;
 
-	m.cmd = 0;
+	m.cmd = 6;
 	m.last_a = p->stack_a;
 	m.last_b = p->stack_b;
 	set_even_odd(p);
@@ -103,7 +103,7 @@ static int	get_command(t_ps_prms *p)
 		m.c_a = m.last_a->content;
 	if (m.last_b)
 		m.c_b = m.last_b->content;
-	if (rrr_condition(p, &m))
+	/*if (rrr_condition(p, &m))
 		return (m.cmd);// [0] - rrr
 	m.cmd++;
 	if (rra_condition(p, &m))
@@ -111,7 +111,7 @@ static int	get_command(t_ps_prms *p)
 	m.cmd++;
 	if (rrb_condition(p, &m))
 		return (m.cmd);// [2] - rrb
-	m.cmd++;
+	m.cmd++;*/
 	return (get_command_2(p, &m));
 }
 
@@ -129,7 +129,7 @@ void		command_generator(t_ps_prms *p)
 	while (!check_sort_state(p, 1, 1)/* && ++i < 100*/)
 	{
 		//ft_printf("%d: ", ++i);
-		if (!normalise(p))
+		if (!normalise(p, &g))
 			exit(0);
 		command = get_command(p);
 		g.command_arr[command](p, g.rule_list[command]);

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 18:19:18 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/27 14:20:16 by uhand            ###   ########.fr       */
+/*   Updated: 2019/06/30 20:05:12 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	shaker(t_shaker *s)
 	}
 }
 
-int		sorting(t_ps_prms *p)
+int		stack_sorting(t_ps_prms *p)
 {
 	t_shaker	s;
 
