@@ -6,75 +6,106 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:22:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 21:05:13 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/01 22:13:35 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void swap(t_dllist *stack)
+static void swap(t_dllist **stack)
 {
 	t_content	*content;
 	size_t		content_size;
 
-	content = stack->content;
+	content = stack[0]->content;
 	content->pos++;
-	stack->content = stack->right->content;
-	stack->right->content = content;
-	if (stack->content_size != stack->right->content_size)
+	stack[0]->content = stack[0]->right->content;
+	stack[0]->right->content = content;
+	if (stack[0]->content_size != stack[0]->right->content_size)
 	{
-		content_size = stack->content_size;
-		stack->content_size = stack->right->content_size;
-		stack->right->content_size = content_size;
+		content_size = stack[0]->content_size;
+		stack[0]->content_size = stack[0]->right->content_size;
+		stack[0]->right->content_size = content_size;
 	}
 }
 
-static void	rotate(t_dllist *stack)
+static void	rotate(t_dllist **stack)
 {
 	t_dllist	*last;
 	t_dllist	*tmp;
 
-	if (stack->right)
-		if (!stack->right->right)
+	if (stack[0]->right)
+		if (!stack[0]->right->right)
 		{
 			swap(stack);
 			return ;
 		}
-	last = stack;
+	last = stack[0];
 	while (last->right)
 		last = last->right;
-	tmp = stack->right;
+	tmp = stack[0]->right;
 	tmp->left = NULL;
-	stack->right = NULL;
-	stack->left = last;
-	last->right = stack;
-	stack = tmp;
+	stack[0]->right = NULL;
+	stack[0]->left = last;
+	last->right = stack[0];
+	stack[0] = tmp;
 }
 
-static void	find_norm_way(int len, t_dllist *stack, int *way, int start)
+static void	find_norm_way_a(int len, t_dllist *stack, int *way, int start)
 {
 	t_way	w;
 
-	w.i = 0;
+	w.rot = 0;
 	w.min = -1;
-	while (w.i < len)
+	while (w.rot < len)
 	{
+		w.i = 0;
 		w.pos = 0;
 		w.neg = 0;
 		w.ptr = stack;
 		while (w.ptr)
 		{
-			w.c = w.ptr->content;
+			w.c = (t_content*)w.ptr->content;
 			w.bias = (w.i + start) - w.c->sort_pos;
 			if (w.bias < 0)
 				w.neg += ft_abs(w.bias);
 			else
 				w.pos += w.bias;
+			w.i++;
 			w.ptr = w.ptr->right;
 		}
 		set_way_params(&w, way, len);
-		rotate(stack);
-		w.i++;
+		rotate(&stack);
+		w.rot++;
+	}
+}
+
+static void	find_norm_way_b(int len, t_dllist *stack, int *way, int start)
+{
+	t_way	w;
+
+	w.rot = 0;
+	w.min = -1;
+	while (w.rot < len)
+	{
+		w.i = start;
+		w.pos = 0;
+		w.neg = 0;
+		w.ptr = stack;
+		while (w.ptr)
+		{
+			w.c = (t_content*)w.ptr->content;
+			w.bias = (w.i + start) - w.c->sort_pos;
+			if (w.bias < 0)
+				w.neg += ft_abs(w.bias);
+			else
+				w.pos += w.bias;
+			w.i--;
+			w.ptr = w.ptr->right;
+		}
+		set_way_params(&w, way, len);
+		rotate(&stack);
+		w.rot++;
 	}
 }
 
@@ -126,9 +157,9 @@ int			normalise(t_ps_prms *p, t_cmd_gen *g)
 	n.way_b = 0;
 	n.way_ab = 0;
 	if (n.stack_a)
-		find_norm_way(p->len_a, n.stack_a, &n.way_a, p->len_b);
+		find_norm_way_a(p->len_a, n.stack_a, &n.way_a, p->len_b);
 	if (n.stack_b)
-		find_norm_way(p->len_b, n.stack_b, &n.way_b, 0);
+		find_norm_way_b(p->len_b, n.stack_b, &n.way_b, (p->len_b - 1));
 	get_conclusion(p, &n);
 	run_commands(p, g, &n);
 	return (1);

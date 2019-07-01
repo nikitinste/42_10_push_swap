@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 15:01:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 21:00:23 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/01 19:03:43 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	set_way_params(t_way *w, int *way, int len)
 			w->max = w->pos;
 		else
 			w->max = w->neg;
-		if (w->max < (int)w->min)
+		if ((unsigned int)w->max < w->min)
 		{
 			w->min = (unsigned int)w->max;
-			*way = w->i;
+			*way = w->rot;
 		}
 		if (*way > (len / 2))
 			*way = *way - len;

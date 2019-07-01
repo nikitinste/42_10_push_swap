@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 20:59:57 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/01 16:20:18 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,12 @@ typedef struct	s_normalise
 typedef struct	s_way
 {
 	t_dllist		*ptr;
+	int				i;
 	int				pos;
 	int				neg;
 	int				max;
 	unsigned int	min;
-	int				i;
+	int				rot;
 	int				bias;
 	t_content		*c;
 }				t_way;

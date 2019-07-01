@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 14:37:09 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/29 17:59:42 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/01 21:04:28 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int		ra_condition(t_ps_prms *p, t_get_cmd *m)
 {
 	int		bias;
 
-	bias = m->c_a->pos - m->c_a->sort_pos;
 	if (p->len_a >= 3)
 	{
+		bias = m->c_a->pos - m->c_a->sort_pos;
 		if (bias * -1 > (p->len_a / 2) && bias * -1 < p->len_a)
 			return (1);
 		// if (bias * -1 >= (p->len_a / 2) && !p->a)
@@ -74,9 +74,9 @@ int		rb_condition(t_ps_prms *p, t_get_cmd *m)
 {
 	int		bias;
 
-	bias = m->c_b->pos - m->c_b->sort_pos;
 	if (p->len_b >= 3)
 	{
+		bias = m->c_b->pos - m->c_b->sort_pos;
 		if (bias > (p->len_b / 2) && bias < p->len_b)
 			return (1);
 		// if (bias >= (p->len_b / 2) && !p->b)

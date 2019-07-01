@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 18:31:13 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/01 22:39:58 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	get_command(t_ps_prms *p)
 	m.last_b = p->stack_b;
 	set_even_odd(p);
 	/*if (check_condition(p, &m))
-		return (m.cmd);*/// pa or pb
+		return (m.cmd);// pa or pb*/
 	while (m.last_a && m.last_a->right)
 		m.last_a = m.last_a->right;
 	while (m.last_b && m.last_b->right)
@@ -119,16 +119,18 @@ void		command_generator(t_ps_prms *p)
 {
 	t_cmd_gen	g;
 	int			command;
-	//int			i;
-	//t_dllist	*ptr;
-	//t_content	*c;
+	int			i;
+	t_dllist	*ptr;
+	t_content	*c;
 
 	commands_init(&g);
 	p->push_direction = 0;
-	//i = -1;
-	while (!check_sort_state(p, 1, 1)/* && ++i < 100*/)
+	i = -1;
+	/*if (!normalise(p, &g))
+		exit(0);*/
+	while (!check_sort_state(p, 1, 1) && ++i < 50)
 	{
-		//ft_printf("%d: ", ++i);
+		ft_printf("%d: \n", i);
 		if (!normalise(p, &g))
 			exit(0);
 		command = get_command(p);
@@ -137,11 +139,30 @@ void		command_generator(t_ps_prms *p)
 			(p->push_direction && check_sort_state(p, 0, 1)))
 		{
 			if (!p->push_direction)
+			{
 				p->push_direction = 1;
+				/*if (!normalise(p, &g))
+					exit(0);*/
+			}
 			else
+			{
 				p->push_direction = 0;
+				/*if (!normalise(p, &g))
+					exit(0);*/
+			}
 		}
-		/*ptr = p->stack_a;
+		ptr = p->stack_a;
+		ft_printf("len_a: %d\n", p->len_a);
+		while (ptr)
+		{
+			c = (t_content*)ptr->content;
+			ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
+				c->pos - c->sort_pos);
+			ptr = ptr->right;
+		}
+		ft_printf("\n\n");
+		ptr = p->stack_b;
+		ft_printf("len_b: %d\n", p->len_b);
 		while (ptr)
 		{
 			c = (t_content*)ptr->content;
@@ -150,15 +171,6 @@ void		command_generator(t_ps_prms *p)
 			ptr = ptr->right;
 		}
 		ft_printf("\n");
-		ptr = p->stack_b;
-		while (ptr)
-		{
-			c = (t_content*)ptr->content;
-			ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
-				c->pos - c->sort_pos);
-			ptr = ptr->right;
-		}
-		ft_printf("\n");*/
 	}
 	while (p->stack_b)
 	{

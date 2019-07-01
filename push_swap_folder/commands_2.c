@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:10:29 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/27 13:32:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/01 22:52:04 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	swap_a(t_ps_prms *p, char *command)
 	if (!p->stack_a || !p->stack_a->right)
 		return ;
 	content = p->stack_a->content;
-	content->pos++;
+	content->pos--;
 	p->stack_a->content = p->stack_a->right->content;
 	p->stack_a->right->content = content;
 	if (p->stack_a->content_size != p->stack_a->right->content_size)
@@ -94,7 +94,7 @@ void	swap_a(t_ps_prms *p, char *command)
 		p->stack_a->right->content_size = content_size;
 	}
 	content = p->stack_a->content;
-	content->pos--;
+	content->pos++;//!!!
 	if (command)
 		ft_printf("%s\n", command);
 }
@@ -117,7 +117,7 @@ void	swap_b(t_ps_prms *p, char *command)
 		p->stack_b->right->content_size = content_size;
 	}
 	content = p->stack_b->content;
-	content->pos++;
+	content->pos++;//!!!
 	if (command)
 		ft_printf("%s\n", command);
 }

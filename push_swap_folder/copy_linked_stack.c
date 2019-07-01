@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:29:14 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 19:43:42 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/01 18:50:47 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ t_dllist	*copy_linked_stack(t_dllist *src, t_dllist *dst)
 		tmp->content_size = src->content_size;
 		prev->right = tmp;
 		tmp->left = prev;
-		tmp = tmp->right;
 		prev = prev->right;
 		src = src->right;
 	}
+	prev->right = NULL;
 	return (dst);
 }
