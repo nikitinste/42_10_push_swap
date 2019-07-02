@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 15:01:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/01 19:03:43 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/02 18:28:53 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,31 @@
 
 void	set_way_params(t_way *w, int *way, int len)
 {
-		if (w->pos > w->neg)
-			w->max = w->pos;
-		else
-			w->max = w->neg;
+	int		rot;
+
+	if (w->pos > w->neg)
+		w->max = w->pos;
+	else
+		w->max = w->neg;
+	if ((unsigned int)w->max <= w->min)
+	{
 		if ((unsigned int)w->max < w->min)
 		{
 			w->min = (unsigned int)w->max;
 			*way = w->rot;
 		}
-		if (*way > (len / 2))
-			*way = *way - len;
+		else
+		{
+			rot = w->rot;
+			if (rot > (len / 2))
+				rot -= len;
+			if (ft_abs(rot) < ft_abs(*way))
+				*way = w->rot;
+		}
+	}
+	//ft_printf("%d ", w->max);//<--
+	if (*way > (len / 2))
+		*way = *way - len;
 }
 
 void	way_shortening(t_normalise *n)
@@ -64,6 +78,15 @@ void 		linked_stack_free(void *content, size_t size)
 
 static void	execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, int way)
 {
+	/*t_dllist	*ptr;
+	t_content	*c;
+	int			lala = 0;*///<--
+
+	/*if (cmd->i > 0)
+	{
+		ft_printf("norm commands:\n");
+		lala = 1;
+	}*///<--
 	while (cmd->i)
 	{
 		if (way > 0)
@@ -71,7 +94,35 @@ static void	execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, int way)
 		else
 			g->command_arr[cmd->command - 3](p, g->rule_list[cmd->command - 3]);
 		cmd->i--;
+
+		if (!p->norm)
+			p->norm = 1;
+		if (!p->check)
+			p->check = 1;
 	}
+	/*if(lala)
+	{
+		ptr = p->stack_a;
+		ft_printf("norm len_a: %d\n", p->len_a);
+		while (ptr)
+		{
+			c = (t_content*)ptr->content;
+			ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
+				c->pos - c->sort_pos);
+			ptr = ptr->right;
+		}
+		ft_printf("\n\n");
+		ptr = p->stack_b;
+		ft_printf("norm len_b: %d\n", p->len_b);
+		while (ptr)
+		{
+			c = (t_content*)ptr->content;
+			ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
+				c->pos - c->sort_pos);
+			ptr = ptr->right;
+		}
+		ft_printf("\n");
+	}*///<--
 }
 
 void	run_commands(t_ps_prms *p, t_cmd_gen *g, t_normalise *n)

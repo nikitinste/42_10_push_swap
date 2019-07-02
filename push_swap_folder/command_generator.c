@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/01 22:39:58 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/02 20:01:06 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int			check_sort_state(t_ps_prms *p, int a, int b)
 	t_dllist	*ptr;
 	t_content	*content;
 
+	if (p->check)
+		p->check = 0;
 	ptr = p->stack_a;
 	if (!ptr)
 		return (0);
@@ -65,15 +67,24 @@ static int	get_command_2(t_ps_prms *p, t_get_cmd *m)
 		m->c_a = p->stack_a->content;
 	if (p->stack_b)
 		m->c_b = p->stack_b->content;
-	/*if (rr_condition(p, m))
-		return (m->cmd);// [3] - rr
+	if (rr_condition(p, m) && !p->norm)
+	{
+		return (m->cmd);// [0] - rr
+		p->norm = 0;
+	}
 	m->cmd++;
-	if (ra_condition(p, m))
-		return (m->cmd);// [4] - ra
+	if (ra_condition(p, m) && !p->norm)
+	{
+		return (m->cmd);// [0] - ra
+		p->norm = 0;
+	}
 	m->cmd++;
-	if (rb_condition(p, m))
-		return (m->cmd);// [5] - rb
-	m->cmd++;*/
+	if (rb_condition(p, m) && !p->norm)
+	{
+		return (m->cmd);// [0] - rb
+		p->norm = 0;
+	}
+	m->cmd++;
 	if (p->stack_a && p->stack_a->right)
 		m->c_ar = p->stack_a->right->content;
 	if (p->stack_b && p->stack_b->right)
@@ -89,7 +100,8 @@ static int	get_command(t_ps_prms *p)
 {
 	t_get_cmd	m;
 
-	m.cmd = 6;
+	p->check = 0;
+	m.cmd = 0;
 	m.last_a = p->stack_a;
 	m.last_b = p->stack_b;
 	set_even_odd(p);
@@ -103,15 +115,24 @@ static int	get_command(t_ps_prms *p)
 		m.c_a = m.last_a->content;
 	if (m.last_b)
 		m.c_b = m.last_b->content;
-	/*if (rrr_condition(p, &m))
+	if (rrr_condition(p, &m) && !p->norm)
+	{
 		return (m.cmd);// [0] - rrr
+		p->norm = 0;
+	}
 	m.cmd++;
-	if (rra_condition(p, &m))
-		return (m.cmd);// [1] - rra
+	if (rra_condition(p, &m) && !p->norm)
+	{
+		return (m.cmd);// [0] - rra
+		p->norm = 0;
+	}
 	m.cmd++;
-	if (rrb_condition(p, &m))
-		return (m.cmd);// [2] - rrb
-	m.cmd++;*/
+	if (rrb_condition(p, &m) && !p->norm)
+	{
+		return (m.cmd);// [0] - rrb
+		p->norm = 0;
+	}
+	m.cmd++;
 	return (get_command_2(p, &m));
 }
 
@@ -120,21 +141,19 @@ void		command_generator(t_ps_prms *p)
 	t_cmd_gen	g;
 	int			command;
 	int			i;
-	t_dllist	*ptr;
-	t_content	*c;
+	// t_dllist	*ptr;
+	// t_content	*c;
 
 	commands_init(&g);
 	p->push_direction = 0;
 	i = -1;
+	p->check = 0;
+	p->norm = 0;
 	/*if (!normalise(p, &g))
-		exit(0);*/
-	while (!check_sort_state(p, 1, 1) && ++i < 50)
+		exit(0);
+	p->norm = 0;*/
+	while (!check_sort_state(p, 1, 1)/* && ++i < 2000*/)
 	{
-		ft_printf("%d: \n", i);
-		if (!normalise(p, &g))
-			exit(0);
-		command = get_command(p);
-		g.command_arr[command](p, g.rule_list[command]);
 		if ((!p->push_direction && check_sort_state(p, 1, 0)) || \
 			(p->push_direction && check_sort_state(p, 0, 1)))
 		{
@@ -151,7 +170,15 @@ void		command_generator(t_ps_prms *p)
 					exit(0);*/
 			}
 		}
-		ptr = p->stack_a;
+		//ft_printf("%d: \n", ++i);//<--
+		if (!normalise(p, &g))
+			exit(0);
+		if (p->check)
+			continue ;
+		//ft_printf("commands:\n");//<--
+		command = get_command(p);
+		g.command_arr[command](p, g.rule_list[command]);
+		/*ptr = p->stack_a;
 		ft_printf("len_a: %d\n", p->len_a);
 		while (ptr)
 		{
@@ -170,11 +197,11 @@ void		command_generator(t_ps_prms *p)
 				c->pos - c->sort_pos);
 			ptr = ptr->right;
 		}
-		ft_printf("\n");
+		ft_printf("\n");*///<--
 	}
 	while (p->stack_b)
 	{
-		//ft_printf("%d: ", ++i);
+		//ft_printf("%d: ", ++i);//<--
 		g.command_arr[10](p, g.rule_list[10]);
 		/*ptr = p->stack_a;
 		while (ptr)
@@ -193,6 +220,6 @@ void		command_generator(t_ps_prms *p)
 				c->pos - c->sort_pos);
 			ptr = ptr->right;
 		}
-		ft_printf("\n");*/
+		ft_printf("\n");*///<--
 	}
 }

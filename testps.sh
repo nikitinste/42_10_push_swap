@@ -231,7 +231,7 @@ fi
 #Advansed version
 {
 	echo "Advanced version."
-	test_push_swap 500 11500
+	test_push_swap 250 11500
 }
 
 exit 0

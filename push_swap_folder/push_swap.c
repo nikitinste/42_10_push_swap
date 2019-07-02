@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/01 22:43:26 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/02 18:31:02 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ static int	check_n_put_args(int argc, char **argv, char ***args, \
 
 	i = 0;
 	p->stack_a = NULL;
+	p->stack_b = NULL;
 	while (++i < argc)
 	{
 		j = -1;
@@ -108,8 +109,8 @@ int		main(int argc, char **argv)
 {
 	char		**args;
 	t_ps_prms	p;
-	t_content	*c;
-	t_dllist	*ptr;
+	// t_content	*c;
+	// t_dllist	*ptr;
 
 	if (argc < 2)
 		return (0);
@@ -117,14 +118,14 @@ int		main(int argc, char **argv)
 		return (error_msg(0, NULL));
 	if(!stack_sorting(&p))
 		return (error_msg(1, &p));
-	ptr = p.stack_a;
+	/*ptr = p.stack_a;
 	while (ptr)
 	{
 		c = (t_content*)ptr->content;
 		ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
 			c->pos - c->sort_pos);
 		ptr = ptr->right;
-	}
+	}*///<--
 	command_generator(&p);
 	return (0);
 }

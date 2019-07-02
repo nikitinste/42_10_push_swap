@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 18:19:18 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/30 21:00:42 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/02 12:23:15 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		stack_sorting(t_ps_prms *p)
 
 	if (p->len_a < 2)
 		return (1);
-	if (!(s.stack = copy_linked_stack(p->stack_a, s.stack)))
+	if (!(s.stack = copy_linked_stack(&p->stack_a, &s.stack)))
 		return (0);
 	s.left = s.stack;
 	s.right = s.stack;

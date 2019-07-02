@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/01 16:20:18 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/02 19:53:27 by stepa            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ struct	s_ps_prms
 	int				a;
 	int				b;
 	int				push_direction;
+	int				norm;
+	int				check;
 };
 
 /*
@@ -130,7 +132,7 @@ typedef struct	s_execute
 
 long long	ps_atoi(const char *str);
 int			stack_sorting(t_ps_prms *p);
-t_dllist	*copy_linked_stack(t_dllist *src, t_dllist *dst);
+t_dllist	*copy_linked_stack(t_dllist **src, t_dllist **dst);
 void 		linked_stack_free(void *content, size_t size);
 void		command_generator(t_ps_prms *p);
 void		commands_init(t_cmd_gen *g);
