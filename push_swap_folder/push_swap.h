@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/02 19:53:27 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/04 19:11:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,36 @@ typedef struct	s_execute
 	int				command;
 }				t_execute;
 
+
+/*
+**	drum params: d
+*/
+
+typedef struct	s_drums
+{
+	t_dllist		*ptr;
+	int				rot;
+	t_content		*content;
+	int				val;
+	int				cur_a;
+	int				cur_b;
+	int				a_way;
+	int				b_way;
+}				t_drums;
+
+/*
+**	drum b_way params: b
+*/
+
+typedef struct	s_b_way
+{
+	t_dllist		*ptr;
+	t_content		*content;
+	int				val_first;
+	int				val_second;
+	int				rotation;
+}				t_b_way;
+
 long long	ps_atoi(const char *str);
 int			stack_sorting(t_ps_prms *p);
 t_dllist	*copy_linked_stack(t_dllist **src, t_dllist **dst);
@@ -145,6 +175,7 @@ int			normalise(t_ps_prms *p, t_cmd_gen *g);
 void		set_way_params(t_way *w, int *way, int len);
 void		way_shortening(t_normalise *n);
 void		run_commands(t_ps_prms *p, t_cmd_gen *g, t_normalise *n);
+void		run_drums(t_ps_prms *p, t_cmd_gen *g);
 
 int			rrr_condition(t_ps_prms *p, t_get_cmd *m);
 int			rra_condition(t_ps_prms *p, t_get_cmd *m);
