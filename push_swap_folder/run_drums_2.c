@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 16:00:55 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/05 16:50:32 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/06 16:40:50 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_short_way(t_drums *d)
 {
 	d->a_way = d->cur_a;
 	d->b_way = d->cur_b;
-	d->ab_way = d->cur_b;
+	d->ab_way = d->cur_ab;
 	d->short_way = ft_abs(d->cur_a) + ft_abs(d->cur_b) + ft_abs(d->cur_ab);
 }
 
@@ -49,4 +49,15 @@ void	run_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d)
 	cmd.i = ft_abs(d->b_way);
 	cmd.command = 5;
 	execute_command(p, g, &cmd, d->b_way);
+	g->command_arr[9](p, g->rule_list[9]);
+}
+
+void	drums_init(t_drums *d, t_ps_prms *p)
+{
+	d->rot = 0;
+	d->ptr = p->stack_a;
+	d->short_way = p->len_a + p->len_b;
+	d->a_way = 0;
+	d->b_way = 0;
+	d->b_way = 0;
 }

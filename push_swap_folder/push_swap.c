@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/02 18:31:02 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/06 16:52:18 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int		main(int argc, char **argv)
 		return (error_msg(0, NULL));
 	if(!stack_sorting(&p))
 		return (error_msg(1, &p));
+	if(check_sort_state(&p, 1, 0))
+		exit (0);
 	/*ptr = p.stack_a;
 	while (ptr)
 	{

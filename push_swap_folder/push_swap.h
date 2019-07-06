@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/05 16:48:20 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/06 16:34:49 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ void		run_commands(t_ps_prms *p, t_cmd_gen *g, t_normalise *n);
 void		execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, \
 	int way);
 void		run_drums(t_ps_prms *p, t_cmd_gen *g);
+void		drums_init(t_drums *d, t_ps_prms *p);
 void		set_drums_way(t_drums *d, int way_a, int way_b);
 void		set_short_way(t_drums *d);
 void		run_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);

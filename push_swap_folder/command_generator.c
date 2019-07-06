@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/04 17:36:35 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/06 17:12:57 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void		command_generator(t_ps_prms *p)
 	/*if (!normalise(p, &g))
 		exit(0);
 	p->norm = 0;*/
-	while (!(p->len_b != 3 && check_sort_state(p, 0, 1))/* && ++i < 2000*/)
+	while (p->len_b != 4 /* || !check_sort_state(p, 0, 1)*//* && ++i < 2000*/)
 	{
 		if ((!p->push_direction && check_sort_state(p, 1, 0)) || \
 			(p->push_direction && check_sort_state(p, 0, 1)))
@@ -191,8 +191,11 @@ void		command_generator(t_ps_prms *p)
 		}
 		ft_printf("\n");*///<--
 	}
+	exit (0);
 	while (!(check_sort_state(p, 1, 0) || !p->stack_a))
 		run_drums(p, &g);
+	if (!normalise(p, &g))
+		exit(0);
 	while (p->stack_b)
 	{
 		//ft_printf("%d: ", ++i);//<--
