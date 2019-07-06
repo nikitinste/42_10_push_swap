@@ -6,24 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:22:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 17:25:09 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/06 20:41:50 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void swap(t_dllist **stack)
-{
-	t_dllist *second;
-
-	second = stack[0]->right;
-	stack[0]->left = second;
-	stack[0]->right = NULL;
-	second->right = stack[0];
-	second->left = NULL;
-	stack[0] = second;
-
-}
 
 static void	rotate(t_dllist **stack)
 {
@@ -33,7 +20,7 @@ static void	rotate(t_dllist **stack)
 	if (stack[0]->right)
 		if (!stack[0]->right->right)
 		{
-			swap(stack);
+			norm_swap(stack);
 			return ;
 		}
 	last = stack[0];
@@ -55,14 +42,12 @@ static void	find_norm_way_a(t_ps_prms *p, t_dllist *stack, int *way)
 	w.min = -1;
 	while (w.rot < p->len_a)
 	{
-		w.i = p->len_b;
-		w.pos = 0;
-		w.neg = 0;
-		w.ptr = stack;
+		way_init(&w, stack, p->len_b);
 		while (w.ptr)
 		{
 			w.c = (t_content*)w.ptr->content;
 			w.bias = w.i - w.c->sort_pos;
+			check_bias(&w);
 			if (w.bias < 0)
 				w.neg += ft_abs(w.bias);
 			else
@@ -109,14 +94,12 @@ static void	find_norm_way_b(t_ps_prms *p, t_dllist *stack, int *way)
 	w.min = -1;
 	while (w.rot < p->len_b)
 	{
-		w.i = p->len_b - 1;
-		w.pos = 0;
-		w.neg = 0;
-		w.ptr = stack;
+		way_init(&w, stack, (p->len_b - 1));
 		while (w.ptr)
 		{
 			w.c = (t_content*)w.ptr->content;
 			w.bias = w.i - w.c->sort_pos;
+			check_bias(&w);
 			if (w.bias < 0)
 				w.neg += ft_abs(w.bias);
 			else
@@ -124,9 +107,9 @@ static void	find_norm_way_b(t_ps_prms *p, t_dllist *stack, int *way)
 			w.i--;
 			w.ptr = w.ptr->right;
 		}
-		ft_printf("\n");
+		//ft_printf("\n");
 		set_way_params(&w, way, p->len_b);
-		ft_printf("\n");
+		//ft_printf("\n");
 		rotate(&stack);
 
 		/*ptr = p->stack_a;

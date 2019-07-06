@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 16:34:49 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/06 21:06:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ typedef struct	s_way
 	unsigned int	min;
 	int				rot;
 	int				bias;
+	int				zero;
+	int				direction;
 	t_content		*c;
 }				t_way;
 
@@ -177,7 +179,11 @@ void		set_even_odd(t_ps_prms *p);
 int			check_condition(t_ps_prms *p, t_get_cmd *m);
 int			check_sort_state(t_ps_prms *p, int a, int b);
 int			normalise(t_ps_prms *p, t_cmd_gen *g);
+void 		norm_swap(t_dllist **stack);
+void		way_init(t_way *w, t_dllist *stack, int len);
+void		check_bias(t_way *w);
 void		set_way_params(t_way *w, int *way, int len);
+void		check_direction(t_way *w, int len);
 void		way_shortening(t_normalise *n);
 void		run_commands(t_ps_prms *p, t_cmd_gen *g, t_normalise *n);
 void		execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, \
@@ -187,6 +193,7 @@ void		drums_init(t_drums *d, t_ps_prms *p);
 void		set_drums_way(t_drums *d, int way_a, int way_b);
 void		set_short_way(t_drums *d);
 void		run_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
+int			check_stack_is_sorted(t_dllist *stack);
 
 int			rrr_condition(t_ps_prms *p, t_get_cmd *m);
 int			rra_condition(t_ps_prms *p, t_get_cmd *m);
