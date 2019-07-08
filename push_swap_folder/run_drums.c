@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:48:22 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 16:35:20 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 16:35:03 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static void drum_way_shortening(t_ps_prms *p, t_drums *d)
 		set_drums_way(d, d->cur_a, d->cur_b);
 		return ;
 	}
-	d->rev_a -= p->len_a;
-	d->rev_b -= p->len_b;
+	d->rev_a = d->cur_a - p->len_a;
+	d->rev_b = d->cur_b - p->len_b;
 	if ((ft_abs(d->cur_a) + ft_abs(d->cur_b)) > ft_abs(d->cur_a - d->rev_b) || \
-		(ft_abs(d->cur_a) + ft_abs(d->cur_b)) > ft_abs(d->cur_b - d->rev_a))
+		(ft_abs(d->cur_a) + ft_abs(d->cur_b)) > ft_abs(d->rev_a - d->cur_b))
 		set_rev_var(d);
 }
 
@@ -80,7 +80,9 @@ void	run_drums(t_ps_prms *p, t_cmd_gen *g)
 	drums_init(&d, p);
 	while (d.ptr)
 	{
-		d.content = (t_content*)p->stack_a->content;
+		d.rev_a = 0;
+		d.rev_b = 0;
+		d.content = d.ptr->content;
 		d.val = d.content->val;
 		d.cur_b = find_b_way(p, d.val);
 		if (d.cur_b > (p->len_b / 2))
@@ -91,7 +93,13 @@ void	run_drums(t_ps_prms *p, t_cmd_gen *g)
 		drum_way_shortening(p, &d);
 		if ((ft_abs(d.cur_a) + ft_abs(d.cur_b) + ft_abs(d.cur_ab)) \
 			< d.short_way)
+		{
+			/*if (d.short_way == p->len_a + p->len_b)
+				ft_printf("lala\n");
+			else
+				ft_printf("nana\n");*/
 			set_short_way(&d);
+		}
 		if (!d.short_way)
 			break ;
 		d.rot++;

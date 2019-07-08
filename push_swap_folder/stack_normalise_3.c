@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 18:23:29 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 21:26:18 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 16:07:46 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int		check_stack_is_sorted(t_dllist *stack)
 	ptr = stack;
 	while (ptr->right)
 	{
-		first = stack->content;
-		second = stack->right->content;
-		if (first < second)
+		first = ptr->content;
+		second = ptr->right->content;
+		if (first->val < second->val)
 			return (0);
 		ptr = ptr->right;
 	}

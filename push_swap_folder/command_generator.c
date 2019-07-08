@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 21:34:47 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 16:09:14 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,8 @@ void		command_generator(t_ps_prms *p)
 	t_cmd_gen	g;
 	int			command;
 	int			i;
-	t_dllist	*ptr;
-	t_content	*c;
+	//t_dllist	*ptr;
+	//t_content	*c;
 
 	commands_init(&g);
 	p->push_direction = 0;
@@ -152,7 +152,7 @@ void		command_generator(t_ps_prms *p)
 	/*if (!normalise(p, &g))
 		exit(0);
 	p->norm = 0;*/
-	while (p->len_b != 3  || !check_sort_state(p, 0, 1)/* && ++i < 2000*/)
+	while (p->len_b != 3  || !check_stack_is_sorted(p->stack_b)/* && ++i < 2000*/)
 	{
 		if ((!p->push_direction && check_sort_state(p, 1, 0)) || \
 			(p->push_direction && check_sort_state(p, 0, 1)))
@@ -193,7 +193,7 @@ void		command_generator(t_ps_prms *p)
 		}
 		ft_printf("\n");*///<--
 	}
-	ptr = p->stack_a;
+	/*ptr = p->stack_a;
 	while (ptr)
 	{
 		c = (t_content*)ptr->content;
@@ -209,9 +209,9 @@ void		command_generator(t_ps_prms *p)
 		ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
 			c->pos - c->sort_pos);
 		ptr = ptr->right;
-	}
-	ft_printf("\n");//<--
-	exit (0);
+	}*/
+	//ft_printf("lala\n");//<--
+	//exit (0);
 	while (!(check_sort_state(p, 1, 0) || !p->stack_a))
 		run_drums(p, &g);
 	if (!normalise(p, &g))

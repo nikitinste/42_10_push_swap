@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:22:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 20:41:50 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 13:31:11 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	find_norm_way_a(t_ps_prms *p, t_dllist *stack, int *way)
 		rotate(&stack);
 		w.rot++;
 	}
-	//ft_printf("\nway a: %d \n", *way);//<--
+	/*ft_printf("\nway a: %d \n", *way);*///<--
 }
 
 static void	find_norm_way_b(t_ps_prms *p, t_dllist *stack, int *way)
@@ -136,7 +136,7 @@ static void	find_norm_way_b(t_ps_prms *p, t_dllist *stack, int *way)
 
 		w.rot++;
 	}
-	//ft_printf("\nway b: %d \n", *way);//<--
+	/*ft_printf("\nway b: %d \n", *way);*///<--
 }
 
 static void	get_conclusion(t_ps_prms *p, t_normalise *n)

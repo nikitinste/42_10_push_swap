@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 16:00:55 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 16:40:50 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 15:16:59 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ void	drums_init(t_drums *d, t_ps_prms *p)
 	d->short_way = p->len_a + p->len_b;
 	d->a_way = 0;
 	d->b_way = 0;
-	d->b_way = 0;
+	d->ab_way = 0;
 }
