@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 16:52:18 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 18:54:04 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ int		main(int argc, char **argv)
 			c->pos - c->sort_pos);
 		ptr = ptr->right;
 	}*///<--
-	command_generator(&p);
+	//rotor(&p);
+	drummer(&p);
+	//compare_ways(&p);
 	return (0);
 }

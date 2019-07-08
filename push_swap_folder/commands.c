@@ -6,13 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 17:03:46 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/26 18:06:33 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 18:50:03 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	commands_init(t_cmd_gen *g)
+void	commands_init(t_ps_prms *p, t_cmd_gen *g)
 {
 	g->command_arr[0] = &rev_rot_ab;
 	g->command_arr[3] = &rotate_ab;
@@ -36,6 +36,9 @@ void	commands_init(t_cmd_gen *g)
 	g->rule_list[8] = "sb";
 	g->rule_list[9] = "pb";
 	g->rule_list[10] = "pa";
+	p->push_direction = 0;
+	p->check = 0;
+	p->norm = 0;
 }
 
 void	rev_rot_ab(t_ps_prms *p, char *command)

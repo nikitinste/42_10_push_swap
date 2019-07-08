@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 15:01:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 21:31:10 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 19:47:23 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ void		execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, int way)
 	}*///<--
 	while (cmd->i)
 	{
-		if (p->len_b == 3 && check_stack_is_sorted(p->stack_b))
-			return ;
+		/*if (p->len_b == 3 && check_stack_is_sorted(p->stack_b))
+			return ;*/
 		if (way > 0)
 			g->command_arr[cmd->command](p, g->rule_list[cmd->command]);
 		else

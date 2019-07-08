@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/06 21:06:20 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 18:54:00 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ struct	s_ps_prms
 	int				push_direction;
 	int				norm;
 	int				check;
+	t_list			*rotation;
+	t_list			*drums;
 };
 
 /*
@@ -171,8 +173,7 @@ long long	ps_atoi(const char *str);
 int			stack_sorting(t_ps_prms *p);
 t_dllist	*copy_linked_stack(t_dllist **src, t_dllist **dst);
 void 		linked_stack_free(void *content, size_t size);
-void		command_generator(t_ps_prms *p);
-void		commands_init(t_cmd_gen *g);
+void		commands_init(t_ps_prms *p, t_cmd_gen *g);
 void		reset_position_a(t_ps_prms *p);
 void		reset_position_b(t_ps_prms *p);
 void		set_even_odd(t_ps_prms *p);
@@ -194,6 +195,9 @@ void		set_drums_way(t_drums *d, int way_a, int way_b);
 void		set_short_way(t_drums *d);
 void		run_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
 int			check_stack_is_sorted(t_dllist *stack);
+void		rotor(t_ps_prms *p);
+void		drummer(t_ps_prms *p);
+void		compare_ways(t_ps_prms *p);
 
 int			rrr_condition(t_ps_prms *p, t_get_cmd *m);
 int			rra_condition(t_ps_prms *p, t_get_cmd *m);

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/08 16:09:14 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 19:04:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,22 +136,39 @@ static int	get_command(t_ps_prms *p)
 	return (get_command_2(p, &m));
 }
 
-void		command_generator(t_ps_prms *p)
+void		rotor(t_ps_prms *p)
 {
 	t_cmd_gen	g;
 	int			command;
-	int			i;
-	//t_dllist	*ptr;
-	//t_content	*c;
 
-	commands_init(&g);
-	p->push_direction = 0;
-	i = -1;
-	p->check = 0;
-	p->norm = 0;
-	/*if (!normalise(p, &g))
-		exit(0);
-	p->norm = 0;*/
+	commands_init(p, &g);
+	while (!check_sort_state(p, 1, 1))
+	{
+		if ((!p->push_direction && check_sort_state(p, 1, 0)) || \
+			(p->push_direction && check_sort_state(p, 0, 1)))
+		{
+			if (!p->push_direction)
+				p->push_direction = 1;
+			else
+				p->push_direction = 0;
+		}
+		if (!normalise(p, &g))
+			exit(0);
+		if (p->check)
+			continue ;
+		command = get_command(p);
+		g.command_arr[command](p, g.rule_list[command]);
+	}
+	while (p->stack_b)
+		g.command_arr[10](p, g.rule_list[10]);
+}
+
+void		drummer(t_ps_prms *p)
+{
+	t_cmd_gen	g;
+	int			command;
+
+	commands_init(p, &g);
 	while (p->len_b != 3  || !check_stack_is_sorted(p->stack_b)/* && ++i < 2000*/)
 	{
 		if ((!p->push_direction && check_sort_state(p, 1, 0)) || \
@@ -162,63 +179,20 @@ void		command_generator(t_ps_prms *p)
 			else
 				p->push_direction = 0;
 		}
-		//ft_printf("%d: \n", ++i);//<--
 		if (!normalise(p, &g))
 			exit(0);
 		if (p->len_b == 3 && check_stack_is_sorted(p->stack_b))
 			break ;
 		if (p->check)
 			continue ;
-		//ft_printf("commands:\n");//<--
 		command = get_command(p);
 		g.command_arr[command](p, g.rule_list[command]);
-		/*ptr = p->stack_a;
-		ft_printf("len_a: %d\n", p->len_a);
-		while (ptr)
-		{
-			c = (t_content*)ptr->content;
-			ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
-				c->pos - c->sort_pos);
-			ptr = ptr->right;
-		}
-		ft_printf("\n\n");
-		ptr = p->stack_b;
-		ft_printf("len_b: %d\n", p->len_b);
-		while (ptr)
-		{
-			c = (t_content*)ptr->content;
-			ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
-				c->pos - c->sort_pos);
-			ptr = ptr->right;
-		}
-		ft_printf("\n");*///<--
 	}
-	/*ptr = p->stack_a;
-	while (ptr)
-	{
-		c = (t_content*)ptr->content;
-		ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
-			c->pos - c->sort_pos);
-		ptr = ptr->right;
-	}
-	ft_printf("\n");
-	ptr = p->stack_b;
-	while (ptr)
-	{
-		c = (t_content*)ptr->content;
-		ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
-			c->pos - c->sort_pos);
-		ptr = ptr->right;
-	}*/
-	//ft_printf("lala\n");//<--
-	//exit (0);
+	//ft_printf("lala\n");
 	while (!(check_sort_state(p, 1, 0) || !p->stack_a))
 		run_drums(p, &g);
 	if (!normalise(p, &g))
 		exit(0);
 	while (p->stack_b)
-	{
-		//ft_printf("%d: ", ++i);//<--
 		g.command_arr[10](p, g.rule_list[10]);
-	}
 }

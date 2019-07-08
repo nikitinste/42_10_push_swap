@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:48:22 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/08 16:35:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/08 19:19:06 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,8 @@ void	run_drums(t_ps_prms *p, t_cmd_gen *g)
 		drum_way_shortening(p, &d);
 		if ((ft_abs(d.cur_a) + ft_abs(d.cur_b) + ft_abs(d.cur_ab)) \
 			< d.short_way)
-		{
-			/*if (d.short_way == p->len_a + p->len_b)
-				ft_printf("lala\n");
-			else
-				ft_printf("nana\n");*/
 			set_short_way(&d);
-		}
-		if (!d.short_way)
+		if (d.short_way == d.rot && d.rot <= (p->len_a / 2))
 			break ;
 		d.rot++;
 		d.ptr = d.ptr->right;
