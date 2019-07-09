@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/09 17:31:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/09 20:27:10 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,35 +184,21 @@ void		drummer(t_ps_prms *p)
 void		drummer_2(t_ps_prms *p)
 {
 	t_cmd_gen	g;
-	int			command;
-	int			i;
 
+	//check stack_a count
 	commands_init(p, &g);
-	p->push_direction = 0;
-	i = -1;
-	p->check = 0;
-	p->norm = 0;
-	while (p->len_b != 3  || !check_stack_is_sorted(p->stack_b)/* && ++i < 2000*/)
+	while (p->len_a != 3)
 	{
-		if ((!p->push_direction && check_sort_state(p, 1, 0)) || \
-			(p->push_direction && check_sort_state(p, 0, 1)))
-		{
-			if (!p->push_direction)
-				p->push_direction = 1;
-			else
-				p->push_direction = 0;
-		}
-		if (!normalise(p, &g))
+		g.command_arr[9](p, g.rule_list[9]);
+		if (!normalise_b(p, &g))
 			exit(0);
-		if (p->len_b == 3 && check_stack_is_sorted(p->stack_b))
-			break ;
-		if (p->check)
-			continue ;
-		command = get_command(p);
-		g.command_arr[command](p, g.rule_list[command]);
 	}
-	while (!(check_sort_state(p, 1, 0) || !p->stack_a))
-		run_drums(p, &g);
+	prepare_stack_a(p, &g);
+	//ft_printf("lala\n");
+	// if (!normalise(p, &g))
+	// 	exit(0);
+	while (!(check_sort_state(p, 0, 1) || !p->stack_b))
+		run_rev_drums(p, &g);
 	if (!normalise(p, &g))
 		exit(0);
 	while (p->stack_b)

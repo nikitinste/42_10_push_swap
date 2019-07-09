@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/09 14:53:26 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/09 20:19:52 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,8 +198,15 @@ void		run_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
 int			check_stack_is_sorted(t_dllist *stack);
 void		rotor(t_ps_prms *p);
 void		drummer(t_ps_prms *p);
-void		drummer_2(t_ps_prms *p);
 void		compare_ways(t_ps_prms *p);
+
+void		drummer_2(t_ps_prms *p);
+void		prepare_stack_a(t_ps_prms *p, t_cmd_gen *g);
+void		run_rev_drums(t_ps_prms *p, t_cmd_gen *g);
+void		rev_drums_init(t_drums *d, t_ps_prms *p);
+void		run_rev_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
+int			normalise_b(t_ps_prms *p, t_cmd_gen *g);
+
 
 int			rrr_condition(t_ps_prms *p, t_get_cmd *m);
 int			rra_condition(t_ps_prms *p, t_get_cmd *m);

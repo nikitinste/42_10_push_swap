@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/09 17:30:15 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/09 20:26:46 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ int		main(int argc, char **argv)
 		ptr = ptr->right;
 	}*///<--
 	//rotor(&p);
-	drummer(&p);
-	//drummer_2(&p);
+	//drummer(&p);
+	drummer_2(&p);
 	//compare_ways(&p);
 	return (0);
 }

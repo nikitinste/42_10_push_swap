@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:22:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/08 13:31:11 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/09 20:20:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +264,28 @@ int			normalise(t_ps_prms *p, t_cmd_gen *g)
 	}
 	ft_printf("\n");*/
 
+	get_conclusion(p, &n);
+	run_commands(p, g, &n);
+	return (1);
+}
+
+int			normalise_b(t_ps_prms *p, t_cmd_gen *g)
+{
+	t_normalise	n;
+
+	n.stack_a = NULL;
+	if (p->stack_b && p->len_b > 1)
+	{
+		if(!(n.stack_b = copy_linked_stack(&p->stack_b, &n.stack_b)))
+			exit (0);
+	}
+	else
+		n.stack_b = NULL;
+	n.way_a = 0;
+	n.way_b = 0;
+	n.way_ab = 0;
+	if (n.stack_b)
+		find_norm_way_b(p, n.stack_b, &n.way_b);
 	get_conclusion(p, &n);
 	run_commands(p, g, &n);
 	return (1);
