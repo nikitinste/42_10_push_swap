@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:48:22 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/08 19:19:06 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/09 17:11:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	check_place(t_b_way *b, int val)
 	else
 	{
 		if (val < b->val_first || val > b->val_second)
-			return (b->rotation);
+			return (1);
 	}
 	return (0);
 }
