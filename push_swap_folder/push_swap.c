@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/09 20:26:46 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/10 17:18:17 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static int	set_args(char ***args, t_ps_prms *p)
 	{
 		buf = ps_atoi(args[0][c.pos]);
 		c.val = (int)buf;
+		c.index = 0;
 		free(args[0][c.pos]);
 		if (buf != (long long)c.val || \
 			ft_dlladdnextr(&p->stack_a, (void*)&c, sizeof(t_content)) == -1)

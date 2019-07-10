@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/09 20:19:52 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/10 20:19:00 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_content
 	int				val;
 	int				pos;
 	int				sort_pos;
+	int				index;
 }				t_content;
 
 /*
@@ -169,6 +170,67 @@ typedef struct	s_b_way
 	int				rotation;
 }				t_b_way;
 
+/*
+**	sequence params: sq
+*/
+
+typedef struct	s_sequence
+{
+	t_dllist		*ptr;
+	int				rot;
+	int				seq;
+	int				max;
+	int				rot_max;
+	int				cmd;
+	int				i;
+}				t_sequence;
+
+/*
+**	max_sequence params: msq
+*/
+
+typedef struct	s_max_seq
+{
+	t_dllist		*ptr;
+	t_content		*content;
+	int				max_len;
+	t_list			*list;
+}				t_max_seq;
+
+/*
+**	list content: lc
+*/
+
+typedef struct	s_lstcontent
+{
+	int				val;
+	int				index;
+}				t_lstcontent;
+
+/*
+**	find index params: fi
+*/
+
+typedef struct	s_find_index
+{
+	t_lstcontent	lc;
+	t_list			*ptr;
+	t_lstcontent	*content;
+	int				index;
+}				t_find_index;
+
+/*
+**	mark_sorted_el params: mrk
+*/
+
+typedef struct	s_marc_el
+{
+	t_dllist		*ptr;
+	t_dllist		*max_ptr;
+	t_content		*content;
+	int				ind;
+}				t_marc_el;
+
 long long	ps_atoi(const char *str);
 int			stack_sorting(t_ps_prms *p);
 t_dllist	*copy_linked_stack(t_dllist **src, t_dllist **dst);
@@ -206,7 +268,7 @@ void		run_rev_drums(t_ps_prms *p, t_cmd_gen *g);
 void		rev_drums_init(t_drums *d, t_ps_prms *p);
 void		run_rev_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
 int			normalise_b(t_ps_prms *p, t_cmd_gen *g);
-
+void		get_sequence(t_ps_prms *p, t_cmd_gen *g);
 
 int			rrr_condition(t_ps_prms *p, t_get_cmd *m);
 int			rra_condition(t_ps_prms *p, t_get_cmd *m);
