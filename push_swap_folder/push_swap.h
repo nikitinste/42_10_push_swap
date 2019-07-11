@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/10 20:19:00 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/11 19:23:21 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,10 +177,9 @@ typedef struct	s_b_way
 typedef struct	s_sequence
 {
 	t_dllist		*ptr;
-	int				rot;
+	t_dllist		*ptr_max;
 	int				seq;
 	int				max;
-	int				rot_max;
 	int				cmd;
 	int				i;
 }				t_sequence;
@@ -269,6 +268,9 @@ void		rev_drums_init(t_drums *d, t_ps_prms *p);
 void		run_rev_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
 int			normalise_b(t_ps_prms *p, t_cmd_gen *g);
 void		get_sequence(t_ps_prms *p, t_cmd_gen *g);
+void		find_max_index(t_ps_prms *p, t_marc_el *mrk);
+void		sort_elems(t_ps_prms *p, t_cmd_gen *g);
+t_dllist	*find_last(t_ps_prms *p);
 
 int			rrr_condition(t_ps_prms *p, t_get_cmd *m);
 int			rra_condition(t_ps_prms *p, t_get_cmd *m);

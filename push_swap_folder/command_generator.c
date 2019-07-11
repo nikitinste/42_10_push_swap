@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/10 17:26:22 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/11 17:42:03 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,22 +184,16 @@ void		drummer(t_ps_prms *p)
 void		drummer_2(t_ps_prms *p)
 {
 	t_cmd_gen	g;
-	int			rot;
 
 	//check stack_a count
 	commands_init(p, &g);
-	/*while (p->len_a != 3)
-	{
-		g.command_arr[9](p, g.rule_list[9]);
-		if (!normalise_b(p, &g))
-			exit(0);
-	}
-	prepare_stack_a(p, &g);*/
 	get_sequence(p, &g);
+	if (p->len_a < 3)
+		prepare_stack_a(p, &g);
 	//ft_printf("lala\n");
 	// if (!normalise(p, &g))
 	// 	exit(0);
-	while (!(check_sort_state(p, 0, 1) || !p->stack_b))
+	while (p->stack_b)
 		run_rev_drums(p, &g);
 	if (!normalise(p, &g))
 		exit(0);

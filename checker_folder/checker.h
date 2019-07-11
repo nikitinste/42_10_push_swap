@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/09 15:40:37 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/11 19:37:21 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../minilibx/mlx.h"
 # define A !ft_strcmp
 # define WIN_X 600
-# define WIN_Y 1395//1035//1395//1755
+# define WIN_Y 1755//1395//1035//1395
 # define TOPLINE 26
 # define BKG_CLR 0xcce5ff
 # define POS_CLR 0x37b6af

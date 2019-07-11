@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 17:01:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/19 18:45:06 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/11 19:44:38 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	draw_rectangle(t_check_prms *p, int x, int y, int value)
 {
 	t_rectangle	r;
 
-	r.y_i = 1;
+	r.y_i = 0;
 	r.grad.a = NUL_CLR;
 	if (value < 0)
 	{
@@ -87,7 +87,7 @@ static void	draw_rectangle(t_check_prms *p, int x, int y, int value)
 		r.grad.delta = (ft_abs(p->v->max_val) *p->v->scale_index) / 100;
 	}
 	r.color = get_grad_color(p, &r.grad, value);
-	while (++r.y_i < (p->v->el_hight - 1))
+	while (++r.y_i <= (p->v->el_hight - 0))
 	{
 		r.x_i = 1 + ((((p->v->max_width * p->v->scale_index) / 100) - value) \
 			/ 2);
