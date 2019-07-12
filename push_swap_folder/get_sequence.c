@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 14:57:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/11 19:32:40 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/12 14:12:10 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	mark_sorted_el(t_ps_prms *p)
 	mrk.ind = mrk.content->index;
 	mrk.content->index = 1;
 	mrk.ptr = mrk.max_ptr->left;
+	if (!mrk.ptr)
+		mrk.ptr = find_last(p);
 	while (mrk.ptr != mrk.max_ptr)
 	{
 		mrk.content = mrk.ptr->content;
