@@ -6,11 +6,31 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 14:34:28 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/12 15:38:31 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/12 17:00:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	norm_b_rotation(t_ps_prms *p, t_cmd_gen *g, int *way)
+{
+	if (way[0] < 0)
+	{
+		while (way[0] != 0)
+		{
+			g->command_arr[2](p, g->rule_list[2]);
+			*way = *way + 1;
+		}
+	}
+	else
+	{
+		while (way[0] != 0)
+		{
+			g->command_arr[5](p, g->rule_list[5]);
+			*way = *way - 1;
+		}
+	}
+}
 
 t_dllist	*find_last(t_ps_prms *p)
 {
@@ -44,19 +64,32 @@ void		find_max_index(t_ps_prms *p, t_marc_el *mrk)
 void		sort_elems(t_ps_prms *p, t_cmd_gen *g)
 {
 	int			len;
+	int			b_norm_way;
 	t_content	*content;
 
 	len = p->len_a;
+	b_norm_way = 0;
 	while (len--)
 	{
 		content = p->stack_a->content;
 		if (content->index)
-			g->command_arr[4](p, g->rule_list[4]);
+		{
+			if (b_norm_way != 0)
+			{
+				g->command_arr[3](p, g->rule_list[3]);
+				b_norm_way--;
+			}
+			else
+				g->command_arr[4](p, g->rule_list[4]);
+		}
 		else
 		{
+			if (b_norm_way != 0)
+				norm_b_rotation(p, g, &b_norm_way);
 			g->command_arr[9](p, g->rule_list[9]);
-			if (!normalise_b(p, g))
-				exit (0);
+			b_norm_way = normalise_b(p, g);
+			if (b_norm_way < 0)
+				norm_b_rotation(p, g, &b_norm_way);
 		}
 	}
 }
