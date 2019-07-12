@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/11 19:23:21 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/12 17:46:43 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ void		prepare_stack_a(t_ps_prms *p, t_cmd_gen *g);
 void		run_rev_drums(t_ps_prms *p, t_cmd_gen *g);
 void		rev_drums_init(t_drums *d, t_ps_prms *p);
 void		run_rev_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
-int			normalise_b(t_ps_prms *p, t_cmd_gen *g);
+int			normalise_b(t_ps_prms *p, t_cmd_gen *g, int ret);
 void		get_sequence(t_ps_prms *p, t_cmd_gen *g);
 void		find_max_index(t_ps_prms *p, t_marc_el *mrk);
 void		sort_elems(t_ps_prms *p, t_cmd_gen *g);

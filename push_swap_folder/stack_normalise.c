@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:22:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/12 17:02:34 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/12 17:46:44 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,7 @@ int			normalise(t_ps_prms *p, t_cmd_gen *g)
 	return (1);
 }
 
-int			normalise_b(t_ps_prms *p, t_cmd_gen *g)
+int			normalise_b(t_ps_prms *p, t_cmd_gen *g, int ret)
 {
 	t_normalise	n;
 
@@ -286,8 +286,12 @@ int			normalise_b(t_ps_prms *p, t_cmd_gen *g)
 	n.way_ab = 0;
 	if (n.stack_b)
 		find_norm_way_b(p, n.stack_b, &n.way_b);
-	/*get_conclusion(p, &n);
-	run_commands(p, g, &n);*/
-	ft_dlldeltoright(&n.stack_b, &linked_stack_free);
-	return (n.way_b);
+	if (!ret)
+		run_commands(p, g, &n);
+	else
+	{
+		ft_dlldeltoright(&n.stack_b, &linked_stack_free);
+		return (n.way_b);
+	}
+	return (1);
 }

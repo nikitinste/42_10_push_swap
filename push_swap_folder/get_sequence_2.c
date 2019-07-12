@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 14:34:28 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/12 17:00:20 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/12 17:47:22 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	norm_b_rotation(t_ps_prms *p, t_cmd_gen *g, int *way)
 {
 	if (way[0] < 0)
 	{
-		while (way[0] != 0)
+		while (way[0] < 0)
 		{
 			g->command_arr[2](p, g->rule_list[2]);
 			*way = *way + 1;
@@ -24,7 +24,7 @@ static void	norm_b_rotation(t_ps_prms *p, t_cmd_gen *g, int *way)
 	}
 	else
 	{
-		while (way[0] != 0)
+		while (way[0] > 0)
 		{
 			g->command_arr[5](p, g->rule_list[5]);
 			*way = *way - 1;
@@ -61,6 +61,17 @@ void		find_max_index(t_ps_prms *p, t_marc_el *mrk)
 	}
 }
 
+static void check_norm_condition(t_ps_prms *p, t_cmd_gen *g, int *way)
+{
+		if (*way > 0)
+		{
+			g->command_arr[3](p, g->rule_list[3]);
+			*way = *way - 1;
+		}
+		else
+			g->command_arr[4](p, g->rule_list[4]);
+}
+
 void		sort_elems(t_ps_prms *p, t_cmd_gen *g)
 {
 	int			len;
@@ -73,21 +84,13 @@ void		sort_elems(t_ps_prms *p, t_cmd_gen *g)
 	{
 		content = p->stack_a->content;
 		if (content->index)
-		{
-			if (b_norm_way != 0)
-			{
-				g->command_arr[3](p, g->rule_list[3]);
-				b_norm_way--;
-			}
-			else
-				g->command_arr[4](p, g->rule_list[4]);
-		}
+			check_norm_condition(p, g, &b_norm_way);
 		else
 		{
 			if (b_norm_way != 0)
 				norm_b_rotation(p, g, &b_norm_way);
 			g->command_arr[9](p, g->rule_list[9]);
-			b_norm_way = normalise_b(p, g);
+			b_norm_way = normalise_b(p, g, 1);
 			if (b_norm_way < 0)
 				norm_b_rotation(p, g, &b_norm_way);
 		}

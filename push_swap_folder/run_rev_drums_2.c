@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 18:14:50 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/12 17:06:18 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/12 17:46:57 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	prepare_stack_a(t_ps_prms *p, t_cmd_gen *g)
 	while (p->len_a != 3 || p->stack_b)
 	{
 		g->command_arr[9](p, g->rule_list[9]);
-		if (!normalise_b(p, g))
+		if (!normalise_b(p, g, 0))
 			exit(0);
 	}
 	first = p->stack_a->content;
