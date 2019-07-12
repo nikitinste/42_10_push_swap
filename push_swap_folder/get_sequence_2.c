@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 14:34:28 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/11 19:23:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/12 15:38:31 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ void		sort_elems(t_ps_prms *p, t_cmd_gen *g)
 		if (content->index)
 			g->command_arr[4](p, g->rule_list[4]);
 		else
+		{
 			g->command_arr[9](p, g->rule_list[9]);
+			if (!normalise_b(p, g))
+				exit (0);
+		}
 	}
 }
