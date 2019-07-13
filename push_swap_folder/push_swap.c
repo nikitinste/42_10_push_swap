@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/12 15:32:11 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/13 19:50:14 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int		check_duplicates(t_ps_prms *p)
 		}
 		ptr = ptr->right;
 	}
+	p->mode = 1;
 	return (1);
 }
 
@@ -110,8 +111,6 @@ int		main(int argc, char **argv)
 {
 	char		**args;
 	t_ps_prms	p;
-	// t_content	*c;
-	// t_dllist	*ptr;
 
 	if (argc < 2)
 		return (0);
@@ -121,17 +120,20 @@ int		main(int argc, char **argv)
 		return (error_msg(1, &p));
 	if(check_sort_state(&p, 1, 0))
 		exit (0);
-	/*ptr = p.stack_a;
-	while (ptr)
+	/*if (p.len_a <= 10)
 	{
-		c = (t_content*)ptr->content;
-		ft_printf("%5d	#%d	##%d	%3d\n", c->val, c->pos, c->sort_pos, \
-			c->pos - c->sort_pos);
-		ptr = ptr->right;
-	}*///<--
-	//rotor(&p);
-	//drummer(&p);
+		p.mode = 0;
+		rotor(&p);
+		p.prev_count = p.cmd_count;
+		drummer_2(&p);
+		p.mode = 1;
+		if (p.prev_count < p.cmd_count)
+			rotor(&p);
+		else
+			drummer_2(&p);
+	}
+	else*/
 	drummer_2(&p);
-	//compare_ways(&p);
-	return (0);
+	// Lala!
+	exit (0);
 }

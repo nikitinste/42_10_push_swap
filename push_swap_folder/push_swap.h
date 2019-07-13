@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/12 17:46:43 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/13 19:14:26 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ struct	s_ps_prms
 	int				check;
 	t_list			*rotation;
 	t_list			*drums;
+	int				mode;
+	size_t			cmd_count;
+	size_t			prev_count;
 };
 
 /*
@@ -259,7 +262,7 @@ void		run_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
 int			check_stack_is_sorted(t_dllist *stack);
 void		rotor(t_ps_prms *p);
 void		drummer(t_ps_prms *p);
-void		compare_ways(t_ps_prms *p);
+void		print_or_count(t_ps_prms *p, char *command);
 
 void		drummer_2(t_ps_prms *p);
 void		prepare_stack_a(t_ps_prms *p, t_cmd_gen *g);
@@ -267,7 +270,7 @@ void		run_rev_drums(t_ps_prms *p, t_cmd_gen *g);
 void		rev_drums_init(t_drums *d, t_ps_prms *p);
 void		run_rev_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
 int			normalise_b(t_ps_prms *p, t_cmd_gen *g, int ret);
-void		get_sequence(t_ps_prms *p, t_cmd_gen *g);
+int			get_sequence(t_ps_prms *p, t_cmd_gen *g);
 void		find_max_index(t_ps_prms *p, t_marc_el *mrk);
 void		sort_elems(t_ps_prms *p, t_cmd_gen *g);
 t_dllist	*find_last(t_ps_prms *p);

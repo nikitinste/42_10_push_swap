@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 14:57:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/12 18:55:17 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/13 17:38:09 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static int	find_max_seq(t_ps_prms *p, t_dllist *elem)
 	return (msq.max_len);
 }
 
-void		get_sequence(t_ps_prms *p, t_cmd_gen *g)
+int		get_sequence(t_ps_prms *p, t_cmd_gen *g)
 {
 	t_sequence		sq;
 
@@ -122,8 +122,11 @@ void		get_sequence(t_ps_prms *p, t_cmd_gen *g)
 		sq.ptr = sq.ptr->right;
 	}
 	if (sq.max == (p->len_a - 1))
-		return ;
+		return (1);
+	if (sq.max < 3)
+		return (0);
 	find_max_seq(p, sq.ptr_max);
 	mark_sorted_el(p);
 	sort_elems(p, g);
+	return (1);
 }

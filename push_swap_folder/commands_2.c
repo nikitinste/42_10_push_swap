@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:10:29 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/02 11:01:33 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/13 19:16:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	rotate_a(t_ps_prms *p, char *command)
 	{
 		swap_a(p, NULL);
 		if (command)
-			ft_printf("%s\n", command);
+			print_or_count(p, command);
 		return ;
 	}
 	last = p->stack_a;
@@ -37,7 +37,7 @@ void	rotate_a(t_ps_prms *p, char *command)
 	p->stack_a = tmp;
 	reset_position_a(p);
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }
 
 void	rotate_b(t_ps_prms *p, char *command)
@@ -51,7 +51,7 @@ void	rotate_b(t_ps_prms *p, char *command)
 	{
 		swap_b(p, NULL);
 		if (command)
-			ft_printf("%s\n", command);
+			print_or_count(p, command);
 		return ;
 	}
 	last = p->stack_b;
@@ -65,7 +65,7 @@ void	rotate_b(t_ps_prms *p, char *command)
 	p->stack_b = tmp;
 	reset_position_b(p);
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }
 
 void	swap_ab(t_ps_prms *p, char *command)
@@ -73,7 +73,7 @@ void	swap_ab(t_ps_prms *p, char *command)
 	swap_a(p, NULL);
 	swap_b(p, NULL);
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }
 
 void	swap_a(t_ps_prms *p, char *command)
@@ -96,7 +96,7 @@ void	swap_a(t_ps_prms *p, char *command)
 	content = p->stack_a->content;
 	content->pos--;//!!!
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }
 
 void	swap_b(t_ps_prms *p, char *command)
@@ -119,5 +119,5 @@ void	swap_b(t_ps_prms *p, char *command)
 	content = p->stack_b->content;
 	content->pos++;//!!!
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }

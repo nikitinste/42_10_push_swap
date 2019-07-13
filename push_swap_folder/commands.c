@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 17:03:46 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/08 18:50:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/13 19:15:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	rev_rot_ab(t_ps_prms *p, char *command)
 	rev_rot_a(p, NULL);
 	rev_rot_b(p, NULL);
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }
 
 void	rotate_ab(t_ps_prms *p, char *command)
@@ -54,7 +54,7 @@ void	rotate_ab(t_ps_prms *p, char *command)
 	rotate_a(p, NULL);
 	rotate_b(p, NULL);
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }
 
 void	rev_rot_a(t_ps_prms *p, char *command)
@@ -73,7 +73,7 @@ void	rev_rot_a(t_ps_prms *p, char *command)
 	p->stack_a = last;
 	reset_position_a(p);
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }
 
 void	rev_rot_b(t_ps_prms *p, char *command)
@@ -92,5 +92,5 @@ void	rev_rot_b(t_ps_prms *p, char *command)
 	p->stack_b = last;
 	reset_position_b(p);
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }

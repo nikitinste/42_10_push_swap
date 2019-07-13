@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 16:58:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/12 18:55:47 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/13 18:05:43 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ static int	get_command(t_ps_prms *p)
 	m.last_a = p->stack_a;
 	m.last_b = p->stack_b;
 	set_even_odd(p);
-	/*if (check_condition(p, &m))
-		return (m.cmd);// pa or pb*/
 	while (m.last_a && m.last_a->right)
 		m.last_a = m.last_a->right;
 	while (m.last_b && m.last_b->right)
@@ -142,6 +140,7 @@ void		rotor(t_ps_prms *p)
 	int			command;
 
 	commands_init(p, &g);
+	p->cmd_count = 0;
 	while (!check_sort_state(p, 1, 1))
 	{
 		if ((!p->push_direction && check_sort_state(p, 1, 0)) || \
@@ -163,32 +162,16 @@ void		rotor(t_ps_prms *p)
 		g.command_arr[10](p, g.rule_list[10]);
 }
 
-void		drummer(t_ps_prms *p)
-{
-	t_cmd_gen	g;
-
-	//check stack_a count
-	commands_init(p, &g);
-	prepare_stack_b(p, &g);
-	//ft_printf("lala\n");
-	// if (!normalise(p, &g))
-	// 	exit(0);
-	while (!(check_sort_state(p, 1, 0) || !p->stack_a))
-		run_drums(p, &g);
-	if (!normalise(p, &g))
-		exit(0);
-	while (p->stack_b)
-		g.command_arr[10](p, g.rule_list[10]);
-}
-
 void		drummer_2(t_ps_prms *p)
 {
 	t_cmd_gen	g;
+	int			border;
 
 	//check stack_a count
+	p->cmd_count = 0;
+	border = 6;
 	commands_init(p, &g);
-	get_sequence(p, &g);
-	if (p->len_a < 3)
+	if (!get_sequence(p, &g) && (p->len_a + p->len_b) >= 3)
 		prepare_stack_a(p, &g);
 	//ft_printf("lala\n");
 	while (p->stack_b)

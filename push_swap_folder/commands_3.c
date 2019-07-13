@@ -6,11 +6,19 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 19:41:56 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/26 18:38:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/13 19:22:55 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_or_count(t_ps_prms *p, char *command)
+{
+	if (!p->mode)
+		p->cmd_count++;
+	else
+		ft_printf("%s\n", command);
+}
 
 void	push_b(t_ps_prms *p, char *command)
 {
@@ -29,7 +37,7 @@ void	push_b(t_ps_prms *p, char *command)
 	p->len_a--;
 	p->len_b++;
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }
 
 void	push_a(t_ps_prms *p, char *command)
@@ -49,7 +57,7 @@ void	push_a(t_ps_prms *p, char *command)
 	p->len_a++;
 	p->len_b--;
 	if (command)
-		ft_printf("%s\n", command);
+		print_or_count(p, command);
 }
 
 void	reset_position_a(t_ps_prms *p)
