@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 18:10:29 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/13 19:16:40 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 14:18:16 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	swap_a(t_ps_prms *p, char *command)
 		p->stack_a->right->content_size = content_size;
 	}
 	content = p->stack_a->content;
-	content->pos--;//!!!
+	content->pos--;
 	if (command)
 		print_or_count(p, command);
 }
@@ -117,7 +117,7 @@ void	swap_b(t_ps_prms *p, char *command)
 		p->stack_b->right->content_size = content_size;
 	}
 	content = p->stack_b->content;
-	content->pos++;//!!!
+	content->pos++;
 	if (command)
 		print_or_count(p, command);
 }

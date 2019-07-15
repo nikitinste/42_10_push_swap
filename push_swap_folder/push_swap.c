@@ -6,22 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 13:26:12 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 14:44:17 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		error_msg(int prm, t_ps_prms *p)
-{
-	if (prm)
-	{
-		ft_dlldel(&p->stack_a, &ft_lstfree);
-		ft_dlldel(&p->stack_b, &ft_lstfree);
-	}
-	ft_putstr_fd("Error\n", 2);
-	return (-1);
-}
 
 static int		check_duplicates(t_ps_prms *p)
 {
@@ -107,6 +96,27 @@ static int	check_n_put_args(int argc, char **argv, char ***args, \
 	return (set_args(args, p));
 }
 
+static void	find_shortest_solution(t_ps_prms *p)
+{
+	if (!(p->copy_a = ft_dllcpy(p->stack_a, p->copy_a)))
+		exit (0);
+	p->mode = 0;
+	rotor(p);
+	p->prev_count = p->cmd_count;
+	ft_dlldel(&p->stack_a, &ft_lstfree);
+	p->stack_a = p->copy_a;
+	if (!(p->copy_a = ft_dllcpy(p->stack_a, p->copy_a)))
+		exit (0);
+	drummer(p);
+	ft_dlldel(&p->stack_a, &ft_lstfree);
+	p->stack_a = p->copy_a;
+	p->mode = 1;
+	if (p->prev_count < p->cmd_count)
+		rotor(p);
+	else
+		drummer(p);
+}
+
 int		main(int argc, char **argv)
 {
 	char		**args;
@@ -121,26 +131,8 @@ int		main(int argc, char **argv)
 	if(check_sort_state(&p, 1, 0))
 		exit (0);
 	if (p.len_a <= 10)
-	{
-		if (!(p.copy_a = ft_dllcpy(p.stack_a, p.copy_a)))
-			exit (0);
-		p.mode = 0;
-		rotor(&p);
-		p.prev_count = p.cmd_count;
-		ft_dlldel(&p.stack_a, &ft_lstfree);
-		p.stack_a = p.copy_a;
-		if (!(p.copy_a = ft_dllcpy(p.stack_a, p.copy_a)))
-			exit (0);
-		drummer_2(&p);
-		ft_dlldel(&p.stack_a, &ft_lstfree);
-		p.stack_a = p.copy_a;
-		p.mode = 1;
-		if (p.prev_count < p.cmd_count)
-			rotor(&p);
-		else
-			drummer_2(&p);
-	}
+		find_shortest_solution(&p);
 	else
-		drummer_2(&p);
+		drummer(&p);
 	exit (0);
 }

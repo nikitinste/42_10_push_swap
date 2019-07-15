@@ -6,7 +6,7 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 12:47:56 by uhand             #+#    #+#              #
-#    Updated: 2019/06/23 17:43:33 by uhand            ###   ########.fr        #
+#    Updated: 2019/07/15 13:32:28 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC = checker.c service_fnctns.c ps_atoi.c exec_commands.c exec_commands_2.c \
 visualizer.c visualizer_2.c visualizer_3.c
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS = -g #-fsanitize=address -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 LIB = -L ../libft -lft
 LIBPATH = ../libft
 

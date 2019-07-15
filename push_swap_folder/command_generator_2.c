@@ -6,40 +6,38 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 14:02:13 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/01 21:03:44 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/15 13:49:48 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*int		check_pos_bias(t_dllist *stack, int len)
+int			check_sort_state(t_ps_prms *p, int a, int b)
 {
 	t_dllist	*ptr;
-	t_content	*c;
-	int			bias;
+	t_content	*content;
 
-	ptr = stack;
-	while (ptr)
+	if (p->check)
+		p->check = 0;
+	ptr = p->stack_a;
+	if (!ptr)
+		return (0);
+	while (ptr && a)
 	{
-		c = ptr->content;
-		bias = c->pos - c->sort_pos;
-		if (!(bias > (len / 2) && bias < len))
-			return (1);
+		content = ptr->content;
+		if ((content->pos - content->sort_pos) != 0)
+			return (0);
 		ptr = ptr->right;
 	}
-	return (0);
-}*/
-
-void	set_even_odd(t_ps_prms *p)
-{
-	if ((p->len_a / 2) * 2 != p->len_a)
-		p->a = 1;
-	else
-		p->a = 0;
-	if ((p->len_b / 2) * 2 != p->len_b)
-		p->b = 1;
-	else
-		p->b = 0;
+	ptr = p->stack_b;
+	while (ptr && b)
+	{
+		content = ptr->content;
+		if ((content->pos - content->sort_pos) != 0)
+			return (0);
+		ptr = ptr->right;
+	}
+	return (1);
 }
 
 int		rra_condition(t_ps_prms *p, t_get_cmd *m)
@@ -51,8 +49,6 @@ int		rra_condition(t_ps_prms *p, t_get_cmd *m)
 		bias = m->c_a->pos - m->c_a->sort_pos;
 		if (bias > (p->len_a / 2) && bias < p->len_a)
 			return (1);
-		// if ((m->c_a->pos - m->c_a->sort_pos) >= (p->len_a / 2) && !p->a)
-		// 	return (1);
 	}
 	return (0);
 }
@@ -66,8 +62,6 @@ int		rrb_condition(t_ps_prms *p, t_get_cmd *m)
 		bias = m->c_b->pos - m->c_b->sort_pos;
 		if (bias * -1 > (p->len_b / 2) && bias * -1 < p->len_b)
 			return (1);
-		// if (bias * -1 >= (p->len_b / 2) && !p->b)
-		// 	return (1);
 	}
 	return (0);
 }

@@ -6,29 +6,11 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 14:37:09 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/01 21:04:28 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/15 14:24:04 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*int		check_neg_bias(t_dllist *stack, int len)
-{
-	t_dllist	*ptr;
-	t_content	*c;
-	int			bias;
-
-	ptr = stack;
-	while (ptr)
-	{
-		c = ptr->content;
-		bias = c->pos - c->sort_pos;
-		if (!(bias * -1 > (len / 2) && bias < len))
-			return (1);
-		ptr = ptr->right;
-	}
-	return (0);
-}*/
 
 int		check_condition(t_ps_prms *p, t_get_cmd *m)
 {
@@ -64,8 +46,6 @@ int		ra_condition(t_ps_prms *p, t_get_cmd *m)
 		bias = m->c_a->pos - m->c_a->sort_pos;
 		if (bias * -1 > (p->len_a / 2) && bias * -1 < p->len_a)
 			return (1);
-		// if (bias * -1 >= (p->len_a / 2) && !p->a)
-		// 	return (1);
 	}
 	return (0);
 }
@@ -79,8 +59,6 @@ int		rb_condition(t_ps_prms *p, t_get_cmd *m)
 		bias = m->c_b->pos - m->c_b->sort_pos;
 		if (bias > (p->len_b / 2) && bias < p->len_b)
 			return (1);
-		// if (bias >= (p->len_b / 2) && !p->b)
-		// 	return (1);
 	}
 	return (0);
 }
@@ -91,4 +69,21 @@ int		rr_condition(t_ps_prms *p, t_get_cmd *m)
 		if (ra_condition(p, m) && rb_condition(p, m))
 			return (1);
 	return (0);
+}
+
+void		drummer(t_ps_prms *p)
+{
+	t_cmd_gen	g;
+	int			border;
+
+	p->cmd_count = 0;
+	border = 6;
+	commands_init(p, &g);
+	if (!get_sequence(p, &g) && (p->len_a + p->len_b) >= 3)
+		prepare_stack_a(p, &g);
+	while (p->stack_b)
+		run_drums(p, &g);
+	normalise(p, &g);
+	while (p->stack_b)
+		g.command_arr[10](p, g.rule_list[10]);
 }

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 12:35:50 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 14:37:35 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ struct	s_ps_prms
 	t_dllist		*copy_a;
 	int				len_a;
 	int				len_b;
-	int				a;
-	int				b;
 	int				push_direction;
 	int				norm;
 	int				check;
@@ -236,25 +234,25 @@ typedef struct	s_marc_el
 
 long long	ps_atoi(const char *str);
 int			stack_sorting(t_ps_prms *p);
+int			error_msg(int prm, t_ps_prms *p);
 t_dllist	*copy_linked_stack(t_dllist **src, t_dllist **dst);
 void 		linked_stack_free(void *content, size_t size);
 void		commands_init(t_ps_prms *p, t_cmd_gen *g);
 void		reset_position_a(t_ps_prms *p);
 void		reset_position_b(t_ps_prms *p);
-void		set_even_odd(t_ps_prms *p);
 int			check_condition(t_ps_prms *p, t_get_cmd *m);
 int			check_sort_state(t_ps_prms *p, int a, int b);
-int			normalise(t_ps_prms *p, t_cmd_gen *g);
+void		normalise(t_ps_prms *p, t_cmd_gen *g);
 void 		norm_swap(t_dllist **stack);
 void		way_init(t_way *w, t_dllist *stack, int len);
 void		check_bias(t_way *w);
+void		rotate(t_dllist **stack);
 void		set_way_params(t_way *w, int *way, int len);
 void		check_direction(t_way *w, int len);
 void		way_shortening(t_normalise *n);
 void		run_commands(t_ps_prms *p, t_cmd_gen *g, t_normalise *n);
 void		execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, \
 	int way);
-void		prepare_stack_b(t_ps_prms *p, t_cmd_gen *g);
 void		run_drums(t_ps_prms *p, t_cmd_gen *g);
 void		drums_init(t_drums *d, t_ps_prms *p);
 void		set_drums_way(t_drums *d, int way_a, int way_b);
@@ -264,12 +262,7 @@ int			check_stack_is_sorted(t_dllist *stack);
 void		rotor(t_ps_prms *p);
 void		drummer(t_ps_prms *p);
 void		print_or_count(t_ps_prms *p, char *command);
-
-void		drummer_2(t_ps_prms *p);
 void		prepare_stack_a(t_ps_prms *p, t_cmd_gen *g);
-void		run_rev_drums(t_ps_prms *p, t_cmd_gen *g);
-void		rev_drums_init(t_drums *d, t_ps_prms *p);
-void		run_rev_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d);
 int			normalise_b(t_ps_prms *p, t_cmd_gen *g, int ret);
 int			get_sequence(t_ps_prms *p, t_cmd_gen *g);
 void		find_max_index(t_ps_prms *p, t_marc_el *mrk);

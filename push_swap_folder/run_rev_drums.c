@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 18:10:44 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/12 14:53:23 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 14:25:12 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ static int	find_a_way(t_ps_prms *p, int val)
 }
 
 
-void	run_rev_drums(t_ps_prms *p, t_cmd_gen *g)
+void	run_drums(t_ps_prms *p, t_cmd_gen *g)
 {
 	t_drums	d;
 
-	rev_drums_init(&d, p);
+	drums_init(&d, p);
 	while (d.ptr)
 	{
 		d.rev_a = 0;
@@ -95,10 +95,8 @@ void	run_rev_drums(t_ps_prms *p, t_cmd_gen *g)
 		if ((ft_abs(d.cur_a) + ft_abs(d.cur_b) + ft_abs(d.cur_ab)) \
 			< d.short_way)
 			set_short_way(&d);
-		/*if (d.short_way == d.rot && d.rot <= (p->len_b / 2))
-			break ;*/
 		d.rot++;
 		d.ptr = d.ptr->right;
 	}
-	run_rev_drum_commands(p, g, &d);
+	run_drum_commands(p, g, &d);
 }
