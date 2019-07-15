@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_internal.h                               :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 12:42:21 by uhand             #+#    #+#             */
-/*   Updated: 2019/05/27 19:59:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 15:20:45 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct	s_lprec
 }				t_lprec;
 
 int					ft_printf(const char *format, ...);
+int					ft_sprintf(char *str, const char *format, ...);
 void				tprintf_init(t_printf *p);
 int					join_f(const char *format, t_printf *p);
 int					free_buf(t_printf *p);

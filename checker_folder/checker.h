@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/13 16:56:43 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 17:12:11 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
+# include <fcntl.h>
 # define A !ft_strcmp
 # define WIN_X 600
 # define WIN_Y 1575//1395//1035//1755
@@ -125,6 +126,8 @@ struct			s_check_prms
 	t_list		*stack_b;
 	int			len;
 	int			flag;
+	int			fd;
+	char		*file;
 	int			ret;
 	char		*command;
 	t_command	command_arr[11];
@@ -133,8 +136,9 @@ struct			s_check_prms
 	t_vis_prms	*v;
 };
 
-int			check_flags(int argv, char **argc);
+int			check_flags(int argv, char **argc, t_check_prms *p);
 int			error_msg(int prm, t_check_prms *p);
+int			error_file_msg(void);
 long long	ps_atoi(const char *str);
 int			checker_init(t_check_prms *p);
 int			window_init(t_check_prms *p);

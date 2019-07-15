@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 13:50:16 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/28 18:15:46 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 16:55:35 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int			check_stacks(t_check_prms *p)
 		return (0);
 	}
 	ptr = p->stack_a;
-	/*ft_printf("---\n");*/
 	while (ptr->next != NULL)
 	{
 		if (*((int*)ptr->content) > *((int*)ptr->next->content))
@@ -30,11 +29,8 @@ int			check_stacks(t_check_prms *p)
 			ft_printf("KO\n");
 			return (0);
 		}
-		/*ft_printf("%d\n", *((int*)ptr->content));*/
 		ptr = ptr->next;
 	}
-	/*ft_printf("%d\n---\n", *((int*)ptr->content));*/
-	//free stacks
 	ft_printf("OK\n");
 	return (1);
 }
@@ -117,7 +113,8 @@ int			main(int argc, char **argv)
 	char			**args;
 	t_check_prms	p;
 
-	if (argc < 2 || (((p.flag = check_flags(argc, argv)) && argc < 3)))
+	if (argc < 2 || (((p.flag = check_flags(argc, argv, &p)) && argc < \
+		(2 + p.flag))))
 		return (0);
 	if (!check_n_put_args(argc, argv, &args, &p) || !check_duplicates(&p))
 		return (error_msg(0, NULL));
@@ -125,7 +122,7 @@ int			main(int argc, char **argv)
 		return (error_msg(1, &p));
 	if (p.flag)
 		return (vis_waiting(&p));
-	while ((p.ret = get_next_line(0, &p.command)) > 0)
+	while ((p.ret = get_next_line(p.fd, &p.command)) > 0)
 	{
 		if (!check_command(&p))
 			return (error_msg(1, &p));
@@ -133,6 +130,8 @@ int			main(int argc, char **argv)
 	}
 	if (p.ret == -1)
 		return (error_msg(1, &p));
+	if (p.flag == 2 || p.flag == 3)
+		close(p.fd);
 	check_stacks(&p);
 	return (0);
 }

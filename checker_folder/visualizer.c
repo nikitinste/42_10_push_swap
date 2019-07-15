@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 17:01:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/11 19:44:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 16:00:27 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int			window_init(t_check_prms *p)
 {
 	t_vis_prms	*v;
 
+	p->fd = 0;
+	p->file = NULL;
 	p->v = NULL;
 	p->result = -1;
 	if (!p->flag)
@@ -49,9 +51,7 @@ int			window_init(t_check_prms *p)
 	p->v->mlx_ptr = mlx_init();
 	p->v->win_ptr = mlx_new_window(v->mlx_ptr, WIN_X, WIN_Y, "Checker");
 	p->v->img_ptr = mlx_new_image(v->mlx_ptr, WIN_X, WIN_Y);
-	//v->bkg_ptr = mlx_new_image(v->mlx_ptr, WIN_X, WIN_Y);
 	p->v->img_addr = mlx_get_data_addr(v->img_ptr, &v->bpp, &v->lsz, &v->ndn);
-	//v->bkg_addr = mlx_get_data_addr(v->bkg_ptr, &v->bpp, &v->lsz, &v->ndn);
 	p->v->commands = NULL;
 	p->v->run = 0;
 	p->v->cmd_ret = 1;

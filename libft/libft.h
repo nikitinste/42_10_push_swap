@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 13:50:48 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/28 19:24:02 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 15:33:30 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int				get_next_line(const int fd, char **line);
 int				ft_printf(const char *format, ...);
+int				ft_sprintf(char *str, const char *format, ...);
 
 void			ft_lstfree(void *content, size_t size);
 int				ft_lstaddnext(t_list **alst, void const *content, \

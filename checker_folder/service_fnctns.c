@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 15:55:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/23 17:32:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 17:17:47 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,35 @@ int		error_msg(int prm, t_check_prms *p)
 
 	}
 	ft_putstr_fd("Error\n", 2);
-	//exit (-1);
 	return (-1);
 }
 
-int		check_flags(int argc, char **argv)
+int		check_flags(int argc, char **argv, t_check_prms *p)
 {
+	int		ret;
+
+	ret = 0;
 	if (argc < 2)
 		return (0);
-	if (!ft_strcmp(argv[1], "v"))
-		return (1);
-	return (0);
+	if (!ft_strcmp(argv[1], "-v") || (argc > 3 && !ft_strcmp(argv[4], "-v")))
+		ret = 1;
+	if (argc > 2 && !ft_strcmp(argv[1], "-f"))
+	{
+		ret += 2;
+		p->file = argv[2];
+	}
+	else if (argc > 3 && !ft_strcmp(argv[2], "-f"))
+	{
+		ret += 2;
+		p->file = argv[3];
+	}
+	if (ret == 2 || ret == 3)
+		if ((p->fd = open(p->file, O_RDONLY)) == -1)
+		{
+			ft_printf("File open error\n");
+			exit(-1);
+		}
+	return (ret);
 }
 
 int		checker_init(t_check_prms *p)
