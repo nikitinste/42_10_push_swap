@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/13 19:14:26 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 12:35:50 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct	s_ps_prms
 {
 	t_dllist		*stack_a;
 	t_dllist		*stack_b;
+	t_dllist		*copy_a;
 	int				len_a;
 	int				len_b;
 	int				a;

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/13 19:50:14 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/15 13:26:12 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,20 +120,27 @@ int		main(int argc, char **argv)
 		return (error_msg(1, &p));
 	if(check_sort_state(&p, 1, 0))
 		exit (0);
-	/*if (p.len_a <= 10)
+	if (p.len_a <= 10)
 	{
+		if (!(p.copy_a = ft_dllcpy(p.stack_a, p.copy_a)))
+			exit (0);
 		p.mode = 0;
 		rotor(&p);
 		p.prev_count = p.cmd_count;
+		ft_dlldel(&p.stack_a, &ft_lstfree);
+		p.stack_a = p.copy_a;
+		if (!(p.copy_a = ft_dllcpy(p.stack_a, p.copy_a)))
+			exit (0);
 		drummer_2(&p);
+		ft_dlldel(&p.stack_a, &ft_lstfree);
+		p.stack_a = p.copy_a;
 		p.mode = 1;
 		if (p.prev_count < p.cmd_count)
 			rotor(&p);
 		else
 			drummer_2(&p);
 	}
-	else*/
-	drummer_2(&p);
-	// Lala!
+	else
+		drummer_2(&p);
 	exit (0);
 }
