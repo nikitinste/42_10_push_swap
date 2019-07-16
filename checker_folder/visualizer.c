@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 17:01:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 16:00:27 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/16 14:50:59 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int			window_init(t_check_prms *p)
 {
 	t_vis_prms	*v;
 
-	p->fd = 0;
-	p->file = NULL;
 	p->v = NULL;
 	p->result = -1;
 	if (!p->flag)

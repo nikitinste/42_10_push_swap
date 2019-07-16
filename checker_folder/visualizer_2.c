@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:05:43 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/29 16:52:53 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/16 14:57:54 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int			vis_waiting(t_check_prms *p)
 	if (!p->flag)
 		return (0);
 	visualize_command(p);
-	while ((p->ret = get_next_line(0, &p->command)))
+	while ((p->ret = get_next_line(p->fd, &p->command)))
 	{
 		if (!ft_lstaddnext(&p->v->commands, (void*)p->command, \
 			ft_strlen(p->command) + 1))

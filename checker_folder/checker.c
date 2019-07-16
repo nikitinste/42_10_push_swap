@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 13:50:16 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 16:55:35 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/16 14:56:52 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int			main(int argc, char **argv)
 	char			**args;
 	t_check_prms	p;
 
+	p.file = NULL;
 	if (argc < 2 || (((p.flag = check_flags(argc, argv, &p)) && argc < \
 		(2 + p.flag))))
 		return (0);
@@ -120,7 +121,7 @@ int			main(int argc, char **argv)
 		return (error_msg(0, NULL));
 	if (!checker_init(&p))
 		return (error_msg(1, &p));
-	if (p.flag)
+	if (p.flag == 1 || p.flag == 3)
 		return (vis_waiting(&p));
 	while ((p.ret = get_next_line(p.fd, &p.command)) > 0)
 	{
