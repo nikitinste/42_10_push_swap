@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 13:50:16 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/16 14:56:52 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/16 16:18:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int			main(int argc, char **argv)
 	p.file = NULL;
 	if (argc < 2 || (((p.flag = check_flags(argc, argv, &p)) && argc < \
 		(2 + p.flag))))
-		return (0);
+		return (display_usage());
 	if (!check_n_put_args(argc, argv, &args, &p) || !check_duplicates(&p))
 		return (error_msg(0, NULL));
 	if (!checker_init(&p))

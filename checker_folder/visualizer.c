@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 17:01:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/16 14:50:59 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/16 15:59:19 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	set_limits(t_check_prms *p)
 		ptr = ptr->next;
 	}
 	set_colors_n_widh(p);
-	//p->v->delta = p->v->max_val - p->v->min_val;
 	p->v->scale_index = (((WIN_X / 2) - 2) * 100) / p->v->max_width;
 }
 
@@ -38,7 +37,7 @@ int			window_init(t_check_prms *p)
 
 	p->v = NULL;
 	p->result = -1;
-	if (!p->flag)
+	if (!(p->flag == 1 || p->flag == 3))
 		return (1);
 	if (!(v = (t_vis_prms*)malloc(sizeof(t_vis_prms))))
 		return (0);
@@ -101,7 +100,7 @@ void		visualize_command(t_check_prms *p)
 	int		x;
 	int		y;
 
-	if (!p->flag)
+	if (!(p->flag == 1 || p->flag == 3))
 		return ;
 	clear_image(p);
 	stack_ptr = p->stack_a;

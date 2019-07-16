@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 17:12:11 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/16 16:01:06 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ struct			s_check_prms
 int			check_flags(int argv, char **argc, t_check_prms *p);
 int			error_msg(int prm, t_check_prms *p);
 int			error_file_msg(void);
+int			display_usage();
 long long	ps_atoi(const char *str);
 int			checker_init(t_check_prms *p);
 int			window_init(t_check_prms *p);
