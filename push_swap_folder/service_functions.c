@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 14:31:23 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 17:15:18 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 20:10:38 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int		error_msg(int prm, t_ps_prms *p)
 	return (-1);
 }
 
-
-void 		linked_stack_free(void *content, size_t size)
+void	linked_stack_free(void *content, size_t size)
 {
 	if (content && size)
 		return ;

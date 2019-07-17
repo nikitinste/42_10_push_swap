@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 14:37:09 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 14:24:04 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:42:46 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		rr_condition(t_ps_prms *p, t_get_cmd *m)
 	return (0);
 }
 
-void		drummer(t_ps_prms *p)
+void	drummer(t_ps_prms *p)
 {
 	t_cmd_gen	g;
 	int			border;

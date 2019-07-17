@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:29:14 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/02 12:22:44 by stepa            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:47:38 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,21 @@ static void	*free_lists_r(t_dllist *list)
 	return (list = NULL);
 }
 
+static void	make_normas_magic(t_dllist *tmp, t_dllist *prev, t_dllist *ptr)
+{
+	tmp->content = ptr->content;
+	tmp->content_size = ptr->content_size;
+	prev->right = tmp;
+	tmp->left = prev;
+	prev = prev->right;
+	ptr = ptr->right;
+}
+
 t_dllist	*copy_linked_stack(t_dllist **src, t_dllist **dst)
 {
 	t_dllist	*tmp;
 	t_dllist	*prev;
 	t_dllist	*ptr;
-
 
 	if (!src[0])
 		return (NULL);
@@ -42,12 +51,7 @@ t_dllist	*copy_linked_stack(t_dllist **src, t_dllist **dst)
 	{
 		if (!(tmp = (t_dllist*)malloc(sizeof(t_dllist))))
 			return (free_lists_r(dst[0]));
-		tmp->content = ptr->content;
-		tmp->content_size = ptr->content_size;
-		prev->right = tmp;
-		tmp->left = prev;
-		prev = prev->right;
-		ptr = ptr->right;
+		make_normas_magic(tmp, prev, ptr);
 	}
 	prev->right = NULL;
 	return (dst[0]);

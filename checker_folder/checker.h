@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 14:59:18 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:39:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 # define WIN_X 600
 # define WIN_Y 1575//1395//1035//1755
 # define TOPLINE 26
-# define BKG_CLR 0xcce5ff
-# define POS_CLR 0x37b6af
-# define NUL_CLR 0xffffff
-# define NEG_CLR 0xf15f75
+# define BKG_CLR 0x2a333d
+# define TXT_CLR 0x8ad4ff
+# define POS_CLR 0x14d11b
+# define NUL_CLR 0x05347c
+# define NEG_CLR 0xdf2743
 # define MLX p->v->mlx_ptr
 # define WIN p->v->win_ptr
 

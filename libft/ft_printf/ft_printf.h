@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 12:42:21 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 15:07:03 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 20:06:42 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef	int				(*t_method)(t_printf *p, t_format *f, void *data);
 ** Current format's params: f
 */
 
-struct			s_format
+struct				s_format
 {
 	int					width;
 	int					precision;
@@ -44,7 +44,7 @@ struct			s_format
 ** Operational format string's params: p
 */
 
-struct			s_printf
+struct				s_printf
 {
 	int					start;
 	int					i;
@@ -58,7 +58,7 @@ struct			s_printf
 ** Float itoa's params: a
 */
 
-typedef struct	s_fl_itoa
+typedef struct		s_fl_itoa
 {
 	double				arg;
 	long double			num;
@@ -69,31 +69,31 @@ typedef struct	s_fl_itoa
 	unsigned char		sign;
 	short				exp;
 	unsigned long long	mant;
-}				t_fl_itoa;
+}					t_fl_itoa;
 
 /*
 ** Float string's params: s
 */
 
-typedef struct	s_fl_string
+typedef struct		s_fl_string
 {
 	char				*w_part;
 	char				*f_part;
 	int					w_len;
 	int					f_len;
 	int					dif;
-}				t_fl_string;
+}					t_fl_string;
 
 /*
 ** Long precision params: l
 */
 
-typedef struct	s_lprec
+typedef struct		s_lprec
 {
 	long double			frc;
 	char				*f_part;
 	int					i;
-}				t_lprec;
+}					t_lprec;
 
 int					ft_printf(const char *format, ...);
 int					ft_sprintf(char *str, const char *format, ...);

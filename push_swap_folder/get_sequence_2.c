@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 14:34:28 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/13 16:39:28 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:50:48 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		find_max_index(t_ps_prms *p, t_marc_el *mrk)
 	mrk->ptr = p->stack_a;
 	mrk->max_ptr = p->stack_a;
 	if (!mrk->ptr)
-		return;
+		return ;
 	mrk->ind = 0;
 	while (mrk->ptr->right)
 	{
@@ -61,15 +61,15 @@ void		find_max_index(t_ps_prms *p, t_marc_el *mrk)
 	}
 }
 
-static void check_norm_condition(t_ps_prms *p, t_cmd_gen *g, int *way)
+static void	check_norm_condition(t_ps_prms *p, t_cmd_gen *g, int *way)
 {
-		if (*way > 0)
-		{
-			g->command_arr[3](p, g->rule_list[3]);
-			*way = *way - 1;
-		}
-		else
-			g->command_arr[4](p, g->rule_list[4]);
+	if (*way > 0)
+	{
+		g->command_arr[3](p, g->rule_list[3]);
+		*way = *way - 1;
+	}
+	else
+		g->command_arr[4](p, g->rule_list[4]);
 }
 
 void		sort_elems(t_ps_prms *p, t_cmd_gen *g)

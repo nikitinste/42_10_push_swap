@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 15:55:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 16:51:24 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:26:10 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		check_flags(int argc, char **argv, t_check_prms *p)
 	int		ret;
 
 	ret = 0;
+	p->fd = 0;
 	if (argc < 2)
 		return (0);
 	if (!ft_strcmp(argv[1], "-v") || (argc > 4 && !ft_strcmp(argv[3], "-v")))
@@ -45,7 +46,6 @@ int		check_flags(int argc, char **argv, t_check_prms *p)
 		ret += 2;
 		p->file = argv[3];
 	}
-	p->fd = 0;
 	if (ret == 2 || ret == 3)
 		if ((p->fd = open(p->file, O_RDONLY)) == -1)
 		{

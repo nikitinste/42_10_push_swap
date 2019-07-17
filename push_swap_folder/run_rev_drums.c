@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 18:10:44 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 14:25:12 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 20:11:55 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	set_rev_var(t_drums *d)
 		set_drums_way(d, d->rev_a, d->cur_b);
 }
 
-static void drum_way_shortening(t_ps_prms *p, t_drums *d)
+static void	drum_way_shortening(t_ps_prms *p, t_drums *d)
 {
 	d->cur_ab = 0;
 	if ((d->cur_a >= 0 && d->cur_b >= 0) || (d->cur_a <= 0 && d->cur_b <= 0))
@@ -73,8 +73,7 @@ static int	find_a_way(t_ps_prms *p, int val)
 	return (0);
 }
 
-
-void	run_drums(t_ps_prms *p, t_cmd_gen *g)
+void		run_drums(t_ps_prms *p, t_cmd_gen *g)
 {
 	t_drums	d;
 

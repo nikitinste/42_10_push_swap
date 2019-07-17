@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:22:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 14:15:59 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 20:19:34 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,15 @@ void		normalise(t_ps_prms *p, t_cmd_gen *g)
 
 	if (p->stack_a && p->len_a > 1)
 	{
-		if(!(n.stack_a = copy_linked_stack(&p->stack_a, &n.stack_a)))
-			exit (0);
+		if (!(n.stack_a = copy_linked_stack(&p->stack_a, &n.stack_a)))
+			exit(0);
 	}
 	else
 		n.stack_a = NULL;
 	if (p->stack_b && p->len_b > 1)
 	{
-		if(!(n.stack_b = copy_linked_stack(&p->stack_b, &n.stack_b)))
-			exit (0);
+		if (!(n.stack_b = copy_linked_stack(&p->stack_b, &n.stack_b)))
+			exit(0);
 	}
 	else
 		n.stack_b = NULL;
@@ -128,8 +128,8 @@ int			normalise_b(t_ps_prms *p, t_cmd_gen *g, int ret)
 	n.stack_a = NULL;
 	if (p->stack_b && p->len_b > 1)
 	{
-		if(!(n.stack_b = copy_linked_stack(&p->stack_b, &n.stack_b)))
-			exit (0);
+		if (!(n.stack_b = copy_linked_stack(&p->stack_b, &n.stack_b)))
+			exit(0);
 	}
 	else
 		n.stack_b = NULL;

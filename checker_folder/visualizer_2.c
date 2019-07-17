@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:05:43 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/16 14:57:54 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:37:59 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	step_command(t_check_prms *p)
 		ret = check_command(p);
 		if (!(str = make_string(p, ++step)))
 			return (0);
-		mlx_string_put(MLX, WIN, 4, 4, 0x0c5c8a, str);
+		mlx_string_put(MLX, WIN, 4, 4, TXT_CLR, str);
 		free(str);
 		if (!ret)
 		{
@@ -113,7 +113,7 @@ int			put_start_string(t_check_prms *p)
 	}
 	free(steps);
 	free(elems);
-	mlx_string_put(p->v->mlx_ptr, p->v->win_ptr, 5, 5, 0x0c608a, str);
+	mlx_string_put(p->v->mlx_ptr, p->v->win_ptr, 5, 5, TXT_CLR, str);
 	free(str);
 	return (1);
 }

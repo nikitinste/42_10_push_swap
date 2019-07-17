@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 14:57:27 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/13 17:38:09 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:52:08 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	check_val(t_list **ptr, t_lstcontent *content, int val)
 		content->val = val;
 		return (1);
 	}
-		return (0);
+	return (0);
 }
 
 static int	find_index(t_list **list, int val)
@@ -59,7 +59,7 @@ static int	find_index(t_list **list, int val)
 	{
 		fi.lc.index = 0;
 		if (!ft_lstaddnext(list, &fi.lc, sizeof(t_lstcontent)))
-			exit (0);
+			exit(0);
 		return (0);
 	}
 	fi.ptr = *list;
@@ -67,7 +67,7 @@ static int	find_index(t_list **list, int val)
 	{
 		fi.content = fi.ptr->content;
 		if (check_val(&fi.ptr, fi.content, val))
-			return(fi.content->index);
+			return (fi.content->index);
 		if (fi.ptr->next)
 			fi.ptr = fi.ptr->next;
 		else
@@ -75,7 +75,7 @@ static int	find_index(t_list **list, int val)
 	}
 	fi.lc.index = fi.content->index + 1;
 	if (!ft_lstaddnext(list, &fi.lc, sizeof(t_lstcontent)))
-		exit (0);
+		exit(0);
 	return (fi.lc.index);
 }
 
@@ -105,7 +105,7 @@ static int	find_max_seq(t_ps_prms *p, t_dllist *elem)
 	return (msq.max_len);
 }
 
-int		get_sequence(t_ps_prms *p, t_cmd_gen *g)
+int			get_sequence(t_ps_prms *p, t_cmd_gen *g)
 {
 	t_sequence		sq;
 

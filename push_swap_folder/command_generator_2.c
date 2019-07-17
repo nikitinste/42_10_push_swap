@@ -6,13 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 14:02:13 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 13:49:48 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:42:13 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			check_sort_state(t_ps_prms *p, int a, int b)
+int		check_sort_state(t_ps_prms *p, int a, int b)
 {
 	t_dllist	*ptr;
 	t_content	*content;

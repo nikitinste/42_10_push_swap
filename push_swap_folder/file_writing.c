@@ -6,13 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 14:00:17 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 18:58:23 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 19:49:36 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	file_error()
+void	file_error(void)
 {
 	ft_printf("File open/create/write error\n");
 	exit(-1);
@@ -40,7 +40,7 @@ int		check_flags(int argc, char **argv, t_ps_prms *p)
 	return (ret);
 }
 
-int			display_usage()
+int		display_usage(void)
 {
 	ft_printf("%s\n%s\n\n", \
 		"Usage: ./push_swap [options] <args ...>\n  options:", \

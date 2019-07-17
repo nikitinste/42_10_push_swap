@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 15:01:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 14:32:16 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 20:18:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,19 @@ void	way_shortening(t_normalise *n)
 		n->way_a = 0;
 		return ;
 	}
-		if (ft_abs(n->way_b) > ft_abs(n->rev_a))
-		{
-			n->way_ab = n->rev_a;
-			n->way_b -= n->rev_a;
-			n->way_a = 0;
-			return ;
-		}
-		n->way_ab = n->way_b;
-		n->way_a = n->rev_a - n->way_b;
-		n->way_b = 0;
+	if (ft_abs(n->way_b) > ft_abs(n->rev_a))
+	{
+		n->way_ab = n->rev_a;
+		n->way_b -= n->rev_a;
+		n->way_a = 0;
+		return ;
+	}
+	n->way_ab = n->way_b;
+	n->way_a = n->rev_a - n->way_b;
+	n->way_b = 0;
 }
 
-void		execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, int way)
+void	execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, int way)
 {
 	while (cmd->i)
 	{
@@ -100,7 +100,6 @@ void		execute_command(t_ps_prms *p, t_cmd_gen *g, t_execute *cmd, int way)
 		else
 			g->command_arr[cmd->command - 3](p, g->rule_list[cmd->command - 3]);
 		cmd->i--;
-
 		if (!p->norm)
 			p->norm = 1;
 		if (!p->check)

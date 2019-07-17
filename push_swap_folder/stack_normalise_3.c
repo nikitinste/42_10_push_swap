@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 18:23:29 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/08 16:07:46 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 20:17:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	norm_swap(t_dllist **stack)
 {
-	t_dllist *second;
+	t_dllist	*second;
 
 	second = stack[0]->right;
 	stack[0]->left = second;
@@ -22,7 +22,6 @@ void	norm_swap(t_dllist **stack)
 	second->right = stack[0];
 	second->left = NULL;
 	stack[0] = second;
-
 }
 
 void	check_bias(t_way *w)
@@ -61,7 +60,7 @@ void	check_direction(t_way *w, int len)
 
 int		check_stack_is_sorted(t_dllist *stack)
 {
-	t_dllist 	*ptr;
+	t_dllist	*ptr;
 	t_content	*first;
 	t_content	*second;
 

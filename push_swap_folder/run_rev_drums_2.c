@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 18:14:50 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 14:25:28 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 20:14:40 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	run_drum_commands(t_ps_prms *p, t_cmd_gen *g, t_drums *d)
 	g->command_arr[10](p, g->rule_list[10]);
 }
 
-
 void	drums_init(t_drums *d, t_ps_prms *p)
 {
 	d->rot = 0;
@@ -82,9 +81,9 @@ void	prepare_stack_a(t_ps_prms *p, t_cmd_gen *g)
 	second = p->stack_a->right->content;
 	third = p->stack_a->right->right->content;
 	if (third->val < second->val && second->val > first->val)
-			g->command_arr[1](p, g->rule_list[1]);
+		g->command_arr[1](p, g->rule_list[1]);
 	else if (first->val > third->val)
-			g->command_arr[4](p, g->rule_list[4]);
+		g->command_arr[4](p, g->rule_list[4]);
 	first = p->stack_a->content;
 	second = p->stack_a->right->content;
 	if (first->val > second->val)
