@@ -6,7 +6,7 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 12:46:06 by uhand             #+#    #+#              #
-#    Updated: 2019/07/15 14:38:37 by uhand            ###   ########.fr        #
+#    Updated: 2019/07/17 14:00:57 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC = push_swap.c ps_atoi.c sorting.c copy_linked_stack.c command_generator.c \
 commands.c commands_2.c commands_3.c command_generator_2.c service_functions.c \
 command_generator_3.c stack_normalise.c stack_normalise_2.c \
 stack_normalise_3.c run_rev_drums.c run_rev_drums_2.c get_sequence.c \
-get_sequence_2.c
+get_sequence_2.c file_writing.c
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
 FLAGS = -g -Wall -Wextra -Werror #-fsanitize=address

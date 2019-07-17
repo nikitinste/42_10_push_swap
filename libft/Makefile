@@ -6,7 +6,7 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/18 18:04:25 by uhand             #+#    #+#              #
-#    Updated: 2019/06/28 19:23:27 by uhand            ###   ########.fr        #
+#    Updated: 2019/07/17 15:11:05 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ ft_dlladdnextl.c ft_dllcpyr.c ft_dllcpyl.c ft_dllcpy.c ft_nstrjoin.c
 
 SRC_PF = ft_printf.c lib_printf.c add_fnctns.c set_format.c apply_flags.c \
 formats_c_s.c format_float.c formats_int.c pft_itoa.c pft_unsigned_itoa.c \
-pft_float_itoa.c pft_float_itoa_2.c pft_float_itoa_3.c double_rep.c
+pft_float_itoa.c pft_float_itoa_2.c pft_float_itoa_3.c double_rep.c \
+ft_sprintf.c ft_fdprintf.c
 
 SRC_2 = $(addprefix ft_printf/,$(SRC_PF))
 

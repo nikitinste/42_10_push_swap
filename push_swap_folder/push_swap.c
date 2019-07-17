@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:56:30 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 14:44:17 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 15:59:33 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	check_n_put_args(int argc, char **argv, char ***args, \
 	int			j;
 	char		*buf_str;
 
-	i = 0;
+	i = p->flag;
 	p->stack_a = NULL;
 	p->stack_b = NULL;
 	while (++i < argc)
@@ -87,7 +87,7 @@ static int	check_n_put_args(int argc, char **argv, char ***args, \
 					return (0);
 		}
 	}
-	if (!(buf_str = ft_arrjoin(&argv[1], argc - 1)))
+	if (!(buf_str = ft_arrjoin(&argv[1 + p->flag], argc - (1 + p->flag))))
 		return (0);
 	args[0] = ft_strsplitspaces(buf_str);
 	free(buf_str);
@@ -122,8 +122,9 @@ int		main(int argc, char **argv)
 	char		**args;
 	t_ps_prms	p;
 
-	if (argc < 2)
-		return (0);
+	if (argc < 2 || ((p.flag = check_flags(argc, argv, &p)) && argc < \
+		(2 + p.flag)))
+		return (display_usage());
 	if (!check_n_put_args(argc, argv, &args, &p) || !check_duplicates(&p))
 		return (error_msg(0, NULL));
 	if(!stack_sorting(&p))
@@ -134,5 +135,7 @@ int		main(int argc, char **argv)
 		find_shortest_solution(&p);
 	else
 		drummer(&p);
+	if (p.flag)
+		close(p.fd);
 	exit (0);
 }

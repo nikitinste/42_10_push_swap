@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 19:41:56 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/13 19:22:55 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 16:53:03 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	print_or_count(t_ps_prms *p, char *command)
 {
 	if (!p->mode)
 		p->cmd_count++;
-	else
-		ft_printf("%s\n", command);
+	else if(ft_fdprintf(p->fd, "%s\n", command) == -1)
+			file_error();
 }
 
 void	push_b(t_ps_prms *p, char *command)

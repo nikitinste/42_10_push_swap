@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/16 16:01:06 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 14:59:18 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
-# include <fcntl.h>
 # define A !ft_strcmp
 # define WIN_X 600
 # define WIN_Y 1575//1395//1035//1755

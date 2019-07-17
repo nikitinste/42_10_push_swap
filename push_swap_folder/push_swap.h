@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/15 14:37:35 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/17 16:52:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
 
 typedef struct s_ps_prms	t_ps_prms;
@@ -29,6 +30,9 @@ struct	s_ps_prms
 	t_dllist		*stack_a;
 	t_dllist		*stack_b;
 	t_dllist		*copy_a;
+	char			*file;
+	int				flag;
+	int				fd;
 	int				len_a;
 	int				len_b;
 	int				push_direction;
@@ -232,6 +236,9 @@ typedef struct	s_marc_el
 	int				ind;
 }				t_marc_el;
 
+int			check_flags(int argc, char **argv, t_ps_prms *p);
+int			display_usage();
+void		file_error();
 long long	ps_atoi(const char *str);
 int			stack_sorting(t_ps_prms *p);
 int			error_msg(int prm, t_ps_prms *p);
