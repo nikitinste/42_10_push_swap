@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 19:26:29 by uhand             #+#    #+#             */
-/*   Updated: 2019/05/31 14:14:40 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 11:43:49 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	rotate_a(t_check_prms *p)
 	p->stack_a->next = NULL;
 	p->stack_a = ptr;
 }
+
 void	rotate_b(t_check_prms *p)
 {
 	t_list	*ptr;
@@ -67,16 +68,16 @@ void	rev_rot_a(t_check_prms *p)
 
 void	rev_rot_b(t_check_prms *p)
 {
-		t_list	*ptr;
-		t_list	*prelast_ptr;
+	t_list	*ptr;
+	t_list	*prelast_ptr;
 
-		if (!p->stack_b || !p->stack_b->next)
-			return ;
-		prelast_ptr = p->stack_b;
-		while (prelast_ptr->next->next != NULL)
-			prelast_ptr = prelast_ptr->next;
-		ptr = prelast_ptr->next;
-		ptr->next = p->stack_b;
-		prelast_ptr->next = NULL;
-		p->stack_b = ptr;
+	if (!p->stack_b || !p->stack_b->next)
+		return ;
+	prelast_ptr = p->stack_b;
+	while (prelast_ptr->next->next != NULL)
+		prelast_ptr = prelast_ptr->next;
+	ptr = prelast_ptr->next;
+	ptr->next = p->stack_b;
+	prelast_ptr->next = NULL;
+	p->stack_b = ptr;
 }

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 19:39:53 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 11:52:06 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@
 # include "../minilibx/mlx.h"
 # define A !ft_strcmp
 # define WIN_X 600
-# define WIN_Y 1575//1395//1035//1755
+
+/*
+** Useful WIN_Y values: 1035 1395 1755
+*/
+
+# define WIN_Y 1575
 # define TOPLINE 26
 # define BKG_CLR 0x2a333d
 # define TXT_CLR 0x8ad4ff
@@ -30,7 +35,7 @@
 # define MLX p->v->mlx_ptr
 # define WIN p->v->win_ptr
 
-typedef struct s_check_prms t_check_prms;
+typedef struct s_check_prms	t_check_prms;
 typedef	void				(*t_command)(t_check_prms *p);
 
 /*
@@ -96,9 +101,7 @@ typedef struct	s_vis_prms
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
-	//void		*bkg_ptr;
 	char		*img_addr;
-	//char		*bkg_addr;
 	int			bpp;
 	int			lsz;
 	int			ndn;
@@ -137,35 +140,33 @@ struct			s_check_prms
 	t_vis_prms	*v;
 };
 
-int			check_flags(int argv, char **argc, t_check_prms *p);
-int			error_msg(int prm, t_check_prms *p);
-int			error_file_msg(void);
-int			display_usage();
-long long	ps_atoi(const char *str);
-int			checker_init(t_check_prms *p);
-int			window_init(t_check_prms *p);
-int			check_duplicates(t_check_prms *p);
-int			check_command(t_check_prms *p);
-int			check_stacks(t_check_prms *p);
-void		visualize_command(t_check_prms *p);
-void		clear_image(t_check_prms *p);
-int			vis_waiting(t_check_prms *p);
-void		set_colors_n_widh(t_check_prms *p);
-int			get_grad_color(t_check_prms *p, t_grad_prms *clr, int pos);
-//int			deal_key(int key, void *prm);
-int			close_checker(void *prm);
-char		*make_string(t_check_prms *p, int step);
+int				check_flags(int argv, char **argc, t_check_prms *p);
+int				error_msg(int prm, t_check_prms *p);
+int				error_file_msg(void);
+int				display_usage();
+long long		ps_atoi(const char *str);
+int				checker_init(t_check_prms *p);
+int				window_init(t_check_prms *p);
+int				check_duplicates(t_check_prms *p);
+int				check_command(t_check_prms *p);
+int				check_stacks(t_check_prms *p);
+void			visualize_command(t_check_prms *p);
+void			clear_image(t_check_prms *p);
+int				vis_waiting(t_check_prms *p);
+void			set_colors_n_widh(t_check_prms *p);
+int				get_grad_color(t_check_prms *p, t_grad_prms *clr, int pos);
+int				close_checker(void *prm);
+char			*make_string(t_check_prms *p, int step);
 
-void		swap_a(t_check_prms *p);
-void		swap_b(t_check_prms *p);
-void		swap_ab(t_check_prms *p);
-void		push_a(t_check_prms *p);
-void		push_b(t_check_prms *p);
-void		rotate_a(t_check_prms *p);
-void		rotate_b(t_check_prms *p);
-void		rotate_ab(t_check_prms *p);
-void		rev_rot_a(t_check_prms *p);
-void		rev_rot_b(t_check_prms *p);
-void		rev_rot_ab(t_check_prms *p);
-
+void			swap_a(t_check_prms *p);
+void			swap_b(t_check_prms *p);
+void			swap_ab(t_check_prms *p);
+void			push_a(t_check_prms *p);
+void			push_b(t_check_prms *p);
+void			rotate_a(t_check_prms *p);
+void			rotate_b(t_check_prms *p);
+void			rotate_ab(t_check_prms *p);
+void			rev_rot_a(t_check_prms *p);
+void			rev_rot_b(t_check_prms *p);
+void			rev_rot_ab(t_check_prms *p);
 #endif

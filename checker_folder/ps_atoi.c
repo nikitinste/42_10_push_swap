@@ -6,13 +6,13 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 15:59:47 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 15:26:41 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 12:17:15 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int			display_usage()
+int			display_usage(void)
 {
 	ft_printf("%s\n%s\n\n", \
 		"Usage: ./checker [options] <args ...>\n  options:", \
@@ -22,6 +22,24 @@ int			display_usage()
 		"./checker -f [file_name] <args ...>");
 	return (0);
 }
+
+void		clear_image(t_check_prms *p)
+{
+	int			*image;
+	int			i;
+	int			lenth;
+
+	image = (int*)p->v->img_addr;
+	i = -1;
+	lenth = WIN_X * WIN_Y;
+	while (++i < (lenth))
+		image[i] = BKG_CLR;
+}
+
+/*
+**	^^^ Norma placed functions
+**	vvv Atoi functions
+*/
 
 static void	skip_starters(size_t *i, char *s, int *sign)
 {

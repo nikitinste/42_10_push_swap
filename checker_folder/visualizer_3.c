@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:45:59 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/29 17:16:11 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 12:13:59 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ int			close_checker(void *prm)
 	t_check_prms	*p;
 
 	p = (t_check_prms*)prm;
-	mlx_destroy_image (p->v->mlx_ptr, p->v->img_ptr);
+	mlx_destroy_image(p->v->mlx_ptr, p->v->img_ptr);
 	mlx_destroy_window(p->v->mlx_ptr, p->v->win_ptr);
-	//free all v data
 	exit(p->v->cmd_ret);
 	return (0);
 }
@@ -93,10 +92,12 @@ char		*make_string(t_check_prms *p, int step)
 		m.next = (char*)p->v->crnt_cmd->next->content;
 	else
 		m.next = NULL;
-	if (!(m.steps = ft_itoa(p->v->count)) || !(m.c_step = ft_itoa(step)) || \
-		!(m.elems = ft_itoa(p->len)))
+	m.steps = ft_itoa(p->v->count);
+	m.c_step = ft_itoa(step);
+	m.elems = ft_itoa(p->len);
+	if (!m.steps || !m.c_step || !m.elems)
 		return (0);
-	if(!(m.str = ft_nstrjoin(11, "Step: ", p->command, " ", m.c_step, "/", \
+	if (!(m.str = ft_nstrjoin(11, "Step: ", p->command, " ", m.c_step, "/", \
 		m.steps, " -> ", m.next, " (", m.elems, ")")))
 	{
 		free(m.steps);

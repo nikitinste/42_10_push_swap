@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 19:23:39 by uhand             #+#    #+#             */
-/*   Updated: 2019/05/31 13:28:42 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 11:43:02 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	swap_a(t_check_prms *p)
 {
 	t_list	*ptr;
 
-	if(!p->stack_a || !p->stack_a->next)
+	if (!p->stack_a || !p->stack_a->next)
 		return ;
 	ptr = p->stack_a->next;
 	p->stack_a->next = p->stack_a->next->next;
@@ -28,7 +28,7 @@ void	swap_b(t_check_prms *p)
 {
 	t_list	*ptr;
 
-	if(!p->stack_b || !p->stack_b->next)
+	if (!p->stack_b || !p->stack_b->next)
 		return ;
 	ptr = p->stack_b->next;
 	p->stack_b->next = p->stack_b->next->next;
@@ -46,7 +46,7 @@ void	push_a(t_check_prms *p)
 {
 	t_list	*ptr;
 
-	if(!p->stack_b)
+	if (!p->stack_b)
 		return ;
 	ptr = p->stack_b->next;
 	p->stack_b->next = p->stack_a;
@@ -58,7 +58,7 @@ void	push_b(t_check_prms *p)
 {
 	t_list	*ptr;
 
-	if(!p->stack_a)
+	if (!p->stack_a)
 		return ;
 	ptr = p->stack_a->next;
 	p->stack_a->next = p->stack_b;

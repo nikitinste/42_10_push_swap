@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:05:43 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 19:37:59 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 12:15:06 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,29 +83,19 @@ static int	get_command(void *prm)
 	return (0);
 }
 
-void		clear_image(t_check_prms *p)
-{
-	int			*image;
-	int			i;
-	int			lenth;
-
-	image = (int*)p->v->img_addr;
-	i = -1;
-	lenth = WIN_X * WIN_Y;
-	while (++i < (lenth))
-		image[i] = BKG_CLR;
-}
-
 int			put_start_string(t_check_prms *p)
 {
 	char		*str;
 	char		*steps;
 	char		*elems;
 
-	if (!(steps = ft_itoa(p->v->count)) || !(elems = ft_itoa(p->len)))
+	steps = ft_itoa(p->v->count);
+	elems = ft_itoa(p->len);
+	if (!steps || !elems)
 		return (0);
-	if(!(str = ft_nstrjoin(8, "Press \"Enter\" for run or \"Right\" for step", \
-		": ", (char*)p->v->commands->content, " 1/", steps, " (", elems, ")")))
+	if (!(str = ft_nstrjoin(8, \
+		"Press \"Enter\" for run or \"Right\" for step", ": ", \
+		(char*)p->v->commands->content, " 1/", steps, " (", elems, ")")))
 	{
 		free(steps);
 		free(elems);
@@ -141,7 +131,7 @@ int			vis_waiting(t_check_prms *p)
 	p->v->crnt_cmd = p->v->commands;
 	mlx_hook(p->v->win_ptr, 2, 0, &deal_key, (void*)(p));
 	mlx_hook(p->v->win_ptr, 17, 0, &close_checker, (void*)(p));
-	mlx_loop_hook (p->v->mlx_ptr, &get_command, (void*)(p));
+	mlx_loop_hook(p->v->mlx_ptr, &get_command, (void*)(p));
 	mlx_loop(p->v->mlx_ptr);
 	return (0);
 }
