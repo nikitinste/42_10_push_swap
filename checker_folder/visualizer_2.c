@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/06 15:05:43 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/18 12:15:06 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 16:24:59 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,15 @@ static int	deal_key(int key, void *prm)
 		return (close_checker(prm));
 	if (p->result != 2)
 	{
-		if (key == 36)
+		if (key == 49)
 		{
 			if (p->v->crnt_cmd)
-				p->v->run = 1;
+			{
+				if (!p->v->run)
+					p->v->run = 1;
+				else
+					p->v->run = 0;
+			}
 		}
 		else if (key == 124)
 			if ((p->v->cmd_ret = step_command(p)) != 1)
@@ -70,12 +75,16 @@ static int	get_command(void *prm)
 			return (p->v->cmd_ret);
 		else if (!p->v->run || p->result != -1)
 			p->v->run = 0;
-		usleep(2000000 / p->len);
+		usleep(10000000 / p->v->count);
 	}
-	if (p->result == 1 && p->v->cmd_ret && p->result != 2)
-		mlx_string_put(MLX, WIN, 545, 4, 0x2c8a0c, "OK!)");
-	else if (p->result == 0 && p->v->cmd_ret && p->result != 2)
-		mlx_string_put(MLX, WIN, 545, 4, 0xba1414, "KO!(");
+	if (p->v->cmd_ret && (p->result == 1 || p->result == 0))
+	{
+		if (p->result == 1)
+			mlx_string_put(MLX, WIN, 545, 4, 0x2c8a0c, "OK!)");
+		else if (p->result == 0)
+			mlx_string_put(MLX, WIN, 545, 4, 0xba1414, "KO!(");
+		print_signature(p);
+	}
 	else if (p->v->cmd_ret == -1 && p->result != 2)
 		mlx_string_put(MLX, WIN, 530, 4, 0xba1414, "Error!");
 	if (p->result != -1)
@@ -94,7 +103,7 @@ int			put_start_string(t_check_prms *p)
 	if (!steps || !elems)
 		return (0);
 	if (!(str = ft_nstrjoin(8, \
-		"Press \"Enter\" for run or \"Right\" for step", ": ", \
+		"\"Space\" - run/stop | \"Right\" - step next", ": ", \
 		(char*)p->v->commands->content, " 1/", steps, " (", elems, ")")))
 	{
 		free(steps);

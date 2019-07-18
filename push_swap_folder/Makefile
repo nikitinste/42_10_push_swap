@@ -6,7 +6,7 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 12:46:06 by uhand             #+#    #+#              #
-#    Updated: 2019/07/17 14:00:57 by uhand            ###   ########.fr        #
+#    Updated: 2019/07/18 17:38:26 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ stack_normalise_3.c run_rev_drums.c run_rev_drums_2.c get_sequence.c \
 get_sequence_2.c file_writing.c
 OBJ = $(addprefix $(OBJPATH)/,$(SRC:.c=.o))
 
-FLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 LIB = -L ../libft -lft
 LIBPATH = ../libft
 

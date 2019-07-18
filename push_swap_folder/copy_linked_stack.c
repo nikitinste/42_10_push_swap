@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:29:14 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 19:47:38 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 13:14:09 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,36 @@ static void	*free_lists_r(t_dllist *list)
 	return (list = NULL);
 }
 
-static void	make_normas_magic(t_dllist *tmp, t_dllist *prev, t_dllist *ptr)
+static void	make_normas_magic(t_cpy_lstk *cpy)
 {
-	tmp->content = ptr->content;
-	tmp->content_size = ptr->content_size;
-	prev->right = tmp;
-	tmp->left = prev;
-	prev = prev->right;
-	ptr = ptr->right;
+	cpy->tmp->content = cpy->ptr->content;
+	cpy->tmp->content_size = cpy->ptr->content_size;
+	cpy->prev->right = cpy->tmp;
+	cpy->tmp->left = cpy->prev;
+	cpy->prev = cpy->prev->right;
+	cpy->ptr = cpy->ptr->right;
 }
 
 t_dllist	*copy_linked_stack(t_dllist **src, t_dllist **dst)
 {
-	t_dllist	*tmp;
-	t_dllist	*prev;
-	t_dllist	*ptr;
+	t_cpy_lstk	cpy;
 
 	if (!src[0])
 		return (NULL);
 	if (!(dst[0] = (t_dllist*)malloc(sizeof(t_dllist))))
 		return (NULL);
-	ptr = src[0];
-	dst[0]->content = ptr->content;
-	dst[0]->content_size = ptr->content_size;
+	cpy.ptr = src[0];
+	dst[0]->content = cpy.ptr->content;
+	dst[0]->content_size = cpy.ptr->content_size;
 	dst[0]->left = NULL;
-	prev = dst[0];
-	ptr = ptr->right;
-	while (ptr)
+	cpy.prev = dst[0];
+	cpy.ptr = cpy.ptr->right;
+	while (cpy.ptr)
 	{
-		if (!(tmp = (t_dllist*)malloc(sizeof(t_dllist))))
+		if (!(cpy.tmp = (t_dllist*)malloc(sizeof(t_dllist))))
 			return (free_lists_r(dst[0]));
-		make_normas_magic(tmp, prev, ptr);
+		make_normas_magic(&cpy);
 	}
-	prev->right = NULL;
+	cpy.prev->right = NULL;
 	return (dst[0]);
 }

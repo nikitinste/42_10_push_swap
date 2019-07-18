@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 18:29:47 by uhand             #+#    #+#             */
-/*   Updated: 2019/06/29 16:31:04 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 16:52:20 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	norma_free(t_njoin *j)
 {
 	if (j->i > 1)
-		free (j->buf_1);
+		free(j->buf_1);
 }
 
-char	*ft_nstrjoin(int n, ...)
+char		*ft_nstrjoin(int n, ...)
 {
 	t_njoin	j;
 
@@ -36,7 +36,7 @@ char	*ft_nstrjoin(int n, ...)
 	{
 		j.buf_1 = j.str;
 		j.buf_2 = va_arg(j.ap, char*);
-		if(!(j.str = ft_strjoin(j.buf_1, j.buf_2)))
+		if (!(j.str = ft_strjoin(j.buf_1, j.buf_2)))
 		{
 			norma_free(&j);
 			return (NULL);

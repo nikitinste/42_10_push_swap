@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 14:52:18 by uhand             #+#    #+#             */
-/*   Updated: 2019/05/23 19:29:35 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 17:07:08 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int					format_f(t_printf *p, t_format *f, va_list *ap)
 	else
 		a.arg = va_arg(*ap, double);
 	get_double_rep(&a);
-	if ((ret = check_int_and_nan(&a,f)))
+	if ((ret = check_int_and_nan(&a, f)))
 		return (char_flags(p, f));
 	else if (ret == -1)
 		return (0);

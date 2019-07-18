@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 13:50:48 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 15:07:26 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 17:10:53 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,12 @@ typedef struct	s_dllist
 
 typedef struct	s_njoin
 {
-		va_list	ap;
-		char	*str;
-		char	*buf_1;
-		char	*buf_2;
-		size_t	len;
-		int		i;
-
+	va_list			ap;
+	char			*str;
+	char			*buf_1;
+	char			*buf_2;
+	size_t			len;
+	int				i;
 }				t_njoin;
 
 void			ft_putchar(char c);

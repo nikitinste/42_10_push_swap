@@ -6,13 +6,15 @@
 #    By: uhand <uhand@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 12:48:29 by uhand             #+#    #+#              #
-#    Updated: 2019/05/28 15:48:26 by uhand            ###   ########.fr        #
+#    Updated: 2019/07/18 17:39:55 by uhand            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#NAME = push_swap checker
+NAME = push_swap checker
 
-all:
+all: $(NAME)
+
+$(NAME):
 	@make -C ./push_swap_folder
 	@make -C ./checker_folder
 

@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 20:08:13 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 13:11:50 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,17 @@ typedef struct	s_marc_el
 	t_content		*content;
 	int				ind;
 }				t_marc_el;
+
+/*
+**	copy_linked_stack params: cpy
+*/
+
+typedef struct	s_cpy_lstk
+{
+	t_dllist		*tmp;
+	t_dllist		*prev;
+	t_dllist		*ptr;
+}				t_cpy_lstk;
 
 int				check_flags(int argc, char **argv, t_ps_prms *p);
 int				display_usage();

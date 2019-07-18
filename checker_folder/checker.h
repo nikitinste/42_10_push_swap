@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/18 11:52:06 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 16:37:56 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 # define NEG_CLR 0xdf2743
 # define MLX p->v->mlx_ptr
 # define WIN p->v->win_ptr
+# define HIGHT p->v->cmn_hight
+# define X p->v->x
+# define Y p->v->y
+# define I p->v->i
 
 typedef struct s_check_prms	t_check_prms;
 typedef	void				(*t_command)(t_check_prms *p);
@@ -105,6 +109,7 @@ typedef struct	s_vis_prms
 	int			bpp;
 	int			lsz;
 	int			ndn;
+	int			cmn_hight;
 	int			el_hight;
 	int			el_width;
 	int			max_val;
@@ -118,6 +123,9 @@ typedef struct	s_vis_prms
 	t_list		*crnt_cmd;
 	int			run;
 	int			cmd_ret;
+	int			x;
+	int			y;
+	int			i;
 }				t_vis_prms;
 
 /*
@@ -157,6 +165,9 @@ void			set_colors_n_widh(t_check_prms *p);
 int				get_grad_color(t_check_prms *p, t_grad_prms *clr, int pos);
 int				close_checker(void *prm);
 char			*make_string(t_check_prms *p, int step);
+void			set_high_insert_place(t_check_prms *p);
+void			set_el_high(t_check_prms *p);
+void			print_signature(t_check_prms *p);
 
 void			swap_a(t_check_prms *p);
 void			swap_b(t_check_prms *p);

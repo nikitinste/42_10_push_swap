@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 16:29:13 by uhand             #+#    #+#             */
-/*   Updated: 2019/05/22 20:26:30 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/18 17:08:09 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	round_float_str(t_fl_itoa *a, t_lprec *l)
 	}
 }
 
-char		*get_long_precision (t_format *f, t_fl_itoa *a)
+char		*get_long_precision(t_format *f, t_fl_itoa *a)
 {
 	t_lprec	l;
 
