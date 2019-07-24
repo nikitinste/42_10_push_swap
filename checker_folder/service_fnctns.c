@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 15:55:05 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/18 11:53:52 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/24 20:51:55 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		error_msg(int prm, t_check_prms *p)
 	{
 		ft_lstdel(&p->stack_a, &ft_lstfree);
 		ft_lstdel(&p->stack_b, &ft_lstfree);
+		ft_lstdel(&p->v->commands, &ft_lstfree);
 		if (p->command)
 			free(p->command);
 	}

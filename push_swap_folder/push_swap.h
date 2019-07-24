@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:58:36 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/18 13:11:50 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/24 16:40:24 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,17 @@ typedef struct	s_cpy_lstk
 	t_dllist		*prev;
 	t_dllist		*ptr;
 }				t_cpy_lstk;
+
+/*
+**	check_n_put_args: a
+*/
+
+typedef struct	s_check_args
+{
+	int			i;
+	int			j;
+	char		*buf_str;
+}				t_check_args;
 
 int				check_flags(int argc, char **argv, t_ps_prms *p);
 int				display_usage();

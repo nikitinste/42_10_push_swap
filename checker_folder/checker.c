@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 13:50:16 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/17 15:16:26 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/24 17:43:29 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,26 +83,28 @@ static int	set_args(char ***args, t_check_prms *p)
 static int	check_n_put_args(int argc, char **argv, char ***args, \
 	t_check_prms *p)
 {
-	int		i;
-	int		j;
-	char	*buf_str;
+	t_check_args	a;
 
-	i = p->flag;
-	while (++i < argc)
+	a.i = p->flag;
+	p->stack_a = NULL;
+	p->stack_b = NULL;
+	while (++a.i < argc)
 	{
-		j = -1;
-		while (argv[i][++j] != '\0')
+		a.j = -1;
+		while (argv[a.i][++a.j] != '\0')
 		{
-			if (!ft_isdigit((int)argv[i][j]) && !ft_isspace((int)argv[i][j]))
-				if (!((argv[i][j] == '+' || argv[i][j] == '-') && \
-					ft_isdigit((int)argv[i][j + 1])))
+			if (!ft_isdigit((int)argv[a.i][a.j]) && \
+				!ft_isspace((int)argv[a.i][a.j]))
+				if (!((argv[a.i][a.j] == '+' || argv[a.i][a.j] == '-') && \
+					ft_isdigit((int)argv[a.i][a.j + 1]) && (a.j == 0 || \
+						ft_isspace((int)argv[a.i][a.j - 1]))))
 					return (0);
 		}
 	}
-	if (!(buf_str = ft_arrjoin(&argv[1 + p->flag], argc - (1 + p->flag))))
+	if (!(a.buf_str = ft_arrjoin(&argv[1 + p->flag], argc - (1 + p->flag))))
 		return (0);
-	args[0] = ft_strsplitspaces(buf_str);
-	free(buf_str);
+	args[0] = ft_strsplitspaces(a.buf_str);
+	free(a.buf_str);
 	if (args[0] == NULL)
 		return (0);
 	return (set_args(args, p));
@@ -134,5 +136,5 @@ int			main(int argc, char **argv)
 	if (p.flag == 2 || p.flag == 3)
 		close(p.fd);
 	check_stacks(&p);
-	return (0);
+	exit(0);
 }

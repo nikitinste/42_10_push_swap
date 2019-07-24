@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 17:03:46 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/13 19:15:20 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/23 16:49:55 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	commands_init(t_ps_prms *p, t_cmd_gen *g)
 	g->rule_list[9] = "pb";
 	g->rule_list[10] = "pa";
 	p->push_direction = 0;
-	p->check = 0;
 	p->norm = 0;
 }
 

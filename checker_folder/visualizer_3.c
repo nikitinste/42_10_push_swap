@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 16:45:59 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/18 12:13:59 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/24 20:50:05 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int			close_checker(void *prm)
 	p = (t_check_prms*)prm;
 	mlx_destroy_image(p->v->mlx_ptr, p->v->img_ptr);
 	mlx_destroy_window(p->v->mlx_ptr, p->v->win_ptr);
+	ft_lstdel(&p->stack_a, &ft_lstfree);
+	ft_lstdel(&p->stack_b, &ft_lstfree);
+	ft_lstdel(&p->v->commands, &ft_lstfree);
 	exit(p->v->cmd_ret);
 	return (0);
 }
@@ -102,9 +105,11 @@ char		*make_string(t_check_prms *p, int step)
 	{
 		free(m.steps);
 		free(m.elems);
+		free(m.c_step);
 		return (0);
 	}
 	free(m.steps);
 	free(m.elems);
+	free(m.c_step);
 	return (m.str);
 }

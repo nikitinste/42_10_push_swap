@@ -6,7 +6,7 @@
 /*   By: uhand <uhand@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 12:57:12 by uhand             #+#    #+#             */
-/*   Updated: 2019/07/18 16:37:56 by uhand            ###   ########.fr       */
+/*   Updated: 2019/07/24 17:27:34 by uhand            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,17 @@ struct			s_check_prms
 	int			result;
 	t_vis_prms	*v;
 };
+
+/*
+**	check_n_put_args: a
+*/
+
+typedef struct	s_check_args
+{
+	int			i;
+	int			j;
+	char		*buf_str;
+}				t_check_args;
 
 int				check_flags(int argv, char **argc, t_check_prms *p);
 int				error_msg(int prm, t_check_prms *p);
